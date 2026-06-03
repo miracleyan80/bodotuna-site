@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ボドツナゲーム図鑑｜ボードゲームでツナグ手</title>
+<meta name="description" content="ボドツナのイベントで使用するボードゲームを紹介します。学童・居場所・教室で実際に遊んでいるゲームのほか、オリジナル制作ゲームも掲載。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ゲーム図鑑専用 */
+.gl-categories {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.gl-cat-chip {
+  background: white;
+  border: 2px solid var(--border);
+  color: var(--brown);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gl-cat-chip:hover { border-color: var(--orange); color: var(--orange); }
+.gl-cat-chip.active { background: var(--orange); color: white; border-color: var(--orange); }
+
+.gl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.gl-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid var(--border);
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.gl-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--yellow);
+  box-shadow: 0 10px 0 var(--yellow-light);
+}
+.gl-card.original {
+  background: linear-gradient(135deg, var(--yellow-light), white);
+  border-color: var(--orange);
+}
+.gl-card .gl-thumb {
+  width: 100%;
+  height: 200px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+}
+.gl-card .gl-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gl-card .gl-body { padding: 22px 22px 24px; flex-grow: 1; display: flex; flex-direction: column; }
+.gl-card .gl-tags { margin-bottom: 12px; }
+.gl-card .gl-tag {
+  display: inline-block;
+  font-size: 11px;
+  background: var(--yellow-light);
+  color: var(--brown);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 800;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.gl-card .gl-tag.orange { background: var(--orange); color: white; }
+.gl-card h3 {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--brown);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.gl-card .gl-catch {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.gl-card p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--brown-light);
+  flex-grow: 1;
+  margin-bottom: 14px;
+}
+.gl-card .gl-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--brown-light);
+  padding-top: 12px;
+  border-top: 2px dashed var(--border);
+}
+.gl-card .gl-meta span { font-weight: 700; color: var(--brown); }
+.gl-card .gl-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--orange);
+}
+.gl-card .gl-link::after { content: ' →'; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">🎲</span>
+      ボードゲームで<span>ツナグ手</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="community.html">居場所事業</a></li>
+      <li><a href="gakudo.html">学童イベント</a></li>
+      <li><a href="game-creation.html">ゲーム化事業</a></li>
+      <li><a href="training.html">法人研修</a></li>
+      <li><a href="sponsor.html" class="nav-cta">スポンサー募集</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="メニュー">☰</button>
+  </nav>
+</header>
+
+<section class="subpage-hero">
+  <div class="subpage-hero-inner">
+    <span class="subpage-breadcrumb">📚 GAME LIBRARY</span>
+    <h1>ボドツナ<span class="accent">ゲーム図鑑</span></h1>
+    <p>
+      ボドツナのイベントで使用するボードゲームを紹介します。<br>
+      子ども向けの定番ゲームから、ボドツナクリエイティブアーツで制作したオリジナルゲームまで。
+    </p>
+  </div>
+</section>
+
+<!-- カテゴリ -->
+<section style="padding-bottom: 30px;">
+  <div class="container">
+    <div class="gl-categories">
+      <span class="gl-cat-chip active">すべて</span>
+      <span class="gl-cat-chip">子ども向け</span>
+      <span class="gl-cat-chip">大人も楽しめる</span>
+      <span class="gl-cat-chip">初心者向け</span>
+      <span class="gl-cat-chip">オリジナル</span>
+    </div>
+  </div>
+</section>
+
+<!-- ゲーム一覧 -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="gl-grid">
+
+      <!-- オリジナルゲーム ねこのて -->
+      <div class="gl-card original">
+        <div class="gl-thumb"><img src="images/nekonote.jpg" alt="ねこのて"></div>
+        <div class="gl-body">
+          <div class="gl-tags">
+            <span class="gl-tag orange">オリジナル</span>
+            <span class="gl-tag">協力</span>
+            <span class="gl-tag">子ども向け</span>
+          </div>
+          <h3>ねこのて</h3>
+          <p class="gl-catch">お昼寝しているねこたちを、起こす協力型アクションゲーム！</p>
+          <p>ボドツナクリエイティブアーツで制作したオリジナルゲーム。就労移行支援施設ティオ神保町の方がキャラクターデザインを担当。「ねこのて」というパーツを使ってネコを起こしていきます。親子で夢中になれる仕掛けが満載。</p>
+          <div class="gl-meta">
+            <span>👥 2〜4人</span>
+            <span>⏱ 15分</span>
+            <span>🎯 4歳〜</span>
+          </div>
+          <a href="https://bodotuna.booth.pm/items/4379929" target="_blank" rel="noopener" class="gl-link">BOOTHで購入</a>
+        </div>
+      </div>
+
+      <!-- オリジナルゲーム バイキングハイキング -->
+      <div class="gl-card original">
+        <div class="gl-thumb" style="background: linear-gradient(135deg, #FFE5B4, #FFC93C); font-size: 80px;">🌸</div>
+        <div class="gl-body">
+          <div class="gl-tags">
+            <span class="gl-tag orange">オリジナル</span>
+            <span class="gl-tag">記憶</span>
+            <span class="gl-tag">子ども向け</span>
+          </div>
+          <h3>バイキングハイキング</h3>
+          <p class="gl-catch">花を咲かせて春を呼べ！ ほのぼの記憶ファンタジー</p>
+          <p>火・風・水の3種の妖精を、神経衰弱の要領で記憶して集めるゲーム。たかが神経衰弱と侮るなかれ、3種類覚えるのはなかなか大変！季節の移ろいを感じられる、ほのぼの世界観。</p>
+          <div class="gl-meta">
+            <span>👥 2〜4人</span>
+            <span>⏱ 20分</span>
+            <span>🎯 6歳〜</span>
+          </div>
+          <a href="https://bodotuna.booth.pm/items/4380066" target="_blank" rel="noopener" class="gl-link">BOOTHで購入</a>
+        </div>
+      </div>
+
+      <!-- ハゲタカのえじき -->
+      <div class="gl-card">
+        <div class="gl-thumb" style="background: linear-gradient(135deg, #B5E6F0, #88C9A1); font-size: 72px;">🃏</div>
+        <div class="gl-body">
+          <div class="gl-tags">
+            <span class="gl-tag">子ども向け</span>
+            <span class="gl-tag">大人も楽しめる</span>
+            <span class="gl-tag">初心者向け</span>
+          </div>
+          <h3>ハゲタカのえじき</h3>
+          <p class="gl-catch">誰と仲良しか分かるカードゲーム！</p>
+          <p>1〜15の数字を出して、プレイヤー同士で得点を競うゲーム。ただし、他のプレイヤーと数字が被ると得点ができない。仲良しの相手と数字が被りやすい、誰と仲良しか分かるゲームです。運次第で未就学の子でも大人に勝てるので、家族や居場所づくりにオススメ。</p>
+          <div class="gl-meta">
+            <span>👥 3〜6人</span>
+            <span>⏱ 10分</span>
+            <span>🎯 6歳〜</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ナインタイル -->
+      <div class="gl-card">
+        <div class="gl-thumb" style="background: linear-gradient(135deg, #FFD966, #FF8C42); font-size: 72px;">🧩</div>
+        <div class="gl-body">
+          <div class="gl-tags">
+            <span class="gl-tag">子ども向け</span>
+            <span class="gl-tag">初心者向け</span>
+            <span class="gl-tag">論理思考</span>
+          </div>
+          <h3>ナインタイル</h3>
+          <p class="gl-catch">9枚のタイルをお題通りに並べるゲーム</p>
+          <p>表裏で違うマークが入ったタイル並べ。10秒ほどのルール説明で始められて、小さなお子様も一緒に楽しめます！簡単そうに見えて、一筋縄ではいかない難易度。ひらめき力と、手順に沿って問題解決するプログラミング思考が身につくゲーム。</p>
+          <div class="gl-meta">
+            <span>👥 2〜4人</span>
+            <span>⏱ 15分</span>
+            <span>🎯 6歳〜</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 私の世界の見方 -->
+      <div class="gl-card">
+        <div class="gl-thumb" style="background: linear-gradient(135deg, #FFB5A7, #FF8C42); font-size: 72px;">💭</div>
+        <div class="gl-body">
+          <div class="gl-tags">
+            <span class="gl-tag">大人も楽しめる</span>
+            <span class="gl-tag">コミュニケーション</span>
+            <span class="gl-tag">大人数</span>
+          </div>
+          <h3>私の世界の見方</h3>
+          <p class="gl-catch">みんなが爆笑する回答をひねり出せ！</p>
+          <p>お題に対し面白い（と思う）回答を出す大喜利のゲーム。お題も回答もカード形式のため、お笑いレベルは必要なし！相手の好みを想像する力や、ズレをイメージできるかがポイントのゲーム。</p>
+          <div class="gl-meta">
+            <span>👥 3〜10人</span>
+            <span>⏱ 30分</span>
+            <span>🎯 10歳〜</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- マウスキャッチ -->
+      <div class="gl-card">
+        <div class="gl-thumb" style="background: linear-gradient(135deg, #DEEBF6, #A8D8EA); font-size: 72px;">🐭</div>
+        <div class="gl-body">
+          <div class="gl-tags">
+            <span class="gl-tag">子ども向け</span>
+            <span class="gl-tag">初心者向け</span>
+            <span class="gl-tag">アクション</span>
+          </div>
+          <h3>マウスキャッチ</h3>
+          <p class="gl-catch">逃げるネズミを捕まえろ！ 素早い動きと判断力が鍵！</p>
+          <p>ネコのプレイヤーはサイコロを振って、出た目の色のマウスを捕まえよう！ネズミのプレイヤーは持っているひもを引っ張ってマウスを逃がそう！ハラハラドキドキ、チビッコ大熱狂の人気ゲーム。</p>
+          <div class="gl-meta">
+            <span>👥 2〜5人</span>
+            <span>⏱ 10分</span>
+            <span>🎯 4歳〜</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- カルカソンヌ -->
+      <div class="gl-card">
+        <div class="gl-thumb"><img src="images/hero-game.jpg" alt="カルカソンヌ"></div>
+        <div class="gl-body">
+          <div class="gl-tags">
+            <span class="gl-tag">大人も楽しめる</span>
+            <span class="gl-tag">戦略</span>
+            <span class="gl-tag">学び</span>
+          </div>
+          <h3>カルカソンヌ</h3>
+          <p class="gl-catch">中世ヨーロッパの世界を、タイルでつくる</p>
+          <p>タイルを並べて中世ヨーロッパの街・道・修道院をつくり、コマを置いて得点を競う名作。プレイしながら、自然と中世ヨーロッパの地理や暮らしへの興味が湧くゲーム。非認知能力（戦略性・空間認識）を育てます。</p>
+          <div class="gl-meta">
+            <span>👥 2〜5人</span>
+            <span>⏱ 30〜45分</span>
+            <span>🎯 8歳〜</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 56px; text-align: center; padding: 32px; background: var(--cream); border-radius: 20px; max-width: 720px; margin-left: auto; margin-right: auto;">
+      <p style="font-size: 14.5px; color: var(--brown); line-height: 1.95; margin-bottom: 16px;">
+        ボドツナでは、ここに掲載した以外にも<strong>50タイトル以上</strong>のボードゲームを所有しています。<br>
+        年齢・人数・テーマに合わせて最適なゲームを選定してイベントを開催します。
+      </p>
+      <p style="font-size: 13px; color: var(--brown-light); margin-bottom: 20px;">
+        ※ 図鑑は今後追加していきます。
+      </p>
+      <a href="gakudo.html#contact" style="display:inline-block; padding:12px 28px; background:var(--orange); color:white !important; border-radius:999px; font-size:14px; font-weight:800; box-shadow: 0 4px 0 var(--orange-deep); margin-right: 8px;">学童イベントの相談</a>
+      <a href="community.html#schedule" style="display:inline-block; padding:12px 28px; background:var(--yellow); color:var(--brown) !important; border-radius:999px; font-size:14px; font-weight:800; box-shadow: 0 4px 0 var(--yellow-deep); margin-top: 8px;">居場所イベントを探す</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-mission">私たちは、地域の居場所をつくっています。</p>
+    <p class="footer-tag">お仕事・ご寄付・ご協賛が、活動の継続を支えています。</p>
+    <div class="footer-grid">
+      <div>
+        <h4>団体情報</h4>
+        <p>ボードゲームでツナグ手（ボドツナ）<br>代表：長山 陽司<br>神奈川県藤沢市高倉2209-6 コンコード1-204<br>TEL：090-1081-7447<br>E-mail：miracle.yan80@gmail.com</p>
+      </div>
+      <div>
+        <h4>ページ一覧</h4>
+        <ul>
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="community.html">居場所事業</a></li>
+          <li><a href="gakudo.html">学童向けイベント</a></li>
+          <li><a href="game-creation.html">ゲーム化事業</a></li>
+          <li><a href="training.html">法人研修</a></li>
+          <li><a href="sponsor.html">スポンサー募集</a></li>
+          <li><a href="game-library.html">ボドツナゲーム図鑑</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>SNS</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/youjl.nagayama" target="_blank">Facebook</a></li>
+          <li><a href="https://x.com/nagayama_sales" target="_blank">X</a></li>
+          <li><a href="https://www.instagram.com/yoji.nagayama/" target="_blank">Instagram</a></li>
+          <li><a href="https://note.com/ynagayama" target="_blank">note</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© ボードゲームでツナグ手</p>
+  </div>
+</footer>
+
+</body>
+</html>

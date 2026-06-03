@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ボードゲームでツナグ手｜気軽に立ち寄れる、地域の居場所をつくる</title>
+<meta name="description" content="ボードゲームでツナグ手は、相談しにくいことを抱える人たちが頼れる『安全基地』を地域につくる団体です。神奈川県藤沢市を拠点に、子育て・不登校・HSPなどの居場所づくり、学童イベント、ゲーム化事業、法人研修を展開しています。">
+<meta property="og:title" content="ボードゲームでツナグ手｜気軽に立ち寄れる、地域の居場所をつくる">
+<meta property="og:description" content="相談しにくいことを抱える人たちが頼れる『安全基地』を地域につくる団体です。">
+<meta property="og:image" content="images/logo-illustration.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bodotuna.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* TOPページ専用 */
+.hero {
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 201, 60, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 140, 66, 0.3) 0%, transparent 50%),
+    linear-gradient(180deg, var(--yellow-light) 0%, var(--cream) 100%);
+  padding: 70px 20px 90px;
+  text-align: center;
+  overflow: hidden;
+}
+.hero::before, .hero::after {
+  content: '';
+  position: absolute;
+  width: 120px; height: 120px;
+  background: var(--yellow);
+  border-radius: 28px;
+  opacity: 0.4;
+  transform: rotate(15deg);
+}
+.hero::before { top: 10%; left: -40px; }
+.hero::after { bottom: 10%; right: -40px; background: var(--pink); transform: rotate(-10deg); border-radius: 50%; }
+.hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-block;
+  background: white;
+  color: var(--brown);
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 0 var(--yellow);
+  border: 2px solid var(--yellow);
+}
+.hero h1 {
+  font-size: clamp(28px, 5.5vw, 52px);
+  font-weight: 900;
+  line-height: 1.45;
+  margin-bottom: 28px;
+  color: var(--brown);
+  letter-spacing: 0.01em;
+}
+.hero h1 .accent {
+  background: linear-gradient(transparent 65%, var(--yellow) 65%);
+  padding: 0 4px;
+}
+.hero-sub {
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 2;
+  margin-bottom: 32px;
+  font-weight: 500;
+  color: var(--brown-light);
+}
+.hero-illustration {
+  max-width: 540px;
+  margin: 0 auto 28px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 0 var(--yellow);
+  border: 4px solid white;
+}
+.hero-illustration img { width: 100%; display: block; }
+.hero-cta {
+  display: inline-block;
+  background: var(--orange);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 var(--orange-deep);
+  transition: all 0.15s;
+}
+.hero-cta:hover {
+  color: white;
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 var(--orange-deep);
+}
+
+/* Origin Story */
+.story { background: var(--cream); position: relative; }
+.story-block {
+  max-width: 760px; margin: 0 auto;
+  background: white;
+  padding: clamp(30px, 5vw, 56px);
+  border-radius: 24px;
+  box-shadow: 0 8px 0 var(--yellow);
+  border: 2px solid var(--yellow);
+}
+.story-block p {
+  margin-bottom: 1.6em;
+  font-size: 15.5px;
+  line-height: 2.1;
+}
+.story-block .lead {
+  font-size: 20px;
+  color: var(--brown);
+  font-weight: 800;
+  border-bottom: 3px dotted var(--yellow);
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+}
+.story-block .signature {
+  text-align: right;
+  font-weight: 700;
+  color: var(--brown);
+  margin-top: 28px;
+  font-size: 14px;
+}
+
+/* なぜなら */
+.why { background: white; position: relative; overflow: hidden; }
+.why::before {
+  content: '?';
+  position: absolute;
+  top: 40px; right: 5%;
+  font-size: 180px;
+  color: var(--yellow-light);
+  font-weight: 900;
+  line-height: 1;
+  z-index: 0;
+}
+.why-inner { position: relative; z-index: 1; }
+.why-intro {
+  background: var(--yellow);
+  color: var(--brown);
+  padding: 28px 36px;
+  border-radius: 24px;
+  text-align: center;
+  font-size: clamp(17px, 2.3vw, 22px);
+  font-weight: 800;
+  margin: 0 auto 56px;
+  max-width: 800px;
+  box-shadow: 0 8px 0 var(--yellow-deep);
+  line-height: 1.7;
+}
+.why-intro .big { font-size: 1.2em; color: var(--orange); }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.why-card {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 36px 32px;
+  border: 3px solid var(--border);
+  position: relative;
+}
+.why-card-number {
+  position: absolute;
+  top: -20px; left: 24px;
+  background: var(--orange);
+  color: white;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  box-shadow: 0 4px 0 var(--orange-deep);
+}
+.why-card h3 {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  margin-top: 12px;
+  color: var(--brown);
+  line-height: 1.5;
+}
+.why-card .why-data {
+  background: white;
+  border-left: 4px solid var(--yellow);
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 12px 12px 0;
+  font-size: 14px;
+  color: var(--brown-light);
+  line-height: 1.85;
+}
+.why-card .why-data strong { color: var(--orange); font-size: 1.1em; }
+.why-card p { font-size: 15px; line-height: 1.9; color: var(--brown); }
+.why-card .why-answer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--yellow);
+  font-size: 14px;
+  color: var(--brown);
+}
+.why-card .why-answer strong { color: var(--orange); font-weight: 900; }
+.why-conclusion {
+  background: linear-gradient(135deg, var(--orange), #FF7A22);
+  color: white;
+  padding: 40px 32px;
+  border-radius: 24px;
+  text-align: center;
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 700;
+  line-height: 1.85;
+  box-shadow: 0 8px 0 var(--orange-deep);
+}
+.why-conclusion .em { color: var(--yellow); font-weight: 900; font-size: 1.15em; }
+
+/* 活動の様子（フォトギャラリー） */
+.activity-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.activity-photo {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid white;
+  box-shadow: 0 6px 0 var(--yellow);
+  position: relative;
+  transition: all 0.2s;
+}
+.activity-photo:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 0 10px 0 var(--yellow); }
+.activity-photo:nth-child(even):hover { transform: translateY(-4px) rotate(1deg); }
+.activity-photo img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.activity-photo .caption {
+  background: white;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brown);
+  text-align: center;
+}
+
+/* 活動構造 */
+.activities { background: var(--cream); position: relative; }
+.main-activity {
+  max-width: 880px;
+  margin: 0 auto 0;
+  background: linear-gradient(135deg, var(--yellow), #FFD966);
+  border-radius: 32px;
+  padding: clamp(36px, 5vw, 56px);
+  box-shadow: 0 12px 0 var(--yellow-deep);
+  border: 4px solid white;
+  position: relative;
+  display: block;
+  color: inherit;
+  transition: all 0.2s;
+}
+.main-activity:hover { transform: translateY(-4px); box-shadow: 0 16px 0 var(--yellow-deep); color: inherit; }
+.main-activity-badge {
+  display: inline-block;
+  background: white;
+  color: var(--orange);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 0 var(--orange);
+}
+.main-activity-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.main-activity-icon {
+  width: 92px; height: 92px;
+  border-radius: 28px;
+  background: white;
+  font-size: 48px;
+  display: flex; align-items: center; justify-content: center;
+  transform: rotate(-6deg);
+  box-shadow: 0 5px 0 var(--orange);
+  flex-shrink: 0;
+}
+.main-activity-title { flex: 1; min-width: 200px; }
+.main-activity-title h3 {
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 900;
+  color: var(--brown);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.main-activity-title .sub {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--orange-deep);
+}
+.main-activity-desc {
+  font-size: 15.5px;
+  line-height: 2;
+  color: var(--brown);
+  margin-bottom: 24px;
+}
+.main-activity-target {
+  background: rgba(255,255,255,0.7);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+.main-activity-target .label {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--orange);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 8px;
+}
+.main-activity-target ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 4px 16px;
+}
+.main-activity-target li {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--brown);
+  padding-left: 18px;
+  position: relative;
+}
+.main-activity-target li::before {
+  content: '✓';
+  position: absolute; left: 0;
+  color: var(--orange);
+  font-weight: 900;
+}
+.main-activity-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.main-activity-stats .stat-chip {
+  background: white;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brown);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+}
+.main-activity-link {
+  display: inline-block;
+  background: var(--brown);
+  color: white !important;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 4px 0 #3F2F22;
+  transition: all 0.15s;
+}
+.main-activity:hover .main-activity-link { transform: translateY(2px); box-shadow: 0 2px 0 #3F2F22; }
+
+.bridge {
+  text-align: center;
+  margin: 60px auto 40px;
+  max-width: 700px;
+}
+.bridge-arrow {
+  font-size: 32px;
+  color: var(--orange);
+  display: block;
+  margin-bottom: 12px;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.bridge h3 {
+  font-size: clamp(20px, 2.8vw, 26px);
+  font-weight: 900;
+  color: var(--brown);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.bridge h3 .em {
+  background: linear-gradient(transparent 60%, var(--yellow) 60%);
+  padding: 0 4px;
+}
+.bridge p { font-size: 14px; color: var(--brown-light); }
+
+.support-mechanisms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.mechanism {
+  background: white;
+  padding: 28px 24px;
+  border-radius: 20px;
+  border: 3px solid var(--border);
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.mechanism:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  border-color: var(--yellow);
+  box-shadow: 0 10px 0 var(--yellow-light);
+}
+.mechanism:nth-child(even):hover { transform: translateY(-6px) rotate(1deg); }
+.mechanism-role {
+  position: absolute;
+  top: -12px; right: 20px;
+  background: var(--orange);
+  color: white;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.mechanism-icon {
+  width: 56px; height: 56px;
+  border-radius: 18px;
+  background: var(--yellow);
+  font-size: 28px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  transform: rotate(-6deg);
+  box-shadow: 0 3px 0 var(--yellow-deep);
+}
+.mechanism h4 { font-size: 17px; font-weight: 900; color: var(--brown); margin-bottom: 10px; }
+.mechanism-desc { font-size: 13.5px; color: var(--brown-light); line-height: 1.85; margin-bottom: 14px; }
+.mechanism-target {
+  background: var(--yellow-light);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  flex-grow: 1;
+}
+.mechanism-target .label {
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--orange);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 6px;
+}
+.mechanism-target ul { list-style: none; }
+.mechanism-target li {
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--brown);
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 3px;
+}
+.mechanism-target li::before {
+  content: '✓';
+  position: absolute; left: 0;
+  color: var(--orange);
+  font-weight: 900;
+}
+.mechanism-link {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--orange);
+  margin-top: auto;
+}
+.mechanism-link::after { content: " →"; transition: transform 0.2s; display: inline-block; }
+.mechanism:hover .mechanism-link::after { transform: translateX(6px); }
+
+.mission-recap {
+  background: var(--brown);
+  color: var(--cream);
+  padding: 32px;
+  border-radius: 24px;
+  margin-top: 48px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.9;
+}
+.mission-recap .em { color: var(--yellow); font-weight: 900; font-size: 1.1em; }
+
+/* 数字 */
+.stats { background: white; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+.stat {
+  background: var(--cream);
+  padding: 32px 20px;
+  border-radius: 24px;
+  text-align: center;
+  border: 3px solid var(--border);
+  position: relative;
+  transition: all 0.2s;
+}
+.stat:hover {
+  transform: rotate(-2deg) translateY(-4px);
+  border-color: var(--yellow);
+  box-shadow: 0 8px 0 var(--yellow);
+}
+.stat:nth-child(2):hover { transform: rotate(2deg) translateY(-4px); }
+.stat-num {
+  font-size: clamp(34px, 5vw, 46px);
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.stat-num .small { font-size: 0.55em; color: var(--brown-light); margin-left: 2px; }
+.stat-label { font-size: 13px; color: var(--brown-light); font-weight: 700; }
+
+/* 代表者紹介 */
+.representative { background: var(--cream); }
+.rep-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: 0 8px 0 var(--yellow);
+  border: 2px solid var(--yellow);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  align-items: center;
+}
+.rep-photo {
+  border-radius: 50%;
+  width: 200px; height: 200px;
+  overflow: hidden;
+  border: 4px solid var(--yellow);
+  box-shadow: 0 4px 0 var(--yellow-deep);
+}
+.rep-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rep-info h3 { font-size: 22px; font-weight: 900; color: var(--brown); margin-bottom: 8px; }
+.rep-info .rep-title { font-size: 13px; color: var(--orange); font-weight: 800; margin-bottom: 16px; }
+.rep-info p { font-size: 14.5px; line-height: 1.9; color: var(--brown-light); margin-bottom: 14px; }
+.rep-certs { margin-top: 12px; }
+
+/* もっと深く知る */
+.deeper { background: var(--yellow-light); }
+.deeper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+.deeper-card {
+  background: white;
+  padding: 28px 24px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  transition: all 0.2s;
+  display: block;
+  color: inherit;
+}
+.deeper-card:hover {
+  border-color: var(--yellow);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 var(--yellow);
+  color: inherit;
+}
+.deeper-card .tag {
+  display: inline-block;
+  font-size: 11px;
+  background: var(--brown);
+  color: var(--yellow);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.deeper-card h3 { font-size: 16px; font-weight: 800; color: var(--brown); margin-bottom: 10px; line-height: 1.5; }
+.deeper-card p { font-size: 13px; color: var(--brown-light); line-height: 1.8; }
+.deeper-card .read-more { font-size: 13px; font-weight: 800; color: var(--orange); margin-top: 12px; }
+.deeper-card .read-more::after { content: " →"; }
+
+/* 個人支援 */
+.individual-support { background: var(--cream); }
+.individual-support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.is-card {
+  background: white;
+  padding: 36px 28px;
+  border-radius: 24px;
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all 0.2s;
+}
+.is-card:hover {
+  border-color: var(--yellow);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 0 var(--yellow-light);
+}
+.is-card .emoji {
+  font-size: 56px;
+  margin-bottom: 16px;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.is-card:hover .emoji { transform: scale(1.15) rotate(8deg); }
+.is-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; color: var(--brown); }
+.is-card p { font-size: 14px; color: var(--brown-light); line-height: 1.85; margin-bottom: 20px; }
+.is-card a {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--yellow);
+  color: var(--brown) !important;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 4px 0 var(--yellow-deep);
+  transition: all 0.15s;
+}
+.is-card a:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--yellow-deep);
+  color: var(--brown) !important;
+}
+
+@media (max-width: 768px) {
+  .main-activity-header { flex-direction: column; text-align: center; }
+  .rep-card { grid-template-columns: 1fr; text-align: center; }
+  .rep-photo { margin: 0 auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">🎲</span>
+      ボードゲームで<span>ツナグ手</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="community.html">居場所事業</a></li>
+      <li><a href="gakudo.html">学童イベント</a></li>
+      <li><a href="game-creation.html">ゲーム化事業</a></li>
+      <li><a href="training.html">法人研修</a></li>
+      <li><a href="sponsor.html" class="nav-cta">スポンサー募集</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="メニュー">☰</button>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🌱 神奈川県藤沢市から、地域へ。</div>
+    <h1>
+      気軽に立ち寄れる、<br>
+      <span class="accent">地域の居場所</span>をつくる。
+    </h1>
+    <p class="hero-sub">
+      ボードゲームでツナグ手は、相談しにくいことを抱える人たちが頼れる<br>
+      『安全基地』を地域につくる団体です。<br>
+      子育て、引きこもり、HSP、LGBT、相対的貧困——<br>
+      表に出にくい困りごとを、遊びの場で受け止めます。
+    </p>
+    <div class="hero-illustration">
+      <img src="images/logo-illustration.jpg" alt="ボードゲームでツナグ手 — 多世代の人々がボードゲームでつながる">
+    </div>
+    <a href="#story" class="hero-cta">活動を知る ✨</a>
+  </div>
+</section>
+
+<!-- Origin Story -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">なぜ、この活動が必要なのか</h2></div>
+    <p class="section-lead">頼れる人が、近くにいない時代に。<br>ボドツナは「気軽に集まれる場所。集まっても気楽な場所」をつくっています。</p>
+    <div class="story-block">
+      <p class="lead">ある日、隣の部屋から、毎晩聞こえる赤ちゃんの泣き声。</p>
+      <p>翌朝、目にクマを作ってあやしているお母さんに「大丈夫ですか」と声をかけました。夜、玄関先で煙草を吸っていた旦那さんに同じことを尋ねると、拍子抜けするほど軽く「だいじょうぶっしょ〜」と笑いました。</p>
+      <p>数日後、奥さんのお母さんが心配して、実家近くに引っ越すことに。頼れる人が近くにいたから良かった——でも、もし相談する相手がいなかったら？</p>
+      <p>子育て、引きこもり、HSP、LGBT、相対的貧困。世の中には、相談しにくいことや、理解者に恵まれないことが沢山あります。</p>
+      <p>ボードゲーム会という『遊びの場』があれば、相談しにくいことを相談できるコミュニティになるかもしれない。ネグレクトやDVのような事件が、1件でも減るかもしれない。</p>
+      <p>気楽に集まれる場所。集まっても気楽な場所。<br>それをつくりたくて、ボドツナは生まれました。</p>
+      <p class="signature">代表 長山 陽司</p>
+    </div>
+  </div>
+</section>
+
+<!-- なぜなら -->
+<section class="why" id="why">
+  <div class="container why-inner">
+    <div class="title-wrap"><h2 class="section-title">なぜなら、いま2つの「崩壊」が起きているから</h2></div>
+    <div class="why-intro">
+      私たちのまわりで、<span class="big">公教育</span>と<span class="big">地域社会</span>の二つが、<br>
+      少しずつ崩れています。
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-number">1</div>
+        <h3>公教育では、追いつかない学びがある</h3>
+        <p>社会が複雑になり、子どもたちには「みんなで工夫してやり遂げる力」（非認知能力）が必要になりました。でも、先生に求められる役割は多すぎて、追いつけません。</p>
+        <div class="why-data">
+          先生に求められること：<strong>①自主性を促す ②学びに導く ③続けさせる ④場の調整</strong>。かつての「教科書通り」では足りなくなり、教育現場は限界を迎えています。
+        </div>
+        <p>一方で、非認知能力を伸ばすために必要な学問——社会学・哲学・心理学——は、子どもには堅すぎて入り口が見つかりません。</p>
+        <div class="why-answer">
+          <strong>ボドツナの応え：</strong>
+          ボードゲームは、社会の仕組みや人の心理を「能動的に体験できる学びのテクノロジー」です。遊びの中で、子どもたちが世界の見方を広げていきます。
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card-number">2</div>
+        <h3>地域社会が壊れ、子育てが孤立している</h3>
+        <p>かつては地域全体で子育てをしていました。でも今は、隣に誰が住んでいるかも分からない時代。困っても声をあげる相手がおらず、誰かが困っていることにも気づきません。</p>
+        <div class="why-data">
+          物価高とエネルギー価格の不安で、これまで時短勤務でやりくりしていた家庭も働きに出ざるをえない。全国の学童登録児童数は<strong>1,568,588人</strong>（2025年5月時点・過去最多）。1年生の<strong>98%</strong>が登録する施設もあります。
+        </div>
+        <p>産後うつの兆候がある母親は<strong>4人に1人</strong>。ワンオペ育児・孤育てが、ネグレクトやDVの土壌になっています。相談しにくい困りごとを抱える人ほど、地域から切り離されています。</p>
+        <div class="why-answer">
+          <strong>ボドツナの応え：</strong>
+          ボードゲームという『遊び』を入り口に、相談しにくいことを相談できる<strong>安全基地</strong>を地域につくります。
+        </div>
+      </div>
+    </div>
+
+    <div class="why-conclusion">
+      ボードゲームは、ただの遊びではありません。<br>
+      <span class="em">学びの入り口</span>であり、<span class="em">地域を繋ぐ道具</span>であり、<br>
+      <span class="em">生きづらさを抱える人の社会との接点</span>でもあります。<br><br>
+      だから、私たちはこの活動を続けています。
+    </div>
+  </div>
+</section>
+
+<!-- 活動の様子（フォトギャラリー） -->
+<section style="background: var(--yellow-light);">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">活動の様子</h2></div>
+    <p class="section-lead">ボドツナの居場所では、こんな時間が流れています。</p>
+
+    <div class="activity-photos">
+      <div class="activity-photo">
+        <img src="images/community1.png" alt="親子で遊ぶ居場所の様子">
+        <div class="caption">親子で遊べるフリースペース</div>
+      </div>
+      <div class="activity-photo">
+        <img src="images/community2.jpg" alt="子どもたちがゲームに集中する様子">
+        <div class="caption">真剣にゲームに向き合う子どもたち</div>
+      </div>
+      <div class="activity-photo">
+        <img src="images/event-lecture.jpg" alt="講演の様子">
+        <div class="caption">講演・ワークショップ活動</div>
+      </div>
+      <div class="activity-photo">
+        <img src="images/fujisawa-workshop.jpg" alt="藤沢市子どもの居場所ワークショップ">
+        <div class="caption">藤沢市 子どもの居場所ワークショップ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 私たちの活動（メイン＋支える仕組み） -->
+<section class="activities">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">居場所を、みんなで支える</h2></div>
+    <p class="section-lead">私たちのメイン活動は、地域に居場所をつくること。<br>その活動を支えるために、4つの仕組みがあります。</p>
+
+    <a href="community.html" class="main-activity">
+      <span class="main-activity-badge">★ 私たちのメイン活動</span>
+      <div class="main-activity-header">
+        <div class="main-activity-icon">🏠</div>
+        <div class="main-activity-title">
+          <h3>居場所事業</h3>
+          <p class="sub">地域に『安全基地』をつくる</p>
+        </div>
+      </div>
+      <p class="main-activity-desc">
+        藤沢市を中心に、子育て中の保護者・不登校の子・引きこもり当事者・HSP・LGBTで生きづらさを抱える方など、相談相手や理解者に恵まれない方々が頼れる『安全基地』を運営しています。ボードゲームという『遊び』を入り口に、ゆるく繋がる関係を育てます。ボドツナクリエイティブアーツでは、生きづらさを抱える方がゲーム制作で社会と繋がる経験も生まれています。
+      </p>
+      <div class="main-activity-stats">
+        <span class="stat-chip">📍 月10回以上の定期開催</span>
+        <span class="stat-chip">👥 累計参加者 約6,000人</span>
+        <span class="stat-chip">🤝 地域団体 6団体と連携</span>
+        <span class="stat-chip">📰 タウンニュース掲載</span>
+      </div>
+      <div class="main-activity-target">
+        <span class="label">こんな方に届けたい</span>
+        <ul>
+          <li>相談相手がいない子育て中の方</li>
+          <li>不登校の子どもとその家族</li>
+          <li>引きこもり当事者・ご家族</li>
+          <li>HSP・LGBTで生きづらさを抱える方</li>
+          <li>地域でゆるく繋がりたい方</li>
+          <li>ゲーム制作を通じて社会と接点を持ちたい方</li>
+        </ul>
+      </div>
+      <span class="main-activity-link">居場所事業を詳しく見る →</span>
+    </a>
+
+    <div class="bridge">
+      <span class="bridge-arrow">↓</span>
+      <h3>この居場所活動を、<span class="em">4つの仕組み</span>で支えています</h3>
+      <p>収益事業と協賛で、参加無料の居場所活動を継続できる構造をつくっています。</p>
+    </div>
+
+    <div class="support-mechanisms">
+      <a href="gakudo.html" class="mechanism">
+        <span class="mechanism-role">収益で支える</span>
+        <div class="mechanism-icon">🎲</div>
+        <h4>学童向けイベント</h4>
+        <p class="mechanism-desc">横浜・川崎の学童保育施設で出張イベント。新1年生急増の現場では体育館ハイブリッド型も。売上は居場所活動の運営費に。</p>
+        <div class="mechanism-target">
+          <span class="label">こんな施設に</span>
+          <ul>
+            <li>新1年生急増で困っている学童</li>
+            <li>放課後プログラムを充実させたい運営者</li>
+            <li>デジタル機器に頼らない遊びを取り入れたい先生</li>
+          </ul>
+        </div>
+        <span class="mechanism-link">詳しく見る</span>
+      </a>
+
+      <a href="game-creation.html" class="mechanism">
+        <span class="mechanism-role">収益で支える</span>
+        <div class="mechanism-icon">💡</div>
+        <h4>ゲーム化事業</h4>
+        <p class="mechanism-desc">居場所活動で培った『想いを汲み取る』ノウハウで、企業・自治体の制度や考え方をゲームに。売上は居場所活動の運営費に。</p>
+        <div class="mechanism-target">
+          <span class="label">こんな組織に</span>
+          <ul>
+            <li>制度・理念を伝えたい企業の人事・総務</li>
+            <li>業務の意義を可視化したい部門</li>
+            <li>住民参加型政策を進めたい自治体</li>
+          </ul>
+        </div>
+        <span class="mechanism-link">詳しく見る</span>
+      </a>
+
+      <a href="training.html" class="mechanism">
+        <span class="mechanism-role">収益で支える</span>
+        <div class="mechanism-icon">🤝</div>
+        <h4>法人研修</h4>
+        <p class="mechanism-desc">ボードゲームを使った体験型研修。居場所運営で培ったファシリテーション力で、参加者に気づきを届けます。売上は居場所活動の運営費に。</p>
+        <div class="mechanism-target">
+          <span class="label">こんな企業に</span>
+          <ul>
+            <li>座学型から脱却したい研修担当者</li>
+            <li>部門間コミュニケーションを促進したい人事</li>
+            <li>管理職の組織開発を進めたい経営者</li>
+          </ul>
+        </div>
+        <span class="mechanism-link">詳しく見る</span>
+      </a>
+
+      <a href="sponsor.html" class="mechanism">
+        <span class="mechanism-role">協賛で支える</span>
+        <div class="mechanism-icon">🏢</div>
+        <h4>スポンサー募集</h4>
+        <p class="mechanism-desc">月1万円から、地域貢献を志す企業に協賛をお願いしています。ロゴはイベント現場で6,000人以上の親子の目に届きます。</p>
+        <div class="mechanism-target">
+          <span class="label">こんな企業に</span>
+          <ul>
+            <li>CSR・地域貢献を可視化したい企業</li>
+            <li>地域住民への認知を高めたい事業者</li>
+            <li>子育て支援に共感する経営者</li>
+          </ul>
+        </div>
+        <span class="mechanism-link">詳しく見る</span>
+      </a>
+    </div>
+
+    <div class="mission-recap">
+      <span class="em">4つの仕組み</span>でいただいた収益・協賛は、<br>
+      すべて参加無料の<span class="em">居場所活動</span>に還元されます。<br>
+      お仕事のご依頼・ご協賛そのものが、地域の居場所を支える行為になります。
+    </div>
+  </div>
+</section>
+
+<!-- 数字 -->
+<section class="stats">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">数字で見るボドツナ</h2></div>
+    <p class="section-lead">2025年実績／2026年見込み</p>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">138<span class="small">回</span></div>
+        <div class="stat-label">2025年 イベント開催数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6,000<span class="small">人</span></div>
+        <div class="stat-label">2025年 参加者数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">180<span class="small">回</span></div>
+        <div class="stat-label">2026年 イベント見込み</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">14,000<span class="small">人</span></div>
+        <div class="stat-label">2026年 参加者見込み</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 代表者紹介 -->
+<section class="representative">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">代表からのメッセージ</h2></div>
+
+    <div class="rep-card">
+      <div class="rep-photo">
+        <img src="images/profile.jpg" alt="ボードゲームでツナグ手 代表 長山 陽司">
+      </div>
+      <div class="rep-info">
+        <h3>長山 陽司</h3>
+        <p class="rep-title">ボードゲームでツナグ手 代表</p>
+        <p>「言葉や数字に出来ないことを、ゲームで形にする」を理念に、藤沢市を拠点に地域の居場所づくり、ボードゲーム教室、学童イベントの運営、法人・自治体向けゲーム化事業を行っています。</p>
+        <p>子供から大人まで、みんなが立ち寄れるボードゲームスペースをつくることが、私の夢です。</p>
+        <div class="rep-certs">
+          <span class="tag-chip">おもちゃインストラクター</span>
+          <span class="tag-chip">ボードゲームイベントプランナー</span>
+          <span class="tag-chip">不登校訪問支援カウンセラー</span>
+          <span class="tag-chip">メンタルケアカウンセラー</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- もっと深く知る -->
+<section class="deeper">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">もっと深く知る</h2></div>
+    <p class="section-lead">代表 長山が、現場で感じたことを記事にしています。</p>
+    <div class="deeper-grid">
+      <a href="https://note.com/ynagayama/n/na3d7e11ab3a9" target="_blank" rel="noopener" class="deeper-card">
+        <span class="tag">学童の現場</span>
+        <h3>新1年生が押し寄せている学童で、私がいま考えていること</h3>
+        <p>2025年5月時点、全国学童登録児童1,568,588人で過去最多。横浜・川崎の現場で起きていることと、体育館でのハイブリッド開催の試み。</p>
+        <p class="read-more">記事を読む</p>
+      </a>
+      <a href="https://note.com/ynagayama/n/n45ce1f6027b0" target="_blank" rel="noopener" class="deeper-card">
+        <span class="tag">非認知能力</span>
+        <h3>非認知能力を伸ばすボードゲーム教室を始めることにしました</h3>
+        <p>学びが複雑化した時代に、公教育では追いつかない学びがある。ボードゲームは、社会学・哲学を能動的に体験できる「学びのテクノロジー」です。</p>
+        <p class="read-more">記事を読む</p>
+      </a>
+      <a href="https://note.com/ynagayama/n/nfad2dd4979d7" target="_blank" rel="noopener" class="deeper-card">
+        <span class="tag">ゲーム制作</span>
+        <h3>活動報告 ～ゲームマーケット出店～</h3>
+        <p>10年間家を出ていなかった子が、初めてお金を稼ぐ。発達障害グレーゾーンの子が、初めて商品を売る。「ねこのて」制作と、生きづらさを抱える人たちの社会との再接続の物語。</p>
+        <p class="read-more">記事を読む</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 個人支援 -->
+<section class="individual-support">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">個人で活動を応援する</h2></div>
+    <p class="section-lead">ボドツナの居場所活動は、皆さまの応援で続いています。</p>
+    <div class="individual-support-grid">
+      <div class="is-card">
+        <div class="emoji">💝</div>
+        <h3>寄付で応援する</h3>
+        <p>居場所活動の運営費に充てさせていただきます。少額からの応援も大歓迎です。</p>
+        <a href="community.html#donate">寄付について</a>
+      </div>
+      <div class="is-card">
+        <div class="emoji">🙌</div>
+        <h3>ボランティアで参加する</h3>
+        <p>イベント運営のお手伝いを募集しています。子ども好き・ボードゲーム好きの方、大歓迎です。</p>
+        <a href="community.html#volunteer">ボランティア応募</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-mission">私たちは、地域の居場所をつくっています。</p>
+    <p class="footer-tag">お仕事・ご寄付・ご協賛が、活動の継続を支えています。</p>
+    <div class="footer-grid">
+      <div>
+        <h4>団体情報</h4>
+        <p>ボードゲームでツナグ手（ボドツナ）<br>代表：長山 陽司<br>神奈川県藤沢市高倉2209-6 コンコード1-204<br>TEL：090-1081-7447<br>E-mail：miracle.yan80@gmail.com</p>
+      </div>
+      <div>
+        <h4>ページ一覧</h4>
+        <ul>
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="community.html">居場所事業（メイン）</a></li>
+          <li><a href="gakudo.html">学童向けイベント</a></li>
+          <li><a href="game-creation.html">ゲーム化事業</a></li>
+          <li><a href="training.html">法人研修</a></li>
+          <li><a href="sponsor.html">スポンサー募集</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>SNS</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/youjl.nagayama" target="_blank">Facebook</a></li>
+          <li><a href="https://x.com/nagayama_sales" target="_blank">X</a></li>
+          <li><a href="https://www.instagram.com/yoji.nagayama/" target="_blank">Instagram</a></li>
+          <li><a href="https://note.com/ynagayama" target="_blank">note</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">© ボードゲームでツナグ手</p>
+  </div>
+</footer>
+
+</body>
+</html>

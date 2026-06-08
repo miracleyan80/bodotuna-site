@@ -534,6 +534,119 @@ section { padding: 70px 20px; }
   box-shadow: 0 3px 0 var(--orange-deep);
 }
 
+/* ===== 寄付ボタン（コングラント連携） ===== */
+.donate-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 13px 28px;
+  background: var(--yellow);
+  color: var(--brown) !important;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 4px 0 var(--yellow-deep);
+  transition: all 0.15s;
+}
+.donate-btn:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--yellow-deep);
+  color: var(--brown) !important;
+}
+.donate-badge {
+  display: inline-block;
+  background: var(--yellow-light);
+  color: var(--orange-deep);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 13px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+/* ===== 活動のあゆみ・活動実績 ===== */
+.history-list { max-width: 760px; margin: 32px auto 0; }
+.history-item {
+  display: flex;
+  gap: 18px;
+  padding: 16px 2px;
+  border-bottom: 1px dashed var(--yellow);
+}
+.history-item:last-child { border-bottom: none; }
+.history-year {
+  flex: 0 0 100px;
+  font-weight: 900;
+  color: var(--orange-deep);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.history-body { font-size: 14.5px; color: var(--brown); line-height: 1.8; }
+.record-table-wrap { max-width: 820px; margin: 28px auto 0; overflow-x: auto; }
+.record-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.record-table th, .record-table td {
+  border: 1px solid #EADFC4;
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+.record-table th {
+  background: var(--yellow-light);
+  color: var(--brown);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.record-table td { color: var(--brown); line-height: 1.75; }
+.record-table td.num { white-space: nowrap; font-weight: 800; }
+.record-note { max-width: 820px; margin: 14px auto 0; font-size: 12.5px; color: var(--brown-light); line-height: 1.7; }
+@media (max-width: 600px) {
+  .history-item { flex-direction: column; gap: 4px; }
+  .history-year { flex-basis: auto; }
+}
+.act-list {
+  max-width: 760px;
+  margin: 22px auto 30px;
+  columns: 2;
+  column-gap: 34px;
+  padding: 0;
+  list-style: none;
+}
+.act-list li {
+  font-size: 14px;
+  color: var(--brown);
+  line-height: 1.7;
+  padding: 7px 0 7px 20px;
+  position: relative;
+  break-inside: avoid;
+}
+.act-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 13px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow-deep);
+}
+@media (max-width: 600px) { .act-list { columns: 1; } }
+.report-list { max-width: 760px; margin: 24px auto 0; display: grid; gap: 16px; }
+.report-card {
+  background: #fff;
+  border-left: 5px solid var(--yellow);
+  border-radius: 10px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 16px rgba(120,100,40,.06);
+}
+.report-meta { font-size: 13px; font-weight: 800; color: var(--orange-deep); margin-bottom: 8px; }
+.report-text { font-size: 14px; color: var(--brown); line-height: 1.9; margin: 0; }
+.report-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: block;
+}
+
 /* ===== ボドツナゲーム図鑑（3カードインライン） ===== */
 .gl-grid {
   display: grid;

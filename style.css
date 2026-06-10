@@ -647,6 +647,91 @@ section { padding: 70px 20px; }
   display: block;
 }
 
+/* ===== 寄付ヒーロー（目立つ・カジュアル） ===== */
+.donate-hero {
+  max-width: 720px;
+  margin: 36px auto 0;
+  background: linear-gradient(135deg, #FFF6D8 0%, #FFE39C 100%);
+  border: 3px solid var(--yellow);
+  border-radius: 28px;
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: 0 12px 0 rgba(244,167,0,0.18);
+}
+.donate-hero-emoji { font-size: 60px; line-height: 1; }
+.donate-hero-badge {
+  display: inline-block;
+  background: var(--orange);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin: 12px 0 6px;
+}
+.donate-hero-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--brown);
+  margin: 6px 0 14px;
+  line-height: 1.4;
+}
+.donate-hero-title .big { color: var(--orange-deep); font-size: 42px; }
+.donate-hero-lead { font-size: 15px; color: var(--brown); line-height: 1.9; margin-bottom: 20px; }
+.donate-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 26px; }
+.donate-chip {
+  background: #fff;
+  color: var(--brown);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 9px 16px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(120,100,40,0.10);
+}
+.donate-hero-btn {
+  display: inline-block;
+  background: var(--orange);
+  color: #fff !important;
+  font-size: 19px;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 18px 50px;
+  border-radius: 999px;
+  box-shadow: 0 6px 0 var(--orange-deep);
+  transition: all 0.15s;
+}
+.donate-hero-btn:hover { transform: translateY(3px); box-shadow: 0 3px 0 var(--orange-deep); color: #fff !important; }
+.donate-hero-note { font-size: 12.5px; color: var(--brown-light); margin-top: 16px; }
+.volunteer-card {
+  max-width: 720px;
+  margin: 22px auto 0;
+  background: #fff;
+  border-radius: 20px;
+  padding: 26px 32px;
+  text-align: center;
+  border: 2px solid var(--yellow-light);
+}
+.volunteer-card .emoji { font-size: 40px; }
+.volunteer-card h3 { font-size: 18px; font-weight: 800; color: var(--brown); margin: 8px 0 10px; }
+.volunteer-card p { font-size: 14px; color: var(--brown-light); line-height: 1.85; margin-bottom: 16px; }
+.volunteer-btn {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--brown) !important;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--yellow-deep);
+  transition: all 0.15s;
+}
+.volunteer-btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--yellow-deep); color: var(--brown) !important; }
+@media (max-width: 600px) {
+  .donate-hero-title { font-size: 22px; }
+  .donate-hero-title .big { font-size: 34px; }
+}
+
 /* ===== ボドツナゲーム図鑑（3カードインライン） ===== */
 .gl-grid {
   display: grid;

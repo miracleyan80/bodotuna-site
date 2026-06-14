@@ -811,6 +811,36 @@
   color: var(--brown) !important;
 }
 
+/* メイン活動カードのアイキャッチ */
+.main-activity-thumb {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 4px 0 24px;
+  border: 4px solid white;
+  box-shadow: 0 6px 0 var(--orange);
+}
+.main-activity-thumb img {
+  width: 100%; height: 260px; object-fit: cover; display: block;
+  transition: transform 0.4s;
+}
+.main-activity:hover .main-activity-thumb img { transform: scale(1.04); }
+
+/* 仕組みカードのアイキャッチ */
+.mechanism-thumb {
+  position: relative;
+  margin: -28px -24px 18px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 17px 17px 0 0;
+}
+.mechanism-thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.4s;
+}
+.mechanism:hover .mechanism-thumb img { transform: scale(1.07); }
+.mechanism .mechanism-icon { margin-top: -44px; position: relative; z-index: 2; border: 3px solid white; }
+
 @media (max-width: 768px) {
   .main-activity-header { flex-direction: column; text-align: center; }
   .rep-card { grid-template-columns: 1fr; text-align: center; }
@@ -959,6 +989,10 @@
 
     <a href="community.html" class="main-activity">
       <span class="main-activity-badge">★ 私たちのメイン活動</span>
+      <div class="main-activity-thumb">
+        <img src="images/community1.png" alt="居場所事業の様子">
+        <span class="thumb-hint">クリックで詳しく見る →</span>
+      </div>
       <div class="main-activity-header">
         <div class="main-activity-icon">🏠</div>
         <div class="main-activity-title">
@@ -998,6 +1032,10 @@
     <div class="support-mechanisms">
       <a href="gakudo.html" class="mechanism">
         <span class="mechanism-role">収益で支える</span>
+        <div class="mechanism-thumb">
+          <img src="images/community2.jpg" alt="学童向けイベントの様子">
+          <span class="thumb-hint">クリックで詳しく →</span>
+        </div>
         <div class="mechanism-icon">🎲</div>
         <h4>学童向けイベント</h4>
         <p class="mechanism-desc">横浜・川崎の学童保育施設で出張イベント。新1年生急増の現場では体育館ハイブリッド型も。売上は居場所活動の運営費に。</p>
@@ -1014,6 +1052,10 @@
 
       <a href="game-creation.html" class="mechanism">
         <span class="mechanism-role">収益で支える</span>
+        <div class="mechanism-thumb">
+          <img src="images/case-tokyo-srs.jpg" alt="ゲーム化事業の制作実績">
+          <span class="thumb-hint">クリックで詳しく →</span>
+        </div>
         <div class="mechanism-icon">💡</div>
         <h4>ゲーム化事業</h4>
         <p class="mechanism-desc">居場所活動で培った『想いを汲み取る』ノウハウで、企業・自治体の制度や考え方をゲームに。売上は居場所活動の運営費に。</p>
@@ -1030,6 +1072,10 @@
 
       <a href="training.html" class="mechanism">
         <span class="mechanism-role">収益で支える</span>
+        <div class="mechanism-thumb">
+          <img src="images/hero-game.jpg" alt="法人研修の様子">
+          <span class="thumb-hint">クリックで詳しく →</span>
+        </div>
         <div class="mechanism-icon">🤝</div>
         <h4>法人研修</h4>
         <p class="mechanism-desc">ボードゲームを使った体験型研修。居場所運営で培ったファシリテーション力で、参加者に気づきを届けます。売上は居場所活動の運営費に。</p>
@@ -1046,6 +1092,10 @@
 
       <a href="sponsor.html" class="mechanism">
         <span class="mechanism-role">協賛で支える</span>
+        <div class="mechanism-thumb">
+          <img src="images/event-lecture.jpg" alt="スポンサー募集・イベント現場の様子">
+          <span class="thumb-hint">クリックで詳しく →</span>
+        </div>
         <div class="mechanism-icon">🏢</div>
         <h4>スポンサー募集</h4>
         <p class="mechanism-desc">月1万円から、地域貢献を志す企業に協賛をお願いしています。ロゴはイベント現場で6,000人以上の親子の目に届きます。</p>
@@ -1210,6 +1260,28 @@
   </div>
 </section>
 
+
+<!-- ブラウザで遊べる：はっぴーかんぱにー -->
+<section style="background: var(--yellow-light); padding: 60px 20px;">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">ブラウザで遊べる、福利厚生ゲーム</h2></div>
+    <p class="section-lead">社労士さんと一緒に作った『はっぴーかんぱにー』。<br>インストール不要で、今すぐ無料で遊べます。</p>
+
+    <a href="happy-company.html" target="_blank" rel="noopener" class="game-play">
+      <div class="game-play-img">
+        <img src="images/case-tokyo-srs.jpg" alt="めざせ！はっぴーかんぱにー">
+        <span class="game-play-play"><span>▶</span></span>
+      </div>
+      <div class="game-play-body">
+        <span class="game-play-badge">🎮 無料で遊べる</span>
+        <h3>めざせ！はっぴーかんぱにー</h3>
+        <p>会社の福利厚生を、遊びながら学べるボードゲーム。家族・健康・時間・お金・成長のバランスを取りながら、しあわせな会社を目指します。社労士さんと一緒に制作しました。</p>
+        <span class="game-play-cta">ゲームで遊ぶ ▶</span>
+        <p class="game-play-note">※ 別タブで開きます。スマホ・PCどちらでも遊べます。</p>
+      </div>
+    </a>
+  </div>
+</section>
 
 <!-- ボドツナで遊ぶゲーム（3枚カード） -->
 <section style="background: var(--cream); padding: 60px 20px;">

@@ -229,7 +229,13 @@
   .finaleRank tr.win{background:#fff8e6;font-weight:800;}
 
   /* Log */
-  .log{margin-top:12px;background:#10202f;color:#cfe3f5;border-radius:14px;padding:12px;height:150px;overflow:auto;font-size:12.5px;line-height:1.5;}
+  .logwrap{margin-top:12px;}
+  .logbar{display:flex;justify-content:space-between;align-items:center;background:#10202f;color:#cfe3f5;
+    border-radius:12px 12px 0 0;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;user-select:none;}
+  .logbar .logtgl{color:#9fc3e6;font-size:12px;}
+  .log{background:#10202f;color:#cfe3f5;border-radius:0 0 14px 14px;padding:12px;height:140px;overflow:auto;font-size:12.5px;line-height:1.5;}
+  .logwrap.collapsed .logbar{border-radius:12px;}
+  .logwrap.collapsed .log{display:none;}
   .log div{margin-bottom:3px;}
   .log .sys{color:#ffd28a;}
   .log .good{color:#9be29b;}
@@ -248,6 +254,54 @@
   .rulebox{font-size:14px;line-height:1.7;}
   .rulebox b{color:var(--accent2);}
   .legend{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0;}
+
+  /* ===== スマホ縦：盤面＋手札が1画面に収まるようコンパクト化（末尾に置いて上書き） ===== */
+  @media(max-width:600px){
+    .wrap{padding:7px;}
+    .layout{gap:8px;}
+    .topbar{padding:6px 9px;gap:5px;}
+    .topbar .turn{font-size:14px;}
+    .topbar .meta{font-size:10px;gap:6px;}
+    .speedctl{font-size:10px;gap:3px;}
+    .spbtn{padding:3px 6px;font-size:10px;}
+    .topbar button.ghost{padding:5px 9px;font-size:11px;}
+    .board{padding:7px;}
+    .ring{gap:4px;}
+    .cell{min-height:0;font-size:9.5px;padding:3px;border-width:1.5px;}
+    .cell.cand{min-height:0;}
+    .candimg{height:30px;margin-bottom:2px;}
+    .evimg{height:24px;margin:1px 0 2px;}
+    .cell .ttl{font-size:9.5px;margin-bottom:1px;line-height:1.1;}
+    .cell .phr{display:none;}
+    .cell .hp{font-size:8px;padding:0 4px;top:2px;right:3px;}
+    .wishline{gap:2px;}
+    .chip{font-size:8px;padding:0 3px;}
+    .center{gap:4px;}
+    .pile{font-size:9px;padding:4px 2px;}
+    .pile small{font-size:14px;}
+    .pawns{gap:2px;bottom:1px;}
+    .pawn{width:18px;height:18px;border-width:2px;}
+    .pawn .pnum{width:11px;height:11px;font-size:8px;bottom:-3px;right:-3px;}
+    .pawn.cur{width:25px;height:28px;}
+    .meArrow{font-size:8px;padding:0 5px;top:1px;}
+    .hand{padding:8px;margin-top:0;}
+    #handTitle{font-size:13px;}
+    .phaseHint,.hint{font-size:11px;}
+    .hcards{gap:5px;min-height:0;margin-top:6px;}
+    .hc{width:66px;padding:5px;}
+    .hcimg{height:28px;margin:2px 0 3px;}
+    .hc .hcn{font-size:10px;}
+    .hc .wishline{gap:2px;}
+    .hc .cost{width:16px;height:16px;font-size:9px;top:3px;right:4px;}
+    .hc .shabadge{font-size:8px;padding:0 3px;top:3px;left:4px;}
+    .actions{margin-top:8px;gap:6px;}
+    .actions button{padding:8px 12px;font-size:13px;}
+    .diceStage .bigdie{width:72px;height:72px;font-size:50px;}
+    .diceWho{font-size:11px;padding:3px 10px;}
+    .diceResult{font-size:15px;padding:3px 12px;}
+    .players{margin-top:2px;}
+    .logwrap{margin-top:8px;}
+  }
 </style>
 </head>
 <body>
@@ -298,7 +352,13 @@
         <div class="hcards" id="hand"></div>
         <div class="actions" id="actions"></div>
       </div>
-      <div class="log" id="log"></div>
+      <div class="logwrap collapsed" id="logwrap">
+        <div class="logbar" onclick="toggleLog()">
+          <span>📜 ゲームの記録</span>
+          <span class="logtgl">開く ▼</span>
+        </div>
+        <div class="log" id="log"></div>
+      </div>
     </div>
     <div class="players" id="players"></div>
   </div>
@@ -1322,6 +1382,10 @@ function showRules(){
 }
 function log(msg,cls){const l=document.getElementById('log');const d=document.createElement('div');
   if(cls)d.className=cls;d.textContent=msg;l.appendChild(d);l.scrollTop=l.scrollHeight;}
+function toggleLog(){
+  const w=document.getElementById('logwrap');w.classList.toggle('collapsed');
+  w.querySelector('.logtgl').textContent=w.classList.contains('collapsed')?'開く ▼':'閉じる ▲';
+}
 </script>
 </body>
 </html>

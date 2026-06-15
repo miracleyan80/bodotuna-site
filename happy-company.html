@@ -255,6 +255,88 @@
   .rulebox b{color:var(--accent2);}
   .legend{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0;}
 
+  /* ===== フローティング操作パネル ===== */
+  .boardarea{position:relative;}
+  .hand.floatpanel{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);
+    width:60%;min-width:300px;max-width:460px;z-index:30;padding:0;max-height:80%;overflow:auto;
+    box-shadow:0 12px 44px rgba(20,40,70,.4);border:2px solid var(--accent);}
+  .panelBar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;
+    background:var(--accent);color:#fff;border-radius:12px 12px 0 0;font-weight:800;font-size:14px;position:sticky;top:0;}
+  .panelBar button{background:rgba(255,255,255,.25);color:#fff;padding:4px 10px;font-size:12px;border-radius:8px;}
+  .panelBody{padding:12px;}
+  .hand.floatpanel.collapsed{display:none;}
+  .reopenBtn{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;display:none;
+    box-shadow:0 6px 22px rgba(255,138,61,.5);}
+
+  /* ===== 福利厚生クローズアップ ===== */
+  .ccBg{position:fixed;inset:0;background:rgba(16,28,42,.62);display:none;align-items:center;justify-content:center;z-index:85;padding:16px;}
+  .ccInner{width:340px;max-width:94vw;max-height:90vh;overflow:auto;text-align:center;}
+  .ccCard{background:#fff;border:3px solid var(--line);border-radius:18px;padding:16px 14px 14px;position:relative;
+    box-shadow:0 18px 50px rgba(0,0,0,.4);transform:scale(.8);opacity:0;animation:fpop .35s cubic-bezier(.2,1.4,.4,1) forwards;}
+  .ccCard.social{border-color:#2f7fd1;box-shadow:0 0 0 3px #d6e6f7,0 18px 50px rgba(0,0,0,.4);}
+  .ccCard .shabadge{position:absolute;top:10px;left:12px;background:#2f7fd1;color:#fff;font-size:13px;font-weight:800;border-radius:8px;padding:2px 9px;}
+  .ccCost{position:absolute;top:10px;right:12px;background:#26313d;color:#fff;font-size:13px;font-weight:800;border-radius:10px;padding:2px 10px;}
+  .ccImg{width:150px;height:150px;margin:8px auto 6px;display:flex;align-items:center;justify-content:center;background:#f4f8fd;border-radius:14px;}
+  .ccImg img{max-width:88%;max-height:88%;object-fit:contain;}
+  .ccName{font-size:24px;font-weight:900;color:#2a3744;}
+  .ccWish{margin-top:6px;display:flex;gap:5px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .ccWishLbl{font-size:11px;color:#62718a;font-weight:700;}
+  .ccWho{font-size:13px;font-weight:800;color:#41617f;margin-bottom:8px;}
+  .ccHint{font-size:11px;color:#cfe0f0;margin-top:10px;}
+  /* 導入者リボン（誰が導入したか） */
+  .ccCard.announce{overflow:hidden;padding-top:0;}
+  .ccAdoptedBy{margin:0 -14px 12px;padding:10px 12px;color:#fff;font-weight:900;font-size:16px;text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);letter-spacing:.5px;}
+  .ccCard.announce .ccCost{top:50px;}
+  .ccCard.announce .shabadge{top:50px;}
+  .ccCard.announce .ccImg{width:124px;height:124px;}
+  /* 解説を目立たせる */
+  .ccDesc{background:#fffdf2;border:2px solid #ffe39a;border-left:7px solid #ffbb2e;border-radius:13px;margin-top:12px;
+    padding:13px 16px;text-align:left;box-shadow:0 8px 22px rgba(0,0,0,.22);}
+  .ccDesc .ccDescLbl{display:inline-block;font-size:11.5px;color:#fff;background:#ffae33;font-weight:800;border-radius:8px;padding:2px 10px;margin-bottom:7px;}
+  .ccDesc .ccDescTxt{font-size:16px;line-height:1.65;color:#2a3744;font-weight:700;}
+  /* コスト支払い欄を分かりやすく */
+  .ccPay{margin-top:12px;font-size:13px;color:#2f7f4d;background:#eafaef;border:1px dashed #9bd6ad;border-radius:10px;padding:8px 10px;font-weight:700;}
+  .ccPay.bad{background:#fdeceb;border-color:#e6a9a2;color:#c0392b;}
+  .ccPayBox{margin-top:12px;background:#fff8ec;border:2px solid #f3c98a;border-radius:14px;padding:11px 12px;text-align:left;}
+  .ccPayHead{font-size:14.5px;font-weight:900;color:#b06b00;margin-bottom:3px;}
+  .ccPaySub{font-size:12.5px;color:#7a5a2a;margin-bottom:9px;}
+  .ccPayCount{display:inline-block;background:#f3c98a;color:#7a4a00;border-radius:10px;padding:1px 9px;font-weight:800;margin-left:4px;}
+  .ccPayCount.ok{background:#3fb763;color:#fff;}
+  .ccFodder{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .ccfd{background:#fff;border:2px solid var(--line);border-radius:11px;padding:7px 6px 6px;width:80px;position:relative;
+    display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:.12s;}
+  .ccfd:hover{transform:translateY(-2px);}
+  .ccfd.on{border-color:#e23b3b;background:#fff0ef;box-shadow:0 0 0 2px #e23b3b;}
+  .ccfdCheck{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:#cbd3dd;color:#fff;
+    font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff;}
+  .ccfd.on .ccfdCheck{background:#e23b3b;}
+  .ccfdImg{width:36px;height:36px;object-fit:contain;}
+  .ccfdName{font-size:10.5px;font-weight:800;color:#46586a;line-height:1.15;text-align:center;}
+  .ccfdCost{position:absolute;top:-8px;left:-8px;width:20px;height:20px;border-radius:50%;background:#26313d;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff;}
+  .ccBtns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+
+  /* ===== オープニング ===== */
+  .openingBg{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:95;overflow:hidden;
+    background:linear-gradient(180deg,#aee0ff 0%,#d9f0ff 42%,#fff3e0 75%,#ffe6c2 100%);}
+  .opTown{position:absolute;left:0;right:0;bottom:0;height:170px;}
+  .opFloat{position:absolute;inset:0;pointer-events:none;}
+  .opContent{position:relative;z-index:2;text-align:center;max-width:600px;padding:24px;animation:fpop .6s ease both;}
+  .opSignRow{display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:4px;flex-wrap:wrap;}
+  .opSign{display:inline-block;background:#7a5230;color:#ffe;border-radius:10px;padding:5px 18px;font-size:20px;font-weight:800;transform:rotate(-3deg);box-shadow:0 3px 0 #5d3c22;}
+  .opGenre{font-size:15px;font-weight:800;color:#5b6b7b;}
+  .opTitle{font-size:clamp(34px,9vw,58px);color:var(--accent);text-shadow:2px 2px 0 #fff,4px 4px 0 #f0c39a;margin:2px 0;}
+  .opMascot{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid #ffe0a3;background:#fff;margin:6px 0;box-shadow:0 4px 12px rgba(0,0,0,.15);animation:bob 1.4s infinite;}
+  .opText{font-size:clamp(14px,3.4vw,17px);line-height:1.9;color:#34414f;background:rgba(255,255,255,.78);border-radius:16px;padding:16px 20px;margin:10px auto 18px;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.12);}
+  .opText b{color:#2a3744;} .opRed{color:#e23b3b;font-weight:800;}
+  .opStart{font-size:19px;padding:13px 34px;box-shadow:0 8px 22px rgba(255,138,61,.45);animation:pulse2 1.6s infinite;}
+  @keyframes pulse2{50%{transform:scale(1.04);}}
+  .opBuilding{position:absolute;bottom:0;border-radius:5px 5px 0 0;box-shadow:inset -8px 0 0 rgba(0,0,0,.06);}
+  .opWin{position:absolute;background:rgba(255,255,255,.85);border-radius:1px;}
+  .opSun{position:absolute;top:8%;right:10%;width:74px;height:74px;border-radius:50%;background:radial-gradient(circle,#ffe680,#ffcf4d);box-shadow:0 0 40px rgba(255,207,77,.7);}
+  .opWish{position:absolute;font-size:26px;opacity:.9;animation:floatUp linear infinite;}
+  @keyframes floatUp{0%{transform:translateY(20px);opacity:0;}10%{opacity:.9;}100%{transform:translateY(-120px);opacity:0;}}
+
   /* ===== スマホ縦：盤面＋手札が1画面に収まるようコンパクト化（末尾に置いて上書き） ===== */
   @media(max-width:600px){
     .wrap{padding:7px;}
@@ -284,7 +366,8 @@
     .pawn .pnum{width:11px;height:11px;font-size:8px;bottom:-3px;right:-3px;}
     .pawn.cur{width:25px;height:28px;}
     .meArrow{font-size:8px;padding:0 5px;top:1px;}
-    .hand{padding:8px;margin-top:0;}
+    .hand.floatpanel{width:94%;min-width:0;max-width:none;bottom:6px;}
+    .panelBody{padding:9px;}
     #handTitle{font-size:13px;}
     .phaseHint,.hint{font-size:11px;}
     .hcards{gap:5px;min-height:0;margin-top:6px;}
@@ -343,14 +426,20 @@
 
   <div class="layout">
     <div>
-      <div class="board"><div class="ring" id="ring"></div><div class="diceStage" id="diceStage"></div></div>
-      <div class="hand">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <h3 id="handTitle">手札</h3>
-          <span class="hint" id="phaseHint"></span>
+      <div class="boardarea" id="boardarea">
+        <div class="board" id="board"><div class="ring" id="ring"></div><div class="diceStage" id="diceStage"></div></div>
+        <div class="hand floatpanel" id="handPanel">
+          <div class="panelBar">
+            <span id="handTitle">あなたの操作</span>
+            <button onclick="collapsePanel()">盤面を見る ✕</button>
+          </div>
+          <div class="panelBody">
+            <span class="hint" id="phaseHint"></span>
+            <div class="hcards" id="hand"></div>
+            <div class="actions" id="actions"></div>
+          </div>
         </div>
-        <div class="hcards" id="hand"></div>
-        <div class="actions" id="actions"></div>
+        <button class="reopenBtn" id="reopenBtn" onclick="openPanel()">🛠 操作パネルを開く ▲</button>
       </div>
       <div class="logwrap collapsed" id="logwrap">
         <div class="logbar" onclick="toggleLog()">
@@ -369,6 +458,22 @@
 
 <!-- ============ 社員候補マス演出 ============ -->
 <div class="sceneBg" id="sceneBg"><canvas class="sceneConfetti" id="sceneConfetti"></canvas><div class="sceneCard" id="sceneCard"></div></div>
+
+<!-- ============ オープニング ============ -->
+<div class="openingBg" id="openingBg">
+  <div class="opTown" id="opTown"></div>
+  <div class="opFloat" id="opFloat"></div>
+  <div class="opContent">
+    <div class="opSignRow"><span class="opSign">めざせ！</span><span class="opGenre">福利厚生体験ゲーム</span></div>
+    <h1 class="opTitle">はっぴーかんぱにー</h1>
+    <img id="opMascot" class="opMascot" alt="">
+    <p class="opText">このゲームは、<b>会社の福利厚生を学べるゲーム</b>です。会社の社長となったあなたは、働きたいと思っている人（社員候補）と、その<b>家族が求めている福利厚生</b>を会社に取り入れ、多くの<span class="opRed">社員と家族の願い</span>をかなえる<span class="opRed">「はっぴーかんぱにー」</span>を目指します！</p>
+    <button class="opStart" onclick="closeOpening()">▶ ゲームスタート</button>
+  </div>
+</div>
+
+<!-- ============ 福利厚生クローズアップ ============ -->
+<div class="ccBg" id="ccBg"><div class="ccInner" id="ccInner"></div></div>
 
 <!-- ============ 終了演出 ============ -->
 <div class="finaleBg" id="finaleBg">
@@ -464,6 +569,25 @@ const WELFARE = [
   {n:'フレックス制度',cost:1,c:['time']},
 ];
 const SOCIAL5 = ['健康保険','労災保険','雇用保険','介護保険','厚生年金'];
+// 福利厚生の説明（福利厚生一覧.xlsx より）
+const WELFARE_DESC = {
+  '健康保険':'病気やケガの医療費を補助する公的医療保険',
+  '労災保険':'労災と雇用保険を合わせた働く人を守る制度',
+  '雇用保険':'失業時などに給付を受けられる公的保険',
+  '介護保険':'介護が必要な人を社会全体で支える保険',
+  '厚生年金':'老後や障害時に年金を受け取れる公的制度',
+  '残業代':'法定時間を超えた労働に支払う割増賃金',
+  '有給休暇':'給与が支払われる休暇を取得できる制度',
+  '産休・育休':'出産や育児のために取得できる休業制度',
+  'ボーナス':'給与とは別に支給される賞与',
+  '異動希望制度':'希望の部署や職種へ異動を申請できる制度',
+  '退職金':'退職時にまとめて支給される手当',
+  '社員研修制度':'社員のスキル向上のための研修を行う制度',
+  '資格取得支援':'資格取得の費用や学習を会社が支援する制度',
+  '労働組合':'労働者が待遇改善を求めて組織する団体',
+  '人事評価制度':'社員の成果や能力を評価する仕組み',
+  'フレックス制度':'始業・終業の時刻を自分で決められる制度',
+};
 
 // 社員候補（22人）。start=「ここで働かせてください」＝場に残る候補。
 const CANDIDATES = [
@@ -500,7 +624,7 @@ const PAWN_IMAGES=PAWN_IDX.map(i=>CAND_IMAGES[i]||null);
 const EVENTS = {
   好景気:{fixed:true,desc:'全員 福利厚生カードを1枚 手札に加える'},
   事業支援制度:{fixed:true,desc:'好きなマスへ移動できる'},
-  不景気:{desc:'場の社員候補とイベントカードを全て入れ替える'},
+  不景気:{desc:'各プレイヤーは、手持ちの福利厚生カードを1枚捨てる'},
   ヘッドハンティング:{desc:'要望を満たしている他社の社員を獲得できる'},
   コストダウン:{desc:'会社の福利厚生が1つなくなる（社会保険5種は外せない）'},
   労働基準監督署:{desc:'社会保険が5つ揃っていなければ1回休み'},
@@ -698,7 +822,8 @@ function startGame(){
 
   G={players,wdeck,wdiscard:[],cdeck,matane:[],cells,
      cur:0,startPlayer:0,phase:'start',ending:false,dice:0,
-     adoptSel:null,discardSel:[],targetMode:null,over:false};
+     adoptSel:null,discardSel:[],targetMode:null,over:false,
+     adoptedThisTurn:false,panelOpen:false};
   document.getElementById('setup').parentElement.style.display='none';
   document.getElementById('setup').style.display='none';
   document.getElementById('game').style.display='block';
@@ -707,7 +832,50 @@ function startGame(){
   if(AUD.bgmOn){AUD.bgmGain.gain.setValueAtTime(0.5,AUD.ctx.currentTime);bgmStart();}
   log('ゲーム開始！ めざせ、はっぴーかんぱにー！','sys');
   log('テンポは右上「速度」、音は「BGM／効果音」で調整できます。','sys');
+  // 盤面（コマ・候補の輪）をタップすると操作パネルを畳む
+  const boardEl=document.getElementById('board');
+  if(boardEl&&!boardEl._collapseBound){boardEl._collapseBound=true;
+    boardEl.addEventListener('click',()=>{if(G&&!G.over&&!G.players[G.cur].ai&&G.panelOpen)collapsePanel();});}
+  render();
+  showOpening();   // オープニング演出 → 閉じると beginTurn
+}
+
+/* ===== オープニング演出 ===== */
+function showOpening(){
+  buildOpeningScene();
+  const m=document.getElementById('opMascot');
+  if(MASCOT_IMG){m.src=MASCOT_IMG;m.style.display='inline-block';}else{m.style.display='none';}
+  document.getElementById('openingBg').style.display='flex';
+}
+function closeOpening(){
+  document.getElementById('openingBg').style.display='none';
+  audioResume();playSE('win');
   beginTurn();
+}
+function buildOpeningScene(){
+  // 街（ビル群）＝ストーリーの背景
+  const town=document.getElementById('opTown');
+  const cols=['#e6a3a3','#a3c4e6','#a9d6a3','#e6cf8f','#c9a9e0','#e6b88f','#9fd0d0','#d6b3c9'];
+  let h='<div class="opSun"></div>';
+  let x=0;const W=1200;
+  let i=0;
+  while(x<W){
+    const bw=42+(i*53%46); const bh=70+(i*37%90); const c=cols[i%cols.length];
+    h+=`<div class="opBuilding" style="left:${x}px;width:${bw}px;height:${bh}px;background:${c}">`;
+    // 窓
+    for(let wy=8;wy<bh-10;wy+=16){for(let wx=6;wx<bw-8;wx+=14){
+      h+=`<div class="opWin" style="left:${wx}px;bottom:${wy}px;width:7px;height:9px;"></div>`;}}
+    h+='</div>';
+    x+=bw+6;i++;
+  }
+  town.innerHTML=h;town.style.cssText='position:absolute;left:0;right:0;bottom:0;height:170px;';
+  // 願いアイコンがふわふわ
+  const fl=document.getElementById('opFloat');
+  const ic=['❤','＋','◆','¥','★'];const colw=['#e23b3b','#4caf50','#2f7fd1','#f1a900','#cf7a2e'];
+  let f='';
+  for(let k=0;k<10;k++){const lx=6+(k*97%88); const d=(k*7%9); const dur=6+(k%5);
+    f+=`<div class="opWish" style="left:${lx}%;bottom:120px;color:${colw[k%5]};animation-duration:${dur}s;animation-delay:${d*0.4}s">${ic[k%5]}</div>`;}
+  fl.innerHTML=f;
 }
 function clone(o){return JSON.parse(JSON.stringify(o));}
 function removeN(deck,name,cnt){let r=0;for(let i=deck.length-1;i>=0&&r<cnt;i--){if(deck[i].n===name){deck.splice(i,1);r++;}}}
@@ -740,6 +908,7 @@ function cellName(i){const c=G.cells[i];if(!c)return '空きマス';
 function beginTurn(){
   const p=G.players[G.cur];
   G.phase='action';G.adoptSel=null;G.discardSel=[];G.dice=0;
+  G.adoptedThisTurn=false;G.panelOpen=!p.ai;  // 自分の番は操作パネルを開く
   if(p.skip){
     p.skip=false;
     log(`${p.name} は労働基準監督署の指導で1回休み。`,'bad');
@@ -787,7 +956,7 @@ function showDice(p,val,rolling){
 function hideDice(){const st=document.getElementById('diceStage');if(st)st.classList.remove('show');}
 function rollDice(){
   const p=G.players[G.cur];
-  G.phase='moving';G.diceRolling=true;renderHandAndActions();
+  G.phase='moving';G.diceRolling=true;G.panelOpen=false;updatePanel();renderHandAndActions();
   // 盤面中央でサイコロをコロコロ回す演出（全プレイヤーぶん見える）
   let rolls=0;const total=10;
   showDice(p,null,true);
@@ -859,13 +1028,18 @@ function resolveEvent(p,cell,chained){
   }
   if(name==='不景気'){
     let cnt=0;
-    for(let i=0;i<10;i++){const cc=G.cells[i];
-      if(cc&&cc.type!=='fixed'){if(cc.type==='cand')G.matane.push(cc.cand);else G.matane.push({event:cc.name});
-        G.cells[i]=drawCell(G.cdeck);cnt++;}}
-    log(`不景気！ 場の候補・イベント ${cnt}件を入れ替えた。`,'bad');
-    checkDeck();render();
+    G.players.forEach(q=>{
+      if(q.hand.length>0){
+        const owned=new Set(q.welfare.map(w=>w.n));
+        q.hand.sort((a,b)=>keepVal(a,owned)-keepVal(b,owned));
+        const drop=q.hand.shift();
+        G.wdiscard.push(drop);cnt++;
+      }
+    });
+    log(`不景気！ 各社が手札の福利厚生を1枚 手放した（${cnt}社）。`,'bad');
+    render();
     return showEventScene({player:p,name,desc,cls:'bad',sound:'leave',
-      result:`📉 不景気… 場の候補・イベント ${cnt}件を入れ替え`},after);
+      result:`📉 不景気… 各社 手持ちの福利厚生カードを1枚 手放した`},after);
   }
   if(name==='労働基準監督署'){
     const ok=SOCIAL5.every(s=>hasType(p,s));
@@ -967,9 +1141,14 @@ function endTurn(){
 function aiAction(){
   const p=G.players[G.cur];
   const plan=aiChooseAdopt(p);
-  if(plan){doAdopt(p,plan.card,plan.discards);render();}
-  else{log(`${p.name} は今回は福利厚生を導入しなかった。`);}
-  setTimeout(rollDice,ms(1300));
+  if(plan){
+    doAdopt(p,plan.card,plan.discards);render();
+    // どの福利厚生を導入したかクローズアップで見せてから進む
+    showWelfareAnnounce(p,plan.card,()=>setTimeout(rollDice,ms(400)));
+  }else{
+    log(`${p.name} は今回は福利厚生を導入しなかった。`);
+    setTimeout(rollDice,ms(1300));
+  }
 }
 function aiChooseAdopt(p){
   const cov=coverage(p);
@@ -1109,27 +1288,25 @@ function render(){
   });
 
   renderHandAndActions();
+  updatePanel();
 }
 
 function renderHandAndActions(){
   const p=G.players[G.cur];
   const hand=document.getElementById('hand');hand.innerHTML='';
   const human=!p.ai && (G.phase==='action');
+  const canStillAdopt=human && !G.adoptedThisTurn;
   p.hand.forEach(card=>{
     const div=document.createElement('div');
-    let cls='hc';
-    if(card.social)cls+=' social';
-    if(G.adoptSel===card)cls+=' sel';
-    if(G.discardSel.includes(card))cls+=' disc';
+    let cls='hc'; if(card.social)cls+=' social';
     div.className=cls;
     div.innerHTML=`<div class="cost">${card.cost}</div>
       ${card.social?'<div class="shabadge">社</div>':''}
       ${WELFARE_IMAGES[card.n]?`<div class="hcimg"><img src="${WELFARE_IMAGES[card.n]}" alt=""></div>`:''}
       <div class="hcn">${card.n}</div>
       <div class="wishline">${welfareCoverChips(card)}</div>`;
-    if(human){
-      div.onclick=()=>handClick(card);
-    }
+    if(canStillAdopt){div.onclick=()=>showWelfareCloseup(card);}
+    else{div.style.cursor='default';}
     hand.appendChild(div);
   });
   if(p.hand.length===0)hand.innerHTML='<span style="color:#aab;font-size:13px">手札はありません</span>';
@@ -1137,48 +1314,108 @@ function renderHandAndActions(){
   const act=document.getElementById('actions');act.innerHTML='';
   const hint=document.getElementById('phaseHint');
   const ht=document.getElementById('handTitle');
-  ht.textContent=`${p.name} の手札（${p.hand.length}枚）`;
+  ht.textContent = p.ai ? `${p.name}（AI）の番` : 'あなたの操作';
 
   if(p.ai){hint.textContent='コンピューターが考えています…';return;}
 
   if(G.phase==='action'){
-    if(G.adoptSel){
-      const need=G.adoptSel.cost;
-      hint.textContent=need>0
-        ?`「${G.adoptSel.n}」を導入：投資費用として捨てる手札を ${need}枚 選んでください（選択中 ${G.discardSel.length}/${need}）`
-        :`「${G.adoptSel.n}」を導入します（費用なし）。`;
-      const ok=document.createElement('button');
-      ok.textContent='この内容で導入する';
-      ok.disabled=G.discardSel.length!==need;
-      ok.onclick=()=>{doAdopt(p,G.adoptSel,[...G.discardSel]);G.adoptSel=null;G.discardSel=[];afterAction();};
-      const cancel=document.createElement('button');cancel.className='ghost';cancel.textContent='やめる';
-      cancel.onclick=()=>{G.adoptSel=null;G.discardSel=[];render();};
-      act.appendChild(ok);act.appendChild(cancel);
-    }else{
-      hint.textContent='福利厚生を1つ導入できます（手札をクリック）。導入しなくてもOK。';
-      const skip=document.createElement('button');skip.className='blue';skip.textContent='導入せずサイコロへ ▶';
-      skip.onclick=()=>afterAction();
-      act.appendChild(skip);
-    }
+    hint.textContent = G.adoptedThisTurn
+      ? '福利厚生を導入しました。サイコロを振って進みましょう。'
+      : '福利厚生を1つ導入できます（カードをタップ）。導入しなくてもOK。';
+    const roll=document.createElement('button');
+    roll.className='blue';roll.textContent='🎲 サイコロを振る ▶';
+    roll.onclick=()=>rollDice();
+    act.appendChild(roll);
   }else if(G.phase==='moving'){
     hint.textContent=G.diceRolling?'🎲 盤面の中央でサイコロを振っています…':'コマが移動中…';
   }
 }
-function handClick(card){
+
+/* 福利厚生カードのクローズアップ（説明つき・導入処理） */
+function showWelfareCloseup(card){
   const p=G.players[G.cur];
-  if(G.adoptSel){
-    // 捨て札の選択トグル（採用カード自身は不可）
-    if(card===G.adoptSel)return;
-    if(G.discardSel.includes(card)){G.discardSel=G.discardSel.filter(c=>c!==card);}
-    else{if(G.discardSel.length<G.adoptSel.cost)G.discardSel.push(card);}
-    render();return;
+  const bg=document.getElementById('ccBg');
+  const inner=document.getElementById('ccInner');
+  let discardSel=[];
+  function draw(){
+    const adoptable=canAdopt(p,card);
+    let reason='';
+    if(!adoptable){reason=hasType(p,card.n)?'すでに導入済みです':'投資費用ぶんの手札（他のカード）が足りません';}
+    const need=card.cost;
+    const fodder=p.hand.filter(c=>c!==card);
+    inner.innerHTML=`
+      <div class="ccCard ${card.social?'social':''}">
+        ${card.social?'<div class="shabadge">社</div>':''}
+        <div class="ccCost">コスト ${card.cost}</div>
+        ${WELFARE_IMAGES[card.n]?`<div class="ccImg"><img src="${WELFARE_IMAGES[card.n]}" alt=""></div>`:''}
+        <div class="ccName">${card.n}</div>
+        <div class="ccWish">${welfareCoverChips(card)}<span class="ccWishLbl">${card.c.map(k=>WISH[k].label).join('・')}の願いに対応</span></div>
+      </div>
+      <div class="ccDesc"><span class="ccDescLbl">💡 どんな制度？</span><div class="ccDescTxt">${WELFARE_DESC[card.n]||''}</div></div>
+      ${adoptable
+        ? (need>0
+           ? `<div class="ccPayBox">
+                <div class="ccPayHead">💰 投資費用：福利厚生カード ${need}枚で支払う</div>
+                <div class="ccPaySub">下の手札を <b>${need}枚</b> タップして支払いに使います<span class="ccPayCount ${discardSel.length===need?'ok':''}">${discardSel.length} / ${need} 枚</span></div>
+                <div class="ccFodder">${fodder.map((c,i)=>`<button class="ccfd${discardSel.includes(c)?' on':''}" data-i="${i}">
+                    <span class="ccfdCheck">${discardSel.includes(c)?'✓':'＋'}</span>
+                    <span class="ccfdCost">${c.cost}</span>
+                    ${WELFARE_IMAGES[c.n]?`<img class="ccfdImg" src="${WELFARE_IMAGES[c.n]}" alt="">`:''}
+                    <span class="ccfdName">${c.n}</span></button>`).join('')}</div>
+              </div>`
+           : `<div class="ccPay">✅ コスト0 ＝ 費用なしで導入できます。</div>`)
+        : `<div class="ccPay bad">⚠ ${reason}</div>`}
+      <div class="ccBtns">
+        ${adoptable?`<button id="ccDo" ${need>0&&discardSel.length!==need?'disabled':''}>この福利厚生を導入する</button>`:''}
+        <button class="ghost" id="ccCancel">${adoptable?'やめる':'とじる'}</button>
+      </div>`;
+    inner.querySelectorAll('.ccfd').forEach(b=>{b.onclick=()=>{const c=fodder[+b.dataset.i];
+      if(discardSel.includes(c))discardSel=discardSel.filter(x=>x!==c);
+      else if(discardSel.length<need)discardSel.push(c);
+      draw();};});
+    const doBtn=inner.querySelector('#ccDo');
+    if(doBtn)doBtn.onclick=()=>{closeCC();doAdopt(p,card,[...discardSel]);G.adoptedThisTurn=true;render();};
+    inner.querySelector('#ccCancel').onclick=closeCC;
   }
-  if(!canAdopt(p,card)){
-    if(hasType(p,card.n))flash('その福利厚生はすでに導入済みです。');
-    else flash('投資費用ぶんの手札（他のカード）が足りません。');
-    return;
-  }
-  G.adoptSel=card;G.discardSel=[];render();
+  draw();
+  bg.style.display='flex';
+  bg.onclick=(e)=>{if(e.target.id==='ccBg')closeCC();};
+}
+function closeCC(){document.getElementById('ccBg').style.display='none';}
+
+/* AI（他社）が導入した福利厚生をクローズアップで知らせる（自動で次へ） */
+function showWelfareAnnounce(p,card,cb){
+  const inner=document.getElementById('ccInner');
+  inner.innerHTML=`
+    <div class="ccCard announce ${card.social?'social':''}">
+      <div class="ccAdoptedBy" style="background:${p.color}">🏢 ${p.name}${p.ai?'（AI）':''} が導入！</div>
+      ${card.social?'<div class="shabadge">社</div>':''}
+      <div class="ccCost">コスト ${card.cost}</div>
+      ${WELFARE_IMAGES[card.n]?`<div class="ccImg"><img src="${WELFARE_IMAGES[card.n]}" alt=""></div>`:''}
+      <div class="ccName">${card.n}</div>
+      <div class="ccWish">${welfareCoverChips(card)}<span class="ccWishLbl">${card.c.map(k=>WISH[k].label).join('・')}の願いに対応</span></div>
+    </div>
+    <div class="ccDesc"><span class="ccDescLbl">💡 どんな制度？</span><div class="ccDescTxt">${WELFARE_DESC[card.n]||''}</div></div>
+    <div class="ccHint">クリックで次へ ▶</div>`;
+  const bg=document.getElementById('ccBg');bg.style.display='flex';
+  playSE('adopt');
+  let done=false;
+  const finish=()=>{if(done)return;done=true;clearTimeout(t);bg.style.display='none';bg.onclick=null;cb();};
+  bg.onclick=finish;
+  const t=setTimeout(finish,ms(2400));
+}
+
+/* フローティング操作パネルの開閉 */
+function collapsePanel(){G.panelOpen=false;updatePanel();}
+function openPanel(){G.panelOpen=true;updatePanel();}
+function updatePanel(){
+  const panel=document.getElementById('handPanel');
+  const reopen=document.getElementById('reopenBtn');
+  if(!panel||!G)return;
+  const human=!G.over && !G.players[G.cur].ai;
+  if(!human){panel.classList.add('collapsed');reopen.style.display='none';return;}
+  if(G.panelOpen){panel.classList.remove('collapsed');reopen.style.display='none';}
+  else{panel.classList.add('collapsed');reopen.style.display='block';}
 }
 function afterAction(){
   const p=G.players[G.cur];

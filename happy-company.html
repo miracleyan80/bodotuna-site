@@ -704,9 +704,13 @@ function bgmStart(){
   const len=bgmPhrase();
   AUD.bgmTimer=setInterval(()=>{if(AUD.ctx.state==='running')bgmPhrase();},len*1000);
 }
-function setBgm(on){AUD.bgmOn=on;if(!AUD.ctx)return;audioResume();
+function setBgm(on){AUD.bgmOn=on;if(!AUD.ctx){renderAudio();return;}audioResume();
+  AUD.bgmGain.gain.cancelScheduledValues(AUD.ctx.currentTime);
+  AUD.bgmGain.gain.setValueAtTime(AUD.bgmGain.gain.value,AUD.ctx.currentTime);
   AUD.bgmGain.gain.linearRampToValueAtTime(on?0.5:0,AUD.ctx.currentTime+0.3);
-  if(on)bgmStart();renderAudio();}
+  if(on){bgmStart();}
+  else if(AUD.bgmTimer){clearInterval(AUD.bgmTimer);AUD.bgmTimer=null;} // 完全停止
+  renderAudio();}
 function setSe(on){AUD.seOn=on;renderAudio();}
 function renderAudio(){
   const box=document.getElementById('audioCtl');if(!box)return;
@@ -717,6 +721,17 @@ function renderAudio(){
 // 最初のユーザー操作で音声を起動
 document.addEventListener('pointerdown',function once(){audioInit();audioResume();
   document.removeEventListener('pointerdown',once);},{once:true});
+// ゲーム画面を離れたら（タブ切替・最小化・他アプリ）音を止める。戻れば再開
+document.addEventListener('visibilitychange',function(){
+  if(!AUD.ctx)return;
+  if(document.hidden){try{AUD.ctx.suspend();}catch(e){}}
+  else{try{AUD.ctx.resume();}catch(e){}}
+});
+// ページを閉じる／別ページへ移動したら音を完全停止
+function stopAllAudio(){if(AUD.ctx){if(AUD.bgmTimer){clearInterval(AUD.bgmTimer);AUD.bgmTimer=null;}
+  try{AUD.ctx.close();}catch(e){}AUD.ctx=null;}}
+window.addEventListener('pagehide',stopAllAudio);
+window.addEventListener('beforeunload',stopAllAudio);
 
 /* 紙吹雪 */
 function launchConfetti(canvas,ms2){
@@ -1412,10 +1427,12 @@ function updatePanel(){
   const panel=document.getElementById('handPanel');
   const reopen=document.getElementById('reopenBtn');
   if(!panel||!G)return;
-  const human=!G.over && !G.players[G.cur].ai;
-  if(!human){panel.classList.add('collapsed');reopen.style.display='none';return;}
-  if(G.panelOpen){panel.classList.remove('collapsed');reopen.style.display='none';}
-  else{panel.classList.add('collapsed');reopen.style.display='block';}
+  // 操作できるのは「自分の番」かつ「行動フェーズ」のときだけ
+  const actable=!G.over && !G.players[G.cur].ai && G.phase==='action';
+  const showPanel=actable && G.panelOpen;
+  panel.classList.toggle('collapsed',!showPanel);
+  // サイコロ・移動中・AIの番では「操作パネルを開く」ボタンも隠す（盤面・候補が見える）
+  reopen.style.display=(actable && !G.panelOpen)?'block':'none';
 }
 function afterAction(){
   const p=G.players[G.cur];

@@ -205,9 +205,10 @@
 
   /* 終了演出 */
   .finaleBg{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#1d3350,#0c1726);
-    display:none;flex-direction:column;align-items:center;justify-content:center;z-index:90;overflow:hidden;cursor:pointer;}
-  .confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
-  .finaleStage{color:#fff;text-align:center;z-index:2;min-height:160px;display:flex;align-items:center;justify-content:center;padding:20px;}
+    display:none;flex-direction:column;align-items:center;justify-content:flex-start;z-index:90;overflow-y:auto;cursor:pointer;
+    padding:clamp(14px,5vh,48px) 12px 40px;}
+  .confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;}
+  .finaleStage{color:#fff;text-align:center;z-index:2;min-height:150px;display:flex;align-items:center;justify-content:center;padding:14px;}
   .fbig{font-size:42px;font-weight:900;text-shadow:0 3px 14px rgba(0,0,0,.5);line-height:1.3;}
   .fsub{font-size:24px;font-weight:800;color:#ffe2a8;}
   .finaleStage.pop .fbig,.finaleStage.pop .winnerWrap{animation:fpop .5s cubic-bezier(.2,1.5,.4,1) both;}
@@ -227,6 +228,33 @@
   .finaleRank .rkav{width:26px;height:26px;display:inline-flex;vertical-align:middle;margin-right:4px;}
   .finaleRank .rkav svg{width:100%;height:100%;}
   .finaleRank tr.win{background:#fff8e6;font-weight:800;}
+  /* ふりかえり（福利厚生／社員） */
+  .reviewWrap{margin-top:16px;border-top:2px dashed var(--line);padding-top:12px;}
+  .reviewTitle{font-size:14px;font-weight:900;color:#2a3744;margin-bottom:8px;}
+  .reviewTabs{display:flex;gap:8px;}
+  .rvTab{flex:1;background:#eef2f7;color:#5b6b7b;border:2px solid var(--line);border-radius:10px;padding:8px 6px;font-size:12.5px;font-weight:800;}
+  .rvTab.on{background:var(--accent2);color:#fff;border-color:var(--accent2);}
+  .reviewHint{font-size:11px;color:#9aa7b5;text-align:center;margin:6px 0;}
+  .reviewBody{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-height:230px;overflow:auto;padding:4px;background:#f6f9fd;border-radius:12px;}
+  .rvCard{width:84px;background:#fff;border:2px solid var(--line);border-radius:11px;padding:6px 5px 5px;position:relative;
+    display:flex;flex-direction:column;align-items:center;gap:2px;}
+  .rvCard.social{border-color:#2f7fd1;}
+  .rvCard.emp{border-color:#ffd9b0;background:#fffaf4;}
+  .rvSha{position:absolute;top:-7px;left:-7px;background:#2f7fd1;color:#fff;font-size:10px;font-weight:800;border-radius:7px;padding:0 5px;border:1.5px solid #fff;}
+  .rvCost{position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:50%;background:#26313d;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff;}
+  .rvImg{width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+  .rvImg img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;}
+  .rvName{font-size:10.5px;font-weight:800;color:#46586a;line-height:1.15;text-align:center;}
+  .rvHp{font-size:11px;font-weight:800;color:#e2568f;}
+  .rvChips{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;}
+  .rvChips .chip{font-size:8px;padding:0 3px;}
+  .rvEmpty{font-size:12px;color:#9aa7b5;padding:18px;width:100%;text-align:center;}
+  /* リンクボタン */
+  .finaleLinks{display:flex;flex-direction:column;gap:9px;margin-top:16px;}
+  .linkBtn{display:block;width:100%;text-align:center;text-decoration:none;font-weight:800;font-size:14.5px;line-height:1.35;padding:13px 12px;border-radius:12px;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.15);border:none;cursor:pointer;}
+  .linkBtn.bodo{background:linear-gradient(135deg,#ff8a3d,#f06a1e);}
+  .linkBtn.game{background:linear-gradient(135deg,#2f7fd1,#225fa0);}
+  .linkBtn.replay{background:linear-gradient(135deg,#4caf50,#3a9c43);}
 
   /* Log */
   .logwrap{margin-top:12px;}
@@ -631,6 +659,10 @@ const EVENTS = {
 };
 
 const PCOLORS=['#e2683b','#2f7fd1','#4caf50','#9b59b6'];
+
+// ★外部リンク（正式URLに差し替えてください）★
+const LINK_BODOTUNA     = "index.html";          // ボードゲームでツナグ手 WEBページ
+const LINK_GAMECREATION = "game-creation.html";  // ゲーム化事業 WEBページ
 
 /* ---- 速度（数値が大きいほど遅い） ---- */
 const SPEEDS={'ゆっくり':1.7,'標準':1.0,'はやめ':0.55};
@@ -1585,14 +1617,30 @@ function showFinale(ranked,winners,top){
   ];
   let i=0,advTimer=null;
   function showRank(){
+    const me=ranked.find(p=>!p.ai)||ranked[0];
+    finaleReviewPlayer=me;
     rank.innerHTML=`<table><tr><th>順位</th><th>会社</th><th>社員</th><th>😊ハッピー<br>ポイント</th></tr>
       ${ranked.map((p,idx)=>`<tr class="${score(p)===top?'win':''}">
         <td>${idx+1}位</td>
         <td><span class="rkav">${meepleSVG(p.color)}</span>${p.name}${p.ai?'':'（あなた）'}</td>
         <td>${p.employees.length}人</td><td><b>${score(p)}</b></td></tr>`).join('')}
       </table>
-      <div style="text-align:center;margin-top:14px;"><button onclick="location.reload()">もう一度遊ぶ ▶</button></div>`;
+      <div class="reviewWrap">
+        <div class="reviewTitle"><span style="color:${me.color}">●</span> ${me.name} の会社のふりかえり</div>
+        <div class="reviewTabs">
+          <button class="rvTab on" id="rvTabW" onclick="showReview('welfare')">🏢 導入した福利厚生 (${me.welfare.length})</button>
+          <button class="rvTab" id="rvTabE" onclick="showReview('emp')">😊 採用した社員 (${me.employees.length})</button>
+        </div>
+        <div class="reviewHint">タップで「福利厚生 ⇄ 社員」を切り替え</div>
+        <div class="reviewBody" id="reviewBody"></div>
+      </div>
+      <div class="finaleLinks">
+        <a class="linkBtn bodo" href="${LINK_BODOTUNA}" target="_blank" rel="noopener">🎲 ボードゲームでツナグ手のWEBページへ</a>
+        <a class="linkBtn game" href="${LINK_GAMECREATION}" target="_blank" rel="noopener">🛠 ボードゲーム化事業を詳しく</a>
+        <button class="linkBtn replay" onclick="location.reload()">🔁 もう一度遊ぶ</button>
+      </div>`;
     rank.style.display='block';
+    showReview('welfare');
   }
   function step(){
     if(i>=steps.length)return;
@@ -1609,6 +1657,34 @@ function showFinale(ranked,winners,top){
   }
   bg.onclick=()=>{if(advTimer){clearTimeout(advTimer);advTimer=null;}step();};
   step();
+}
+/* 終了画面：自分の会社のふりかえり（福利厚生 ⇄ 社員 タップ切替） */
+let finaleReviewPlayer=null;
+function showReview(mode){
+  const p=finaleReviewPlayer; const body=document.getElementById('reviewBody');
+  if(!p||!body)return;
+  const tw=document.getElementById('rvTabW'),te=document.getElementById('rvTabE');
+  if(tw)tw.classList.toggle('on',mode==='welfare');
+  if(te)te.classList.toggle('on',mode==='emp');
+  playSE('click');
+  if(mode==='emp'){
+    body.innerHTML=p.employees.length
+      ? p.employees.map(e=>`<div class="rvCard emp">
+          <div class="rvImg">${e.img?`<img src="${e.img}" alt="">`:'🙋'}</div>
+          <div class="rvName">${e.ph}</div>
+          <div class="rvHp">😊 ${e.hp}</div>
+          <div class="rvChips">${wishChips(e.w)}</div></div>`).join('')
+      : '<div class="rvEmpty">採用した社員はいませんでした</div>';
+  }else{
+    body.innerHTML=p.welfare.length
+      ? p.welfare.map(w=>`<div class="rvCard ${w.social?'social':''}">
+          ${w.social?'<span class="rvSha">社</span>':''}
+          <span class="rvCost">${w.cost}</span>
+          <div class="rvImg">${WELFARE_IMAGES[w.n]?`<img src="${WELFARE_IMAGES[w.n]}" alt="">`:''}</div>
+          <div class="rvName">${w.n}</div>
+          <div class="rvChips">${welfareCoverChips(w)}</div></div>`).join('')
+      : '<div class="rvEmpty">導入した福利厚生はありません</div>';
+  }
 }
 
 /* =================================================================

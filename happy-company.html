@@ -231,7 +231,15 @@
   /* ふりかえり（福利厚生／社員） */
   .reviewWrap{margin-top:16px;border-top:2px dashed var(--line);padding-top:12px;}
   .reviewTitle{font-size:14px;font-weight:900;color:#2a3744;margin-bottom:8px;}
+  .reviewPlayers{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;}
+  .rpTab{display:flex;align-items:center;gap:5px;background:#eef2f7;color:#46586a;border:2px solid var(--line);border-radius:20px;padding:5px 13px 5px 6px;font-size:12.5px;font-weight:800;}
+  .rpTab.on{background:#26313d;color:#fff;border-color:#26313d;}
+  .rpMeeple{width:20px;height:20px;display:inline-flex;flex:none;}
+  .rpMeeple svg{width:100%;height:100%;}
   .reviewTabs{display:flex;gap:8px;}
+  .rvCard.click{cursor:pointer;transition:.12s;}
+  .rvCard.click:hover{transform:translateY(-2px);border-color:var(--accent2);box-shadow:0 4px 10px rgba(47,127,209,.2);}
+  .rvCard.click::after{content:'🔍';position:absolute;bottom:2px;right:3px;font-size:9px;opacity:.5;}
   .rvTab{flex:1;background:#eef2f7;color:#5b6b7b;border:2px solid var(--line);border-radius:10px;padding:8px 6px;font-size:12.5px;font-weight:800;}
   .rvTab.on{background:var(--accent2);color:#fff;border-color:var(--accent2);}
   .reviewHint{font-size:11px;color:#9aa7b5;text-align:center;margin:6px 0;}
@@ -297,7 +305,7 @@
     box-shadow:0 6px 22px rgba(255,138,61,.5);}
 
   /* ===== 福利厚生クローズアップ ===== */
-  .ccBg{position:fixed;inset:0;background:rgba(16,28,42,.62);display:none;align-items:center;justify-content:center;z-index:85;padding:16px;}
+  .ccBg{position:fixed;inset:0;background:rgba(16,28,42,.62);display:none;align-items:center;justify-content:center;z-index:100;padding:16px;}
   .ccInner{width:340px;max-width:94vw;max-height:90vh;overflow:auto;text-align:center;}
   .ccCard{background:#fff;border:3px solid var(--line);border-radius:18px;padding:16px 14px 14px;position:relative;
     box-shadow:0 18px 50px rgba(0,0,0,.4);transform:scale(.8);opacity:0;animation:fpop .35s cubic-bezier(.2,1.4,.4,1) forwards;}
@@ -1617,30 +1625,24 @@ function showFinale(ranked,winners,top){
   ];
   let i=0,advTimer=null;
   function showRank(){
-    const me=ranked.find(p=>!p.ai)||ranked[0];
-    finaleReviewPlayer=me;
+    // 人間プレイヤーのみ会社を見られる（複数いれば切替）
+    finaleReviewList=ranked.filter(p=>!p.ai);
+    if(!finaleReviewList.length)finaleReviewList=[ranked[0]];
+    finaleReviewPlayer=finaleReviewList[0];
     rank.innerHTML=`<table><tr><th>順位</th><th>会社</th><th>社員</th><th>😊ハッピー<br>ポイント</th></tr>
       ${ranked.map((p,idx)=>`<tr class="${score(p)===top?'win':''}">
         <td>${idx+1}位</td>
         <td><span class="rkav">${meepleSVG(p.color)}</span>${p.name}${p.ai?'':'（あなた）'}</td>
         <td>${p.employees.length}人</td><td><b>${score(p)}</b></td></tr>`).join('')}
       </table>
-      <div class="reviewWrap">
-        <div class="reviewTitle"><span style="color:${me.color}">●</span> ${me.name} の会社のふりかえり</div>
-        <div class="reviewTabs">
-          <button class="rvTab on" id="rvTabW" onclick="showReview('welfare')">🏢 導入した福利厚生 (${me.welfare.length})</button>
-          <button class="rvTab" id="rvTabE" onclick="showReview('emp')">😊 採用した社員 (${me.employees.length})</button>
-        </div>
-        <div class="reviewHint">タップで「福利厚生 ⇄ 社員」を切り替え</div>
-        <div class="reviewBody" id="reviewBody"></div>
-      </div>
+      <div class="reviewWrap" id="reviewWrap"></div>
       <div class="finaleLinks">
         <a class="linkBtn bodo" href="${LINK_BODOTUNA}" target="_blank" rel="noopener">🎲 ボードゲームでツナグ手のWEBページへ</a>
         <a class="linkBtn game" href="${LINK_GAMECREATION}" target="_blank" rel="noopener">🛠 ボードゲーム化事業を詳しく</a>
         <button class="linkBtn replay" onclick="location.reload()">🔁 もう一度遊ぶ</button>
       </div>`;
     rank.style.display='block';
-    showReview('welfare');
+    renderReviewSection();
   }
   function step(){
     if(i>=steps.length)return;
@@ -1660,13 +1662,36 @@ function showFinale(ranked,winners,top){
 }
 /* 終了画面：自分の会社のふりかえり（福利厚生 ⇄ 社員 タップ切替） */
 let finaleReviewPlayer=null;
+let finaleReviewList=[];
+/* ふりかえりセクション（会社切替タブ＋福利厚生/社員タブ）を描画 */
+function renderReviewSection(){
+  const wrap=document.getElementById('reviewWrap');if(!wrap)return;
+  const me=finaleReviewPlayer;const multi=finaleReviewList.length>=2;
+  wrap.innerHTML=`
+    ${multi?`<div class="reviewPlayers">${finaleReviewList.map((p,idx)=>
+      `<button class="rpTab${p===me?' on':''}" onclick="selectReviewPlayer(${idx})"><span class="rpMeeple">${meepleSVG(p.color)}</span>${p.name}</button>`).join('')}</div>`:''}
+    <div class="reviewTitle"><span style="color:${me.color}">●</span> ${me.name} の会社のふりかえり</div>
+    <div class="reviewTabs">
+      <button class="rvTab on" id="rvTabW" onclick="showReview('welfare')">🏢 導入した福利厚生 (${me.welfare.length})</button>
+      <button class="rvTab" id="rvTabE" onclick="showReview('emp')">😊 採用した社員 (${me.employees.length})</button>
+    </div>
+    <div class="reviewHint">💡 福利厚生カードをタップすると説明が見られます</div>
+    <div class="reviewBody" id="reviewBody"></div>`;
+  showReview('welfare');
+}
+function selectReviewPlayer(idx){
+  finaleReviewPlayer=finaleReviewList[idx];playSE('click');renderReviewSection();
+}
+function reviewWelfareClick(i){
+  const w=finaleReviewPlayer && finaleReviewPlayer.welfare[i];
+  if(w)showWelfareInfo(w);
+}
 function showReview(mode){
   const p=finaleReviewPlayer; const body=document.getElementById('reviewBody');
   if(!p||!body)return;
   const tw=document.getElementById('rvTabW'),te=document.getElementById('rvTabE');
   if(tw)tw.classList.toggle('on',mode==='welfare');
   if(te)te.classList.toggle('on',mode==='emp');
-  playSE('click');
   if(mode==='emp'){
     body.innerHTML=p.employees.length
       ? p.employees.map(e=>`<div class="rvCard emp">
@@ -1677,7 +1702,7 @@ function showReview(mode){
       : '<div class="rvEmpty">採用した社員はいませんでした</div>';
   }else{
     body.innerHTML=p.welfare.length
-      ? p.welfare.map(w=>`<div class="rvCard ${w.social?'social':''}">
+      ? p.welfare.map((w,i)=>`<div class="rvCard click ${w.social?'social':''}" onclick="reviewWelfareClick(${i})">
           ${w.social?'<span class="rvSha">社</span>':''}
           <span class="rvCost">${w.cost}</span>
           <div class="rvImg">${WELFARE_IMAGES[w.n]?`<img src="${WELFARE_IMAGES[w.n]}" alt="">`:''}</div>
@@ -1685,6 +1710,24 @@ function showReview(mode){
           <div class="rvChips">${welfareCoverChips(w)}</div></div>`).join('')
       : '<div class="rvEmpty">導入した福利厚生はありません</div>';
   }
+}
+/* 福利厚生カードの説明クローズアップ（読み取り専用・導入時と同じ見た目） */
+function showWelfareInfo(card){
+  const inner=document.getElementById('ccInner');
+  inner.innerHTML=`
+    <div class="ccCard ${card.social?'social':''}">
+      ${card.social?'<div class="shabadge">社</div>':''}
+      <div class="ccCost">コスト ${card.cost}</div>
+      ${WELFARE_IMAGES[card.n]?`<div class="ccImg"><img src="${WELFARE_IMAGES[card.n]}" alt=""></div>`:''}
+      <div class="ccName">${card.n}</div>
+      <div class="ccWish">${welfareCoverChips(card)}<span class="ccWishLbl">${card.c.map(k=>WISH[k].label).join('・')}の願いに対応</span></div>
+    </div>
+    <div class="ccDesc"><span class="ccDescLbl">💡 どんな制度？</span><div class="ccDescTxt">${WELFARE_DESC[card.n]||''}</div></div>
+    <div class="ccBtns"><button class="ghost" id="ccClose">とじる</button></div>`;
+  const bg=document.getElementById('ccBg');bg.style.display='flex';
+  playSE('click');
+  bg.onclick=(e)=>{if(e.target.id==='ccBg')closeCC();};
+  inner.querySelector('#ccClose').onclick=closeCC;
 }
 
 /* =================================================================

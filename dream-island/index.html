@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ドリームアイランド｜理想のテーマパークを作ろう</title>
+<style>
+  :root{
+    --gold:#f4c145; --panel:#fffdf5; --ink:#2b2417; --line:#caa75a;
+    --c-red:#d6362f; --c-blue:#2a7fd0; --c-green:#4a9e3f; --c-purple:#8a4fc0; --c-gold:#e0a82e; --c-gray:#8a8175;
+    --shadow:0 4px 14px rgba(0,0,0,.18);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;color:var(--ink);
+    background:linear-gradient(160deg,#0e4f7a,#1b6ea3 55%,#2a86c0);min-height:100vh}
+  h1,h2,h3{margin:0}
+  button{font-family:inherit;cursor:pointer}
+  .wrap{max-width:1240px;margin:0 auto;padding:18px}
+  .btn{background:var(--gold);color:#3a2c05;border:none;border-radius:10px;padding:13px 26px;font-size:17px;font-weight:bold;box-shadow:var(--shadow)}
+  .btn:hover{filter:brightness(1.05)} .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn.sub{background:#13314d;color:#fff}
+  .center{text-align:center;margin-top:18px}
+  .screen{display:none} .screen.on{display:block}
+
+  /* ---------- intro ---------- */
+  .hero{background:linear-gradient(135deg,#13314d,#1f5d86);border:3px solid var(--gold);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);color:#fff}
+  .hero img{width:100%;display:block;max-height:300px;object-fit:cover;object-position:center 32%}
+  .hero .t{padding:16px 22px}
+  .hero h1{font-size:32px;text-shadow:0 2px 6px rgba(0,0,0,.4)}
+  .hero p{margin:6px 0 0;opacity:.9}
+  .card{background:var(--panel);border-radius:14px;padding:18px 20px;margin-top:16px;box-shadow:var(--shadow)}
+  .card h2{font-size:20px;color:#13314d;border-left:6px solid var(--gold);padding-left:10px;margin-bottom:10px}
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:7px}
+  .rule{background:#fbf4e0;border:1px solid #ecd9a3;border-radius:9px;padding:7px 10px;font-size:13px;line-height:1.5}
+  .rule b{color:#9a6b16}
+  .terr-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+  .terr-chip{display:flex;align-items:center;gap:6px;background:#fbf4e0;border:1px solid #ecd9a3;border-radius:18px;padding:4px 10px;font-size:12px}
+  /* compact intro (no hero image, fits one screen) */
+  .intro-wrap{max-width:1000px;padding:14px 18px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .intro-head{text-align:center;color:#fff;margin-bottom:6px}
+  .intro-head h1{font-size:clamp(24px,3.6vw,38px);color:var(--gold);text-shadow:0 2px 8px rgba(0,0,0,.45)}
+  .intro-head p{opacity:.92;margin-top:2px}
+  .intro-lead{color:#eaf3fb;text-align:center;font-size:13.5px;line-height:1.6;margin:0 auto 8px;max-width:780px}
+  .intro-card{padding:12px 16px;margin-top:8px}
+  .intro-card h2{font-size:18px;margin-bottom:8px}
+  .sw{width:16px;height:16px;border-radius:4px;border:1px solid rgba(0,0,0,.25)}
+
+  /* ---------- opening (cinematic) ---------- */
+  #opening.screen.on{display:block}
+  .op-stage{position:fixed;inset:0;overflow:hidden;background:#06243b;z-index:200}
+  .op-scene{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0}
+  .op-s1{animation:opS1 8s ease forwards}
+  .op-s2{animation:opS2 2.2s ease 6.4s forwards}
+  @keyframes opS1{0%{opacity:0;transform:scale(1.14)}18%{opacity:1}100%{opacity:1;transform:scale(1.02)}}
+  @keyframes opS2{0%{opacity:0;transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+  .op-veil{position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(4,20,35,.62),rgba(4,20,35,.08) 42%,rgba(4,20,35,.82))}
+  .op-logo{position:absolute;top:5%;left:0;right:0;text-align:center;color:#fff;opacity:0;animation:opLine 1.2s ease .3s forwards;pointer-events:none}
+  .op-logo h1{font-size:clamp(32px,6vw,70px);color:var(--gold);letter-spacing:1px;text-shadow:0 4px 18px rgba(0,0,0,.85),0 0 6px #000}
+  .op-logo p{font-size:clamp(14px,2.2vw,24px);margin-top:4px;text-shadow:0 2px 12px rgba(0,0,0,.9)}
+  .op-text{position:absolute;left:0;right:0;bottom:17%;text-align:center;color:#fff;padding:0 20px;
+    text-shadow:0 2px 12px rgba(0,0,0,.85);animation:opTextOut 1s ease 6.5s forwards}
+  .op-line{font-size:clamp(17px,2.5vw,30px);font-weight:bold;margin:9px 0;opacity:0;transform:translateY(16px)}
+  .op-line b{color:var(--gold)}
+  .l1{animation:opLine .9s ease .6s forwards}
+  .l2{animation:opLine .9s ease 2.1s forwards}
+  .l3{animation:opLine .9s ease 3.7s forwards}
+  .l4{animation:opLine .9s ease 5.3s forwards}
+  @keyframes opLine{to{opacity:1;transform:translateY(0)}}
+  @keyframes opTextOut{to{opacity:0}}
+  .op-cta{position:absolute;left:0;right:0;bottom:8%;text-align:center;visibility:hidden;opacity:0;
+    animation:opCta 1.2s ease 7s forwards}
+  @keyframes opCta{from{visibility:visible;opacity:0;transform:translateY(14px)}to{visibility:visible;opacity:1;transform:translateY(0)}}
+  .op-cta .btn{font-size:20px;padding:15px 36px;box-shadow:0 6px 20px rgba(0,0,0,.5);animation:opPulse 1.9s ease-in-out 8.4s infinite}
+  @keyframes opPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+  .op-skip{position:absolute;top:14px;right:16px;background:rgba(0,0,0,.42);color:#fff;border:1px solid rgba(255,255,255,.5);
+    border-radius:20px;padding:7px 16px;font-size:14px;z-index:5}
+  .op-skip:hover{background:rgba(0,0,0,.7)}
+
+  /* ---------- island select ---------- */
+  .scr-title{color:#fff;text-align:center;margin-bottom:14px;text-shadow:0 2px 6px rgba(0,0,0,.4)}
+  .scr-title h1{font-size:26px} .scr-title p{opacity:.9;margin:6px 0 0}
+  .islands{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .island-card{background:var(--panel);border:3px solid transparent;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .12s,border-color .12s}
+  .island-card:hover{transform:translateY(-5px);border-color:var(--gold)}
+  .island-card img{width:100%;display:block;aspect-ratio:2150/1521;object-fit:cover}
+  .island-card .nm{padding:10px;text-align:center;font-weight:bold;color:#13314d;font-size:16px}
+
+  /* ---------- sponsor select ---------- */
+  .sponsor-pick{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+  .spback{width:150px;height:210px;border-radius:14px;border:3px solid #b98a2e;
+    background:repeating-linear-gradient(45deg,#c0392b,#c0392b 12px,#a83227 12px,#a83227 24px);
+    display:flex;align-items:center;justify-content:center;color:#ffe;box-shadow:var(--shadow);
+    transition:transform .15s;font-weight:bold;text-align:center;line-height:1.6;font-size:15px}
+  .spback:hover{transform:translateY(-8px) scale(1.03)}
+  .spcard-big{width:230px;background:var(--panel);border:3px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .spcard-big img{width:100%;display:block;background:#eee}
+
+  /* ---------- game ---------- */
+  .topbar{display:flex;align-items:center;gap:8px;color:#fff;flex-wrap:wrap;margin-bottom:6px}
+  .topbar h1{font-size:18px;text-shadow:0 2px 5px rgba(0,0,0,.4)}
+  .stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:9px;padding:4px 10px;color:#fff;font-size:12px}
+  .stat b{font-size:16px}
+  #game .wrap{max-width:none;padding:6px 8px}
+  .topbar{margin-bottom:6px}
+  .layout{display:flex;gap:8px;align-items:stretch}
+  @media(max-width:980px){.layout{flex-direction:column}}
+
+  .boardwrap{background:linear-gradient(160deg,#2a86c0,#0e4f7a);border:3px solid var(--gold);border-radius:14px;padding:5px;box-shadow:var(--shadow);flex:0 0 auto}
+  .board{position:relative;height:calc(100vh - 86px);width:auto;max-width:100%;border-radius:9px;overflow:hidden;background:#1b6ea3}
+  .side{flex:1 1 auto;min-width:230px}
+  /* placement mini-show in the empty space */
+  .buildstage{flex:1 1 auto;min-height:150px;display:flex;align-items:stretch;justify-content:center;
+    position:relative;overflow:hidden;padding:0}
+  .buildstage .bs-idle{margin:auto;color:#7a8aa0;font-size:13px;text-align:center;line-height:1.7}
+  /* 更地 → 工事中 → 完成 のアニメーション（枠いっぱい） */
+  .bs-scene{position:relative;width:100%;height:100%;overflow:hidden;
+    background:linear-gradient(180deg,#bfe3ff 0%,#dff1ff 55%,#cde770 55%,#a9d24f 100%)}
+  .bs-ground{position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(180deg,#9ccb4a,#7fb23a)}
+  .bs-plot{position:absolute;bottom:11%;left:50%;width:38%;max-width:150px;height:20%;margin-left:-19%;transform:translateX(0);
+    border-radius:10px;background:repeating-linear-gradient(45deg,#c39555,#c39555 9px,#b0813f 9px,#b0813f 18px);
+    box-shadow:0 4px 8px rgba(0,0,0,.3);outline:3px dashed rgba(255,255,255,.5);outline-offset:-6px}
+  .bs-plot{margin-left:-75px}
+  .bs-build{position:absolute;inset:0;z-index:2;animation:bsBuildFade .4s ease 2.05s forwards}
+  @keyframes bsBuildFade{to{opacity:0}}
+  .bs-scaff{position:absolute;bottom:30%;left:50%;margin-left:-26px;font-size:52px;opacity:0;animation:bsPop .5s ease .8s forwards}
+  .bs-cone{position:absolute;bottom:14%;left:50%;margin-left:34px;font-size:30px;opacity:0;animation:bsPop .5s ease 1.05s forwards}
+  .bs-cone2{position:absolute;bottom:14%;left:50%;margin-left:-64px;font-size:30px;opacity:0;animation:bsPop .5s ease 1.2s forwards}
+  @keyframes bsPop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .bs-dust{position:absolute;bottom:26%;left:50%;margin-left:-12px;font-size:26px;opacity:0;animation:bsDust .85s ease 1.0s infinite}
+  @keyframes bsDust{0%{opacity:0;transform:translateY(0) scale(.5)}45%{opacity:.9}100%{opacity:0;transform:translateY(-16px) scale(1.5)}}
+  .bs-card{position:absolute;bottom:12%;left:50%;width:34%;max-width:128px;aspect-ratio:1/1;margin-left:-17%;transform-origin:bottom center;opacity:0;z-index:3;
+    animation:bsCardBuild .9s cubic-bezier(.2,1.5,.4,1) 2.05s forwards}
+  .bs-card{margin-left:-64px}
+  .bs-card img{width:100%;height:100%;object-fit:contain;border-radius:9px;filter:drop-shadow(0 6px 11px rgba(0,0,0,.5))}
+  @keyframes bsCardBuild{0%{opacity:0;transform:translateY(60px) scale(.15)}60%{opacity:1}100%{opacity:1;transform:translateY(0) scale(1)}}
+  .bs-spark{position:absolute;top:22%;left:0;right:0;text-align:center;font-size:34px;opacity:0;z-index:4;animation:bsSpark 1.1s ease 2.25s forwards}
+  @keyframes bsSpark{0%{opacity:0;transform:scale(.3)}40%{opacity:1;transform:scale(1.3)}100%{opacity:0;transform:scale(1)}}
+  .bs-cap{position:absolute;top:8px;left:0;right:0;text-align:center;font-weight:bold;font-size:14px;color:#13314d;z-index:5;
+    opacity:0;background:rgba(255,255,255,.86);padding:4px 6px}
+  .bs-cap.c1{animation:bsCapPhase .8s ease forwards}
+  .bs-cap.c2{animation:bsCapPhase 1.25s ease .8s forwards}
+  .bs-cap.c3{animation:bsCapStay .5s ease 2.05s forwards}
+  @keyframes bsCapPhase{0%{opacity:0}18%{opacity:1}82%{opacity:1}100%{opacity:0}}
+  @keyframes bsCapStay{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+  .boardimg{position:absolute;display:block;max-width:none}
+  .grid-overlay{position:absolute;inset:0;z-index:2}
+  .chips-layer{position:absolute;inset:0;z-index:3;pointer-events:none}
+  .cell{position:absolute;border:1px solid rgba(255,255,255,.5);transition:box-shadow .1s}
+  .cell.placeable{cursor:pointer;box-shadow:0 0 0 2px #ffe27a inset}
+  .cell.placeable:hover{box-shadow:0 0 0 3px #fff inset}
+  .cell.start{box-shadow:0 0 0 2px rgba(255,70,70,.85) inset}
+  .cell.preview{background:rgba(255,226,122,.45);box-shadow:0 0 0 2px #ffe27a inset;z-index:4}
+  .cell.preview.bad{background:rgba(255,80,80,.4);box-shadow:0 0 0 2px #ff5b5b inset}
+  .pchip{position:absolute;display:flex;align-items:center;justify-content:center;padding:1px;pointer-events:auto}
+  .pchip img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;border-radius:5px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.55))}
+  .pchip .ef{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:150%;background:rgba(255,255,255,.9);border-radius:5px}
+  .pchip .extras{position:absolute;bottom:2px;right:2px;display:flex;gap:2px}
+  .pchip .extras span{background:#fff;border-radius:5px;font-size:16px;line-height:1;padding:1px 3px;box-shadow:0 1px 2px rgba(0,0,0,.45)}
+  .pchip .del{position:absolute;top:1px;left:1px;width:20px;height:20px;border:2px solid #fff;border-radius:50%;
+    background:#e23b3b;color:#fff;font-size:14px;font-weight:bold;line-height:16px;text-align:center;padding:0;
+    cursor:pointer;pointer-events:auto;box-shadow:0 1px 3px rgba(0,0,0,.55);z-index:5;display:none}
+  .pchip:hover .del{display:block}
+  .pchip .del:hover{background:#ff5b5b;transform:scale(1.12)}
+  .sptopimg{height:24px;border-radius:5px;vertical-align:middle;border:1px solid rgba(255,255,255,.45);margin:0 3px}
+  /* terrain info popup */
+  .terrpop{position:absolute;z-index:9;transform:translate(-50%,-115%);background:#13314d;color:#fff;
+    border:2px solid var(--gold);border-radius:10px;padding:6px 10px;font-size:12px;max-width:180px;
+    box-shadow:var(--shadow);pointer-events:none;display:none;text-align:center}
+  .terrpop b{display:block;font-size:13px;color:var(--gold);margin-bottom:2px}
+  .terrpop:after{content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);
+    border:7px solid transparent;border-top-color:var(--gold)}
+
+  .side{display:flex;flex-direction:column;gap:7px}
+  .panel{background:var(--panel);border-radius:12px;padding:8px 9px;box-shadow:var(--shadow)}
+  .panel h3{font-size:14px;color:#13314d;margin-bottom:6px;border-left:5px solid var(--gold);padding-left:7px}
+  .gauge{margin:7px 0}
+  .gauge .gl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px}
+  .bar{height:14px;background:#e6e1d0;border-radius:8px;overflow:hidden}
+  .bar>i{display:block;height:100%;border-radius:8px;transition:width .3s}
+  .bar.e>i{background:linear-gradient(90deg,#c050b0,#8a4fc0)}
+  .bar.n>i{background:linear-gradient(90deg,#7ed957,#2f9e44)}
+  .eval-now{font-size:17px;font-weight:bold;color:#b8480c;text-align:center;margin-top:4px}
+
+  .spmini{display:flex;gap:10px;align-items:center}
+  .spmini img{width:62px;border-radius:8px;border:1px solid var(--line)}
+  .spmini .e{font-size:12px} .spmini .e b{display:block;color:#13314d;font-size:13px}
+
+  .tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+  .tab{font-size:12px;padding:4px 9px;border:1px solid var(--line);background:#fff;border-radius:14px;color:#5a4a1f}
+  .tab.active{background:var(--gold);color:#3a2c05;font-weight:bold}
+  .palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:5px;padding-right:2px;max-height:calc(100vh - 250px);overflow-y:auto}
+  .pcard{border:2px solid transparent;background:#fff;border-radius:8px;padding:2px;position:relative;cursor:pointer}
+  .pcard:hover{border-color:var(--gold)}
+  .pcard.sel{border-color:#ff5b5b;box-shadow:0 0 0 2px #ffd0d0}
+  .pcard .pic{width:100%;aspect-ratio:1/1;object-fit:contain;display:block;background:#f3eede;border-radius:5px}
+  .pcard .picfb{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-size:30px;background:#eee;border-radius:5px}
+  .pcard .szbadge{position:absolute;top:2px;left:2px;background:#13314d;color:#fff;font-size:9px;font-weight:bold;border-radius:5px;padding:1px 4px;z-index:2}
+  .hint{font-size:12px;color:#7a6a3f;margin-top:6px;min-height:16px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap}
+  .actions .btn{padding:9px 14px;font-size:14px}
+
+  /* result modal */
+  .modal{position:fixed;inset:0;background:rgba(8,20,33,.8);display:none;align-items:center;justify-content:center;z-index:100;padding:16px;overflow:auto}
+  .modal.show{display:flex}
+  .result{background:var(--panel);max-width:680px;width:100%;border-radius:18px;border:3px solid var(--gold);box-shadow:var(--shadow);overflow:hidden}
+  .result .rh{background:linear-gradient(135deg,#13314d,#1f5d86);color:#fff;padding:20px;text-align:center}
+  .result .rh .ptype{font-size:30px;font-weight:bold;margin:6px 0;color:var(--gold);text-shadow:0 2px 6px rgba(0,0,0,.4)}
+  .result .rb{padding:18px 22px}
+  .result .desc{font-size:15px;background:#fbf4e0;border-radius:10px;padding:12px;border:1px solid #ecd9a3}
+  /* ---- ending scene (full screen, varies by rating) ---- */
+  .result-full{position:fixed;inset:0;overflow:hidden;color:#fff;text-align:center;background:#0c2a44}
+  .end-bg{position:absolute;inset:0;background:url('assets/kv/kv_title.png') center/cover;transition:filter .6s}
+  .end-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,24,40,.7),rgba(6,24,40,.12) 45%,rgba(6,24,40,.85))}
+  .result-full.t0 .end-bg{filter:grayscale(.65) brightness(.55)}
+  .result-full.t1 .end-bg{filter:grayscale(.2) brightness(.8)}
+  .result-full.t2 .end-bg{filter:brightness(.98)}
+  .result-full.t3 .end-bg{filter:brightness(1.08) saturate(1.15)}
+  .result-full.t4 .end-bg{filter:brightness(1.2) saturate(1.3)}
+  .result-full.t4 .end-veil{background:linear-gradient(180deg,rgba(60,40,5,.5),rgba(255,210,80,.06) 45%,rgba(6,24,40,.85))}
+  .end-content{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:8px}
+  .end-sub{font-size:clamp(14px,2vw,18px);opacity:.95;text-shadow:0 2px 8px rgba(0,0,0,.85)}
+  .end-type{font-size:clamp(38px,7vw,76px);font-weight:bold;color:var(--gold);margin:2px 0;text-shadow:0 3px 18px rgba(0,0,0,.85),0 0 6px #000}
+  .end-bustle{font-size:clamp(18px,3vw,30px);font-weight:bold;text-shadow:0 2px 10px #000}
+  #rscore{font-size:clamp(14px,1.8vw,18px);opacity:.95;text-shadow:0 2px 8px #000}
+  .end-desc{font-size:clamp(15px,2vw,20px);max-width:720px;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 20px;margin:10px 0;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+  .end-again{font-size:20px;padding:15px 38px;margin-top:6px;animation:opPulse 1.9s ease-in-out 1s infinite}
+  .end-crowd{position:absolute;left:0;right:0;bottom:10px;z-index:3;font-size:clamp(32px,4.5vw,52px);line-height:1;
+    display:flex;justify-content:center;flex-wrap:wrap;gap:2px;padding:0 10px}
+  .end-crowd span{display:inline-block;animation:bob 1s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .end-fx{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+  .fw{position:absolute;font-size:clamp(42px,6vw,72px);opacity:0;transform:scale(.2);animation:fwpop 1.6s ease-out infinite}
+  @keyframes fwpop{0%{opacity:0;transform:scale(.2)}25%{opacity:1;transform:scale(1.25)}55%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
+  .cf{position:absolute;top:-30px;font-size:clamp(18px,2.4vw,28px);animation:cffall linear infinite}
+  @keyframes cffall{0%{transform:translateY(-30px) rotate(0)}100%{transform:translateY(100vh) rotate(360deg);opacity:.3}}
+  .end-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  .end-stroll{font-size:20px;padding:15px 34px;animation:opPulse 1.9s ease-in-out 1s infinite}
+  .end-again{font-size:16px}
+  a.btn{display:inline-block;text-decoration:none;text-align:center}
+  .end-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+  .btn.link{background:#1f7a8c;color:#fff;font-size:15px;padding:12px 22px}
+  .btn.link:hover{filter:brightness(1.12)}
+  .sndbtn{cursor:pointer;font-size:15px;line-height:1}
+  /* ---- 2D stroll mode ---- */
+  #stroll.screen.on{display:block}
+  .stroll-wrap{position:fixed;inset:0;background:#0c2a44;display:flex;align-items:center;justify-content:center}
+  .stroll-board{position:relative;height:100vh;width:auto;max-width:100vw;aspect-ratio:2150/1521;overflow:hidden}
+  .stroll-board .boardimg{position:absolute;display:block;max-width:none}
+  .stroll-actors{position:absolute;inset:0;z-index:6;pointer-events:none}
+  .actor{position:absolute;transform:translate(-50%,-90%);font-size:26px;line-height:1;filter:drop-shadow(0 3px 3px rgba(0,0,0,.5));transition:none}
+  .actor.player{font-size:40px;z-index:9;animation:walkbob .45s ease-in-out infinite;
+    filter:drop-shadow(0 0 7px #ffd34d) drop-shadow(0 0 3px #ff9d00) drop-shadow(0 3px 3px rgba(0,0,0,.5))}
+  .actor.player::after{content:"▼ あなた";position:absolute;left:50%;top:-24px;transform:translateX(-50%);
+    background:var(--gold);color:#13314d;font-size:12px;font-weight:bold;padding:2px 8px;border-radius:9px;white-space:nowrap;box-shadow:0 2px 5px rgba(0,0,0,.45)}
+  .actor.player::before{content:"";position:absolute;left:50%;bottom:-3px;transform:translateX(-50%);
+    width:30px;height:11px;border-radius:50%;background:radial-gradient(rgba(255,211,77,.85),rgba(255,211,77,0) 70%)}
+  .actor.visitor{font-size:22px;opacity:.92;animation:walkbob .6s ease-in-out infinite}
+  @keyframes walkbob{0%,100%{transform:translate(-50%,-90%)}50%{transform:translate(-50%,-104%)}}
+  .stroll-hud{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:10;
+    background:rgba(10,28,46,.82);color:#fff;border:2px solid var(--gold);border-radius:14px;
+    padding:9px 18px;font-size:15px;max-width:90vw;text-align:center;box-shadow:var(--shadow)}
+  .stroll-hud b{color:var(--gold)}
+  .stroll-back{position:fixed;top:14px;left:14px;z-index:10;font-size:15px;padding:10px 18px}
+  .stroll-dpad{position:fixed;right:18px;bottom:18px;z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.92}
+  .stroll-dpad .row{display:flex;gap:6px}
+  .stroll-dpad button{width:54px;height:54px;border-radius:12px;border:2px solid var(--gold);background:rgba(10,28,46,.7);
+    color:#fff;font-size:22px;touch-action:none}
+  .stroll-dpad button:active{background:var(--gold);color:#13314d}
+  .mxtable{border-collapse:collapse;margin:14px auto 4px;font-size:11px}
+  .mxtable td,.mxtable th{border:1px solid #d9c690;padding:4px 6px;text-align:center;color:#4a3d1a}
+  .mxtable th{background:#f0e3bd}
+  .mxtable td.hit{background:var(--gold);font-weight:bold;color:#3a2c05;box-shadow:0 0 0 2px #b8480c inset}
+  .talk{font-size:13px;color:#5a4a1f;margin-top:12px;background:#eef6ff;border:1px solid #c9e0f5;border-radius:10px;padding:10px}
+  #seltag{position:fixed;pointer-events:none;display:none;z-index:50;background:#13314d;color:#fff;border-radius:8px;padding:4px 8px;font-size:12px;box-shadow:var(--shadow)}
+</style>
+</head>
+<body>
+
+<!-- ===== OPENING (cinematic) ===== -->
+<section id="opening" class="screen on">
+  <div class="op-stage">
+    <div class="op-scene op-s1" style="background-image:url('assets/kv/kv_build.png')"></div>
+    <div class="op-scene op-s2" style="background-image:url('assets/kv/kv_title.png')"></div>
+    <div class="op-veil"></div>
+    <div class="op-logo"><h1>ドリームアイランド</h1><p>～理想のテーマパークを作ろう～</p></div>
+    <div class="op-text">
+      <p class="op-line l1">瀬戸内海に浮かぶ、ひとつの無人島。</p>
+      <p class="op-line l2">「ドリームアイランド」開発プロジェクト、始動。</p>
+      <p class="op-line l3">あなたは今日、この島の<b>開発リーダー</b>に任命されました。</p>
+      <p class="op-line l4">目指すは——みんなが笑顔になる、夢のテーマパーク。</p>
+    </div>
+    <div class="op-cta"><button class="btn" onclick="go('intro')">▶ 開発をはじめる</button></div>
+    <button class="op-skip" onclick="go('intro')">スキップ ▷</button>
+  </div>
+</section>
+
+<!-- ===== INTRO ===== -->
+<section id="intro" class="screen"><div class="wrap intro-wrap">
+  <div class="intro-head">
+    <h1>🏝️ ドリームアイランド</h1>
+    <p>～理想のテーマパークを作ろう～</p>
+  </div>
+  <p class="intro-lead">瀬戸内海に浮かぶ無人島。コスト<b>50</b>の中でアトラクションを配置し、<b>エンタメ値</b>と<b>ネイチャー値</b>を高めて、魅力的なパークを完成させよう！</p>
+  <div class="card intro-card">
+    <h2>遊び方</h2>
+    <div class="rules">
+      <div class="rule"><b>①コスト</b>　開発に使えるコストは<b>50</b>。アトラクションのコストを払って設置。</div>
+      <div class="rule"><b>②最初の設置</b>　最初は港に隣接した<b>赤枠の3マス</b>だけ。</div>
+      <div class="rule"><b>③拡張</b>　以降は設置済みアトラクションに<b>隣接したマス</b>へ。</div>
+      <div class="rule"><b>④大きさ</b>　複数マス（縦2・横2・2×2）を使うものもあります。</div>
+      <div class="rule"><b>⑤地形</b>　マスに<b>カーソルを合わせる</b>と地形効果を表示。合う種類は<b>−1</b>。</div>
+      <div class="rule"><b>⑥スポンサー</b>　効果でも<b>−1</b>。地形と合わせて最大<b>−2</b>。</div>
+    </div>
+    <h3 style="margin-top:8px;color:#13314d;font-size:14px">地形の効果（建設コスト −1）</h3>
+    <div class="terr-legend" id="terrLegend"></div>
+  </div>
+  <div class="center" style="margin-top:10px"><button class="btn" onclick="go('islandSel')">▶ 島を選ぶ</button></div>
+</div></section>
+
+<!-- ===== ISLAND SELECT ===== -->
+<section id="islandSel" class="screen"><div class="wrap">
+  <div class="scr-title"><h1>① 島を選ぶ</h1><p>開発する島を1つ選んでください</p></div>
+  <div class="islands" id="islandList"></div>
+</div></section>
+
+<!-- ===== SPONSOR SELECT ===== -->
+<section id="sponsorSel" class="screen"><div class="wrap">
+  <div class="scr-title"><h1>② スポンサーカードを引く</h1><p>裏向きのカードを1枚めくってください</p></div>
+  <div class="sponsor-pick" id="sponsorPick"></div>
+  <div class="center"><button class="btn" id="startBtn" disabled onclick="startGame()">開発をはじめる ▶</button></div>
+</div></section>
+
+<!-- ===== GAME ===== -->
+<section id="game" class="screen"><div class="wrap">
+  <div class="topbar">
+    <h1>🏝️ 開発中</h1>
+    <span class="stat">残りコスト <b id="stCost">50</b></span>
+    <span class="stat">設置数 <b id="stCount">0</b></span>
+    <span class="stat">エンタメ <b id="stE">0</b></span>
+    <span class="stat">ネイチャー <b id="stN">0</b></span>
+    <span class="stat" id="spTop" title=""></span>
+    <button class="stat sndbtn" id="muteBtn" title="音のオン/オフ" onclick="toggleMute()">🔊</button>
+  </div>
+  <div class="layout">
+    <div class="boardwrap">
+      <div class="board" id="board">
+        <img class="boardimg" id="boardimg" alt="">
+        <div class="grid-overlay" id="gridOverlay"></div>
+        <div class="chips-layer" id="chipsLayer"></div>
+        <div class="terrpop" id="terrpop"></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="panel">
+        <h3>アトラクションを選ぶ</h3>
+        <div class="tabs" id="tabs"></div>
+        <div class="palette" id="palette"></div>
+        <div class="hint" id="hint">アトラクションを選んで、光ったマスをクリック！　マスをクリックすると地形効果も見られます。</div>
+      </div>
+      <div class="panel"><div class="actions">
+        <button class="btn sub" id="undoBtn">↶ 1つ戻す</button>
+        <button class="btn" id="finishBtn">開発完了・評価する 🏆</button>
+      </div></div>
+      <div class="panel buildstage" id="buildStage"></div>
+    </div>
+  </div>
+</div></section>
+
+<div id="seltag"></div>
+
+<!-- ===== RESULT ===== -->
+<div class="modal" id="modal">
+  <div class="result-full" id="ending">
+    <div class="end-bg"></div>
+    <div class="end-veil"></div>
+    <div class="end-fx" id="endFx"></div>
+    <div class="end-crowd" id="endCrowd"></div>
+    <div class="end-content">
+      <div class="end-sub">完成したドリームアイランドは…</div>
+      <div class="end-type" id="rtype">―</div>
+      <div class="end-bustle" id="endBustle"></div>
+      <div id="rscore"></div>
+      <div class="end-desc" id="rdesc"></div>
+      <div class="end-btns">
+        <button class="btn end-stroll" onclick="enterStroll()">🚶 作ったパークを歩いてみる</button>
+        <button class="btn sub end-again" onclick="restart()">🔄 もう一度あそぶ（最初から）</button>
+      </div>
+      <div class="end-links">
+        <a class="btn link" href="https://bodotuna.com/" target="_blank" rel="noopener">🌐 ボードゲームでツナグ手のWEBページへ</a>
+        <a class="btn link" href="https://bodotuna.com/game-creation" target="_blank" rel="noopener">📋 ボードゲーム化事業を詳しく</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STROLL (2D walk-around) ===== -->
+<section id="stroll" class="screen">
+  <div class="stroll-wrap">
+    <div class="stroll-board" id="strollBoard">
+      <img class="boardimg" id="strollImg" alt="">
+      <div class="chips-layer" id="strollChips"></div>
+      <div class="stroll-actors" id="strollActors"></div>
+    </div>
+  </div>
+  <div class="stroll-hud" id="strollHud"></div>
+  <button class="stroll-back btn sub" onclick="exitStroll()">← もどる</button>
+  <div class="stroll-dpad" id="strollDpad">
+    <button data-d="up">▲</button>
+    <div class="row"><button data-d="left">◀</button><button data-d="down">▼</button><button data-d="right">▶</button></div>
+  </div>
+</section>
+
+<script>
+/* load game data; cache-bust only when served over http (dev preview), plain for file:// */
+(function(){var s='data.js'+(location.protocol.indexOf('http')===0?('?v='+Date.now()):'');
+ document.write('<scr'+'ipt src="'+s+'"></scr'+'ipt>');})();
+</script>
+<script>
+const D = GAME_DATA;
+const COLORCLASS = {red:"cred",blue:"cblue",green:"cgreen",purple:"cpurple",gold:"cgold",gray:"cgray"};
+const SWATCH = {beach:"#e9d49a",forest:"#4f8f49",mountain:"#9a8d7d",river:"#5bb6e6",plain:"#a9d175"};
+let state=null, selIsland=null, selSponsor=null, selected=null, curCat=null;
+
+(function(){
+  const host=document.getElementById("terrLegend");
+  for(const k of ["beach","forest","mountain","river","plain"]){
+    const r=D.terrainRules[k];
+    host.insertAdjacentHTML("beforeend",
+      `<span class="terr-chip"><span class="sw" style="background:${SWATCH[k]}"></span>${r.label}：${r.desc}</span>`);
+  }
+})();
+
+function go(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+  window.scrollTo(0,0);
+  if(id==="islandSel") buildIslandList();
+  if(id==="sponsorSel") buildSponsorPick();
+}
+function buildIslandList(){
+  const host=document.getElementById("islandList"); host.innerHTML="";
+  D.islands.forEach(isl=>{
+    const c=document.createElement("div"); c.className="island-card";
+    c.innerHTML=`<img src="${isl.img}" alt="${isl.name}"><div class="nm">🏝️ ${isl.name}</div>`;
+    c.onclick=()=>{ selIsland=isl; go("sponsorSel"); };
+    host.appendChild(c);
+  });
+}
+function buildSponsorPick(){
+  selSponsor=null; document.getElementById("startBtn").disabled=true;
+  const host=document.getElementById("sponsorPick"); host.innerHTML="";
+  const order=[...D.sponsors].map((s,i)=>({s,r:(i*5+2)%4})); order.sort((a,b)=>a.r-b.r);
+  order.forEach(o=>{
+    const b=document.createElement("div"); b.className="spback";
+    b.innerHTML="★<br>スポンサー<br>カード<br>★";
+    b.onclick=()=>revealSponsor(o.s);
+    host.appendChild(b);
+  });
+}
+function revealSponsor(sp){
+  selSponsor=sp;
+  const host=document.getElementById("sponsorPick"); host.innerHTML="";
+  const c=document.createElement("div"); c.className="spcard-big";
+  c.innerHTML=`<img src="${sp.img}" alt="${sp.name}">`;
+  host.appendChild(c);
+  const n=document.createElement("p");
+  n.style.cssText="width:100%;text-align:center;color:#fff;font-weight:bold;margin-top:10px;text-shadow:0 1px 3px #000";
+  n.textContent="「"+sp.name+"」と契約しました！　"+sp.effect;
+  host.appendChild(n);
+  document.getElementById("startBtn").disabled=false;
+}
+
+/* ---------- game ---------- */
+const ROWS="ABCDE";
+function startGame(){
+  state={budget:D.startCost,totalE:0,totalN:0,placed:{},occ:{},history:[],first:true};
+  go("game");
+  buildBoard(); buildSponsorMini(); curCat=null; selected=null; buildPalette(); refresh(); buildStageIdle();
+  setBGM("game");
+}
+function rcOf(id){return [ROWS.indexOf(id[0]), (+id.slice(1))-1];}
+function idOf(r,c){return ROWS[r]+(c+1);}
+
+// image-px -> board % helpers (using the active island viewRect)
+function pX(px){const v=selIsland.viewRect;return (px-v[0])/(v[2]-v[0])*100;}
+function pY(py){const v=selIsland.viewRect;return (py-v[1])/(v[3]-v[1])*100;}
+function buildBoard(){
+  const isl=selIsland;
+  const [vx0,vy0,vx1,vy1]=isl.viewRect, vW=vx1-vx0, vH=vy1-vy0;
+  const board=document.getElementById("board");
+  board.style.aspectRatio = vW+" / "+vH;
+  const img=document.getElementById("boardimg");
+  img.src=isl.img;
+  img.style.width=(isl.imgW/vW*100)+"%";
+  img.style.height=(isl.imgH/vH*100)+"%";
+  img.style.left=(-vx0/vW*100)+"%";
+  img.style.top=(-vy0/vH*100)+"%";
+  const ov=document.getElementById("gridOverlay");
+  ov.innerHTML="";
+  const V=isl.vlines, H=isl.hlines;
+  for(let r=0;r<5;r++)for(let c=0;c<8;c++){
+    const id=idOf(r,c), cell=document.createElement("div");
+    cell.className="cell"; cell.dataset.id=id;
+    cell.style.left=pX(V[c])+"%"; cell.style.top=pY(H[r])+"%";
+    cell.style.width=(pX(V[c+1])-pX(V[c]))+"%";
+    cell.style.height=(pY(H[r+1])-pY(H[r]))+"%";
+    if(isl.startCells.includes(id)) cell.classList.add("start");
+    cell.onclick=()=>onCellClick(id);
+    cell.onmouseenter=()=>{previewFootprint(id); showTerr(id);};
+    cell.onmouseleave=()=>{clearPreview(); hideTerr();};
+    cell.onmousemove=moveTag;
+    ov.appendChild(cell);
+  }
+}
+function buildSponsorMini(){
+  const el=document.getElementById("spTop");
+  el.innerHTML=`スポンサー <img class="sptopimg" src="${selSponsor.img}"> ${selSponsor.name}`;
+  el.title=selSponsor.name+"："+selSponsor.effect;
+}
+function cats(){const o=[];D.attractions.forEach(a=>{if(!o.includes(a.cat))o.push(a.cat)});return o;}
+function buildPalette(){
+  const cs=cats(); curCat=curCat||cs[0];
+  const tabHost=document.getElementById("tabs"); tabHost.innerHTML="";
+  cs.forEach(c=>{const t=document.createElement("button");t.className="tab"+(c===curCat?" active":"");
+    t.textContent=c; t.onclick=()=>{curCat=c;buildPalette();}; tabHost.appendChild(t);});
+  const host=document.getElementById("palette"); host.innerHTML="";
+  D.attractions.filter(a=>a.cat===curCat).forEach(a=>{
+    const it=document.createElement("button");
+    it.className="pcard"+(selected&&selected.id===a.id?" sel":"");
+    it.title=a.name+`（E${a.E}/N${a.N}/C${a.C}）`;
+    const pic=a.img?`<img class="pic" src="${a.img}" onerror="this.outerHTML='<div class=&quot;picfb&quot;>${a.emoji}</div>'">`
+                   :`<div class="picfb">${a.emoji}</div>`;
+    const sz=(a.fw*a.fh>1)?`<span class="szbadge">${a.fw}×${a.fh}</span>`:(a.mini?`<span class="szbadge">ミニ</span>`:"");
+    it.innerHTML=`${sz}${pic}`;
+    it.onclick=()=>{selected=a;sfx("select");buildPalette();refresh();};
+    host.appendChild(it);
+  });
+}
+
+/* footprint / placement */
+function footprintCells(anchor,fw,fh){
+  const [r,c]=rcOf(anchor), out=[];
+  for(let dr=0;dr<fh;dr++)for(let dc=0;dc<fw;dc++){
+    const rr=r+dr, cc=c+dc;
+    if(rr>=5||cc>=8) return null;
+    out.push(idOf(rr,cc));
+  }
+  return out;
+}
+function neighbors(id){
+  const [r,c]=rcOf(id), out=[];
+  [[0,1],[0,-1],[1,0],[-1,0]].forEach(([dr,dc])=>{const rr=r+dr,cc=c+dc;
+    if(rr>=0&&rr<5&&cc>=0&&cc<8)out.push(idOf(rr,cc));});
+  return out;
+}
+function effCost(a,cells){
+  let c=a.C;
+  if(cells.some(id=>D.terrainRules[selIsland.terrain[id]].color===a.color)) c-=1;
+  if(selSponsor.color===a.color && a.C>=2) c-=1;
+  return Math.max(0,c);
+}
+function placementCells(anchor){ // null if invalid layout (returns cells to occupy)
+  const a=selected;
+  if(a.mini && state.occ[anchor]) return [anchor]; // stack mini on occupied
+  return footprintCells(anchor,a.fw,a.fh);
+}
+function canPlaceAt(anchor){
+  if(!selected) return false;
+  const a=selected, stacking=(a.mini && state.occ[anchor]);
+  const cells=placementCells(anchor);
+  if(!cells) return false;
+  if(!stacking && cells.some(id=>state.occ[id])) return false;
+  if(!stacking){
+    if(state.first){ if(!cells.some(id=>selIsland.startCells.includes(id))) return false; }
+    else { if(!cells.some(id=>neighbors(id).some(n=>state.occ[n] && !cells.includes(n)))) return false; }
+  }
+  return state.budget>=effCost(a,cells);
+}
+function onCellClick(id){
+  if(selected && canPlaceAt(id)){ doPlace(id); hideTerr(); return; }
+  // not placing -> show terrain info; explain if a piece was selected but invalid
+  if(selected){
+    const a=selected, stacking=(a.mini && state.occ[id]);
+    const cells=placementCells(id);
+    if(!cells) flashHint("島からはみ出します");
+    else if(state.budget<effCost(a,cells)) flashHint("コストが足りません（必要 "+effCost(a,cells)+"）");
+    else if(!stacking && cells.some(x=>state.occ[x])) flashHint(a.mini?"":"他のアトラクションと重なります");
+    else if(state.first) flashHint("最初は港まわりの赤枠3マスから！");
+    else flashHint("設置済みアトラクションの隣にだけ置けます");
+  }
+  showTerr(id);
+}
+function doPlace(id){
+  const a=selected, stacking=(a.mini && state.occ[id]);
+  const cells=placementCells(id), cost=effCost(a,cells);
+  state.budget-=cost; state.totalE+=a.E; state.totalN+=a.N;
+  if(stacking){
+    const host=state.placed[state.occ[id]]; host.extras.push({attr:a,cost,cell:id});
+    state.history.push({type:"extra",anchor:state.occ[id],attr:a,cost});
+  } else {
+    state.placed[id]={attr:a,cost,cells,extras:[],anchor:id};
+    cells.forEach(x=>state.occ[x]=id);
+    state.history.push({type:"place",anchor:id,cells,attr:a,cost});
+    state.first=false;
+  }
+  flashHint(a.name+" を設置！（コスト −"+cost+"／E+"+a.E+" N+"+a.N+"）");
+  sfxBuild();
+  showBuild(a);
+  refresh();
+}
+function showBuild(a){
+  const st=document.getElementById("buildStage"); if(!st) return;
+  const pic=a.img?`<img src="${a.img}">`:`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px">${a.emoji}</div>`;
+  st.innerHTML=`<div class="bs-scene">
+     <div class="bs-ground"></div>
+     <div class="bs-plot"></div>
+     <div class="bs-build">
+       <span class="bs-scaff">🏗️</span><span class="bs-cone">🚧</span><span class="bs-cone2">🚧</span><span class="bs-dust">💨</span>
+     </div>
+     <div class="bs-card">${pic}</div>
+     <div class="bs-spark">✨</div>
+     <div class="bs-cap c1">🟫 更地…</div>
+     <div class="bs-cap c2">🏗️ 工事中…</div>
+     <div class="bs-cap c3">✅ ${a.name} 完成！</div>
+  </div>`;
+}
+function buildStageIdle(){
+  const st=document.getElementById("buildStage"); if(!st) return;
+  st.innerHTML='<div class="bs-idle">🏗️<br>アトラクションを設置すると<br>ここに建設の様子が表示されます</div>';
+}
+document.getElementById("undoBtn").onclick=()=>{
+  const h=state.history.pop(); if(!h){flashHint("戻せる操作がありません");return;}
+  state.budget+=h.cost; state.totalE-=h.attr.E; state.totalN-=h.attr.N;
+  if(h.type==="extra") state.placed[h.anchor].extras.pop();
+  else { delete state.placed[h.anchor]; h.cells.forEach(x=>delete state.occ[x]); if(state.history.length===0) state.first=true; }
+  flashHint(h.attr.name+" を撤去しました"); refresh();
+};
+/* cancel a specific placed attraction (click its × button) */
+function removePlacement(anchor){
+  const p=state.placed[anchor]; if(!p) return;
+  let refund=p.cost; state.totalE-=p.attr.E; state.totalN-=p.attr.N;
+  p.extras.forEach(e=>{refund+=e.cost; state.totalE-=e.attr.E; state.totalN-=e.attr.N;});
+  state.budget+=refund;
+  p.cells.forEach(x=>delete state.occ[x]);
+  delete state.placed[anchor];
+  // drop this anchor's entries from undo history so it stays consistent
+  state.history=state.history.filter(h=>h.anchor!==anchor);
+  if(Object.keys(state.placed).length===0) state.first=true;
+  flashHint(p.attr.name+" を取り消しました（コスト +"+refund+" 返却）");
+  sfx("remove");
+  refresh();
+}
+
+/* preview */
+function previewFootprint(anchor){
+  clearPreview();
+  if(!selected) return;
+  const cells = placementCells(anchor);
+  if(!cells) return;
+  const ok = canPlaceAt(anchor);
+  cells.forEach(id=>{
+    const cell=document.querySelector('.cell[data-id="'+id+'"]');
+    if(cell){cell.classList.add("preview"); if(!ok)cell.classList.add("bad");}
+  });
+}
+function clearPreview(){document.querySelectorAll(".cell.preview").forEach(c=>c.classList.remove("preview","bad"));}
+
+/* terrain info popup */
+function showTerr(id){
+  const terr=selIsland.terrain[id], rule=D.terrainRules[terr];
+  const pop=document.getElementById("terrpop");
+  pop.innerHTML=`<b>${rule.label}</b>${rule.desc}`;
+  const [r,c]=rcOf(id), V=selIsland.vlines, H=selIsland.hlines;
+  pop.style.left=pX((V[c]+V[c+1])/2)+"%";
+  pop.style.top=pY(H[r])+"%";
+  pop.style.display="block";
+  // auto-hide is handled by cell mouseleave (hover); keep a long fallback for touch taps
+  clearTimeout(showTerr._t); showTerr._t=setTimeout(hideTerr,5000);
+}
+function hideTerr(){document.getElementById("terrpop").style.display="none";}
+
+/* evaluation */
+function band(v){const b=D.bands; for(let i=0;i<b.length;i++) if(v<=b[i]) return i; return b.length;}
+function parkType(){return D.matrix.grid[band(state.totalE)][band(state.totalN)];}
+function refresh(){
+  document.getElementById("stCost").textContent=state.budget;
+  document.getElementById("stCount").textContent=Object.keys(state.placed).length;
+  document.getElementById("stE").textContent=state.totalE;
+  document.getElementById("stN").textContent=state.totalN;
+  document.querySelectorAll(".cell").forEach(cell=>cell.classList.toggle("placeable",canPlaceAt(cell.dataset.id)));
+  renderChips();
+  buildPalette();
+}
+function renderChips(){
+  const cl=document.getElementById("chipsLayer"); cl.innerHTML="";
+  const V=selIsland.vlines, H=selIsland.hlines;
+  Object.values(state.placed).forEach(p=>{
+    const a=p.attr, [r,c]=rcOf(p.cells[0]);
+    const fw=a.fw, fh=a.fh;
+    const d=document.createElement("div"); d.className="pchip";
+    d.style.left=pX(V[c])+"%"; d.style.top=pY(H[r])+"%";
+    d.style.width=(pX(V[c+fw])-pX(V[c]))+"%"; d.style.height=(pY(H[r+fh])-pY(H[r]))+"%";
+    d.innerHTML=a.img?`<img src="${a.img}" onerror="this.outerHTML='<div class=&quot;ef&quot;>${a.emoji}</div>'">`
+                     :`<div class="ef">${a.emoji}</div>`;
+    if(p.extras.length){const ex=document.createElement("div");ex.className="extras";
+      p.extras.forEach(e=>ex.insertAdjacentHTML("beforeend","<span>"+e.attr.emoji+"</span>"));d.appendChild(ex);}
+    const del=document.createElement("button"); del.className="del"; del.textContent="×";
+    del.title="このアトラクションを取り消す";
+    del.onclick=(ev)=>{ev.stopPropagation(); removePlacement(p.anchor);};
+    d.appendChild(del);
+    d.title=a.name+(p.extras.length?"（+ミニ"+p.extras.length+"）":"");
+    // terrain popup also works when hovering a placed chip; mini施設 can stack by clicking the chip
+    d.onmouseenter=()=>showTerr(p.cells[0]);
+    d.onmouseleave=hideTerr;
+    d.onclick=()=>{ if(selected && selected.mini && canPlaceAt(p.cells[0])) doPlace(p.cells[0]); };
+    cl.appendChild(d);
+  });
+}
+
+/* hints */
+let hintTimer=null;
+function flashHint(m){const h=document.getElementById("hint");h.textContent=m;clearTimeout(hintTimer);
+  hintTimer=setTimeout(()=>{h.textContent="アトラクションを選んで、光ったマスをクリック！　マスにカーソルを合わせると地形効果、置いたチップの×で取り消しできます。";},3400);}
+function moveTag(e){if(!selected)return;const t=document.getElementById("seltag");
+  const cells=placementCells(e.currentTarget.dataset.id);
+  t.style.display="block";t.style.left=(e.clientX+14)+"px";t.style.top=(e.clientY+14)+"px";
+  t.textContent=selected.name+(cells?"｜コスト "+effCost(selected,cells):"");}
+function hideTagAll(){document.getElementById("seltag").style.display="none";}
+document.addEventListener("mouseleave",hideTagAll);
+
+/* result */
+document.getElementById("finishBtn").onclick=()=>{
+  const t=parkType();
+  document.getElementById("rtype").textContent=t;
+  document.getElementById("rdesc").textContent=D.descs[t]||"";
+  document.getElementById("rscore").textContent=
+    "エンタメ値 "+state.totalE+"　ネイチャー値 "+state.totalN+"　設置数 "+Object.keys(state.placed).length+"　("+selIsland.name+")";
+  buildEnding();
+  setBGM("ending");
+  sfx("finish");
+  document.getElementById("modal").classList.add("show");
+};
+/* ending production — liveliness varies with the rating */
+function buildEnding(){
+  const s=state.totalE+state.totalN;
+  const tier = s>=120?4 : s>=90?3 : s>=60?2 : s>=35?1 : 0;
+  document.getElementById("ending").className="result-full t"+tier;
+  document.getElementById("endBustle").textContent=
+    ["まだ開発はこれから…島はとても静かだ。",
+     "ぽつぽつとお客さんが訪れはじめました。",
+     "なかなかの賑わい！笑顔が増えてきた。",
+     "大盛況！島は活気にあふれている！",
+     "🎆 伝説の大盛況！！島中が大歓声に包まれた！🎆"][tier];
+  const people=["🧑","👩","👨","🧒","👧","🧍","👪","🧑‍🤝‍🧑","👨‍👩‍👧","🙋","💃","🕺"];
+  const crowdN=[4,9,18,30,44][tier];
+  let ch="";
+  for(let i=0;i<crowdN;i++){const p=people[Math.floor(Math.random()*people.length)];
+    ch+='<span style="animation-delay:'+(Math.random()).toFixed(2)+'s">'+p+'</span>';}
+  document.getElementById("endCrowd").innerHTML=ch;
+  const fwN=[0,0,6,10,16][tier], cfN=[0,3,14,26,44][tier];
+  const fwE=["🎆","🎇","✨","🌟"], cfE=["🎉","🎊","✨","⭐","🎈"];
+  let fx="";
+  for(let i=0;i<fwN;i++)
+    fx+='<div class="fw" style="left:'+(8+Math.random()*84).toFixed(1)+'%;top:'+(5+Math.random()*42).toFixed(1)+'%;animation-delay:'+(Math.random()*1.6).toFixed(2)+'s">'+fwE[i%fwE.length]+'</div>';
+  for(let i=0;i<cfN;i++)
+    fx+='<div class="cf" style="left:'+(Math.random()*98).toFixed(1)+'%;animation-duration:'+(2.4+Math.random()*2).toFixed(2)+'s;animation-delay:'+(Math.random()*3).toFixed(2)+'s">'+cfE[Math.floor(Math.random()*cfE.length)]+'</div>';
+  document.getElementById("endFx").innerHTML=fx;
+  if(tier>=3) sfxCheer();
+}
+function buildMatrix(){
+  const eB=band(state.totalE),nB=band(state.totalN),L=D.matrix.labels;
+  let h='<table class="mxtable"><tr><th>E＼N</th>';L.forEach(l=>h+="<th>"+l+"</th>");h+="</tr>";
+  D.matrix.grid.forEach((row,ri)=>{h+="<tr><th>"+L[ri]+"</th>";
+    row.forEach((v,ci)=>{h+="<td"+((ri===eB&&ci===nB)?" class='hit'":"")+">"+v+"</td>";});h+="</tr>";});
+  return h+"</table>";
+}
+function restart(){
+  document.getElementById("modal").classList.remove("show");
+  stopStrollLoop();
+  selIsland=null;selSponsor=null;selected=null;curCat=null;state=null;
+  setBGM("opening");
+  go("islandSel");
+}
+function clampv(v,a,b){return v<a?a:(v>b?b:v);}
+
+/* ===== AUDIO (WebAudio synth: BGM + SFX) ===== */
+let actx=null,_muted=false,masterG=null,bgmG=null,bgmTimer=null,bgmIdx=0,bgmStarted=false;
+function audioInit(){ if(actx) return; try{actx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return;}
+  masterG=actx.createGain(); masterG.gain.value=_muted?0:0.42; masterG.connect(actx.destination);
+  bgmG=actx.createGain(); bgmG.gain.value=0.55; bgmG.connect(masterG); }
+function audioResume(){ audioInit(); if(actx&&actx.state==="suspended") actx.resume(); }
+function tone(freq,dur,type,vol,dest,when){ if(!actx)return; when=when||actx.currentTime;
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type=type||"triangle"; o.frequency.value=freq;
+  g.gain.setValueAtTime(0.0001,when); g.gain.linearRampToValueAtTime(vol,when+0.012);
+  g.gain.exponentialRampToValueAtTime(0.0006,when+dur);
+  o.connect(g); g.connect(dest||masterG); o.start(when); o.stop(when+dur+0.03); }
+function sfx(name){ audioResume(); if(!actx||_muted) return; const t=actx.currentTime;
+  if(name==="click"){ tone(520,0.08,"square",0.16); }
+  else if(name==="select"){ tone(440,0.07,"square",0.15); tone(660,0.09,"square",0.15,null,t+0.06); }
+  else if(name==="place"){ tone(330,0.09,"square",0.15); tone(440,0.09,"square",0.15,null,t+0.08); tone(660,0.15,"triangle",0.2,null,t+0.16); }
+  else if(name==="remove"){ tone(440,0.09,"sawtooth",0.13); tone(277,0.13,"sawtooth",0.13,null,t+0.08); }
+  else if(name==="chime"){ [523,659,784].forEach((f,i)=>tone(f,0.2,"triangle",0.2,null,t+i*0.08)); }
+  else if(name==="finish"){ [523,659,784,1047].forEach((f,i)=>tone(f,0.32,"triangle",0.24,null,t+i*0.12));
+    [392,523].forEach((f,i)=>tone(f,0.55,"sine",0.16,null,t+i*0.12)); } }
+/* white-noise burst (hammer/applause) */
+function noiseBurst(dur,vol,when,cut){ if(!actx)return; when=when||actx.currentTime;
+  const n=Math.max(1,Math.floor(actx.sampleRate*dur)),buf=actx.createBuffer(1,n,actx.sampleRate),ch=buf.getChannelData(0);
+  for(let i=0;i<n;i++) ch[i]=(Math.random()*2-1)*(1-i/n);
+  const src=actx.createBufferSource(); src.buffer=buf;
+  const f=actx.createBiquadFilter(); f.type="lowpass"; f.frequency.value=cut||1400;
+  const g=actx.createGain(); g.gain.value=vol;
+  src.connect(f); f.connect(g); g.connect(masterG); src.start(when); }
+/* construction sound: hammering during the build animation, then a completion ding */
+function sfxBuild(){ audioResume(); if(!actx||_muted) return; const t=actx.currentTime;
+  tone(330,0.08,"square",0.12,null,t); tone(440,0.08,"square",0.12,null,t+0.08);
+  for(let i=0;i<6;i++){ const tt=t+0.85+i*0.2; noiseBurst(0.05,0.22,tt,1600); tone(150,0.05,"square",0.13,null,tt); }
+  tone(784,0.18,"triangle",0.2,null,t+2.05); tone(1047,0.24,"triangle",0.2,null,t+2.2); }
+/* cheering crowd for a great result */
+function sfxCheer(){ audioResume(); if(!actx||_muted) return; const t=actx.currentTime;
+  for(let i=0;i<28;i++) noiseBurst(0.04,0.04+Math.random()*0.05, t+Math.random()*1.3, 3200);
+  [659,784,988].forEach((f,i)=>tone(f,0.4,"triangle",0.14,null,t+0.1+i*0.05)); }
+/* (TTS voices removed by request — keep sound effects only) */
+function say(){ /* no-op */ }
+/* pitch sweep (coaster drop) */
+function sweep(f0,f1,dur,vol,type){ if(!actx)return; const t=actx.currentTime,o=actx.createOscillator(),g=actx.createGain();
+  o.type=type||"sawtooth"; o.frequency.setValueAtTime(f0,t); o.frequency.exponentialRampToValueAtTime(f1,t+dur);
+  g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(vol,t+0.05); g.gain.exponentialRampToValueAtTime(0.0006,t+dur);
+  o.connect(g); g.connect(masterG); o.start(t); o.stop(t+dur+0.05); }
+/* steam/boat whistle (sustained two-tone) */
+function whistle(base,dur){ if(!actx)return; const t=actx.currentTime;
+  [base,base*1.5].forEach(f=>{ const o=actx.createOscillator(),g=actx.createGain(); o.type="triangle"; o.frequency.value=f;
+    g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(0.12,t+0.09); g.gain.setValueAtTime(0.12,t+dur*0.6); g.gain.exponentialRampToValueAtTime(0.0006,t+dur);
+    o.connect(g); g.connect(masterG); o.start(t); o.stop(t+dur+0.05); }); }
+function chord(freqs,dur,type,vol){ const t=actx.currentTime; freqs.forEach((f,i)=>tone(f,dur,type||"sine",vol||0.14,null,t+i*0.02)); }
+/* attraction-specific arrival sound */
+function arriveSfx(name,cat){ audioResume(); if(!actx||_muted) return; const t=actx.currentTime;
+  if(/ジェットコースター|フリーフォール|急流すべり/.test(name)){
+    sweep(720,170,0.9,0.18,"sawtooth"); for(let i=0;i<12;i++) noiseBurst(0.07,0.05+Math.random()*0.05,t+0.25+Math.random()*0.7,4500); say("わぁーっ！",1.5,1.3); }
+  else if(/ミニトレイン/.test(name)){ whistle(560,0.8); say("ポッポー！",1.2,1); }
+  else if(/ボートツアー|カヌーライド|水上バイク|潜水艦ライド/.test(name)){ whistle(190,0.95); }
+  else if(/ゲート/.test(name)){ sfxCheer(); say("わーい！ゆうえんちだ！",1.6,1.15); }
+  else if(/キャラクターショー|ステージショー|マジックショー|動物ショー|パレード|ファイヤーダンス|シアター|ビーチライブ|花火/.test(name)){
+    for(let i=0;i<14;i++) noiseBurst(0.04,0.05,t+Math.random()*0.9,3200); say("はーい！",1.7,1.1); }
+  else if(/カフェ|レストラン|フードコート|バー|屋台|スタンド|ワゴン|ラーメン/.test(name)){
+    tone(880,0.1,"sine",0.16,null,t); tone(1175,0.3,"sine",0.15,null,t+0.1); say("チャオ！",1.3,1.05); }
+  else if(/イルミネーション|プロジェクション/.test(name)){ chord([784,988,1175,1568],0.5,"triangle",0.12); }
+  else if(/観覧車|メリーゴーランド/.test(name)){ [1047,1319,1568,1319].forEach((f,i)=>tone(f,0.22,"sine",0.12,null,t+i*0.13)); }
+  else if(cat==="アウトドア"){ [1568,1865,1568,2093].forEach((f,i)=>tone(f,0.07,"sine",0.1,null,t+i*0.12)); }
+  else { tone(660,0.12,"triangle",0.14,null,t); tone(880,0.18,"triangle",0.14,null,t+0.1); } }
+/* scene BGM tracks */
+const BGM_TRACKS={
+ opening:{mel:[392,0,523,0, 659,587,523,0, 440,0,587,0, 523,0,0,0],bass:[131,131,165,165,196,196,131,131,147,147,165,165,196,196,196,0],tempo:300,type:"sine",mvol:0.11,bvol:0.12},
+ game:{mel:[523,659,784,659, 587,784,880,784, 659,523,587,659, 523,440,392,0],bass:[131,131,196,196,147,147,196,196,165,165,131,131,196,196,196,0],tempo:230,type:"triangle",mvol:0.12,bvol:0.13},
+ ending:{mel:[523,659,784,1047, 784,1047,1319,0, 880,1047,1319,1047, 784,880,1047,0],bass:[262,262,349,349,392,392,262,262,294,294,349,349,392,392,392,0],tempo:215,type:"triangle",mvol:0.13,bvol:0.12},
+};
+let curTrack=null;
+function bgmStepT(){ const tk=BGM_TRACKS[curTrack]; if(!tk){return;} if(!actx||_muted){bgmIdx++;return;}
+  const n=tk.mel[bgmIdx%tk.mel.length]; if(n) tone(n,tk.tempo/1000*0.95,tk.type,tk.mvol,bgmG);
+  const b=tk.bass[bgmIdx%tk.bass.length]; if(b&&bgmIdx%2===0) tone(b,tk.tempo/1000*1.7,"sine",tk.bvol,bgmG);
+  bgmIdx++; }
+function setBGM(name){ audioResume(); if(!actx) return; if(curTrack===name && bgmTimer) return;
+  curTrack=name; bgmIdx=0; if(bgmTimer){clearInterval(bgmTimer);bgmTimer=null;}
+  const tk=BGM_TRACKS[name]; if(!tk) return; bgmStarted=true; bgmTimer=setInterval(bgmStepT,tk.tempo); }
+function stopBGM(){ if(bgmTimer){clearInterval(bgmTimer);bgmTimer=null;} bgmStarted=false; }
+function toggleMute(){ _muted=!_muted; if(masterG) masterG.gain.value=_muted?0:0.42;
+  if(_muted && "speechSynthesis" in window) try{speechSynthesis.cancel();}catch(e){}
+  const b=document.getElementById("muteBtn"); if(b) b.textContent=_muted?"🔇":"🔊"; if(!_muted) audioResume(); }
+document.addEventListener("pointerdown",function _once(){ audioResume(); setBGM("opening"); document.removeEventListener("pointerdown",_once); });
+document.addEventListener("click",e=>{ if(e.target.closest&&e.target.closest(".btn")) sfx("click"); });
+
+/* ===== 2D STROLL MODE ===== */
+let strollState=null, strollRAF=null, strollKeys={};
+function enterStroll(){ sfx("chime"); document.getElementById("modal").classList.remove("show"); go("stroll"); buildStroll(); startStrollLoop(); }
+function exitStroll(){ stopStrollLoop(); go("game"); document.getElementById("modal").classList.add("show"); }
+function pickTarget(v){ const S=strollState; if(!S)return; const B=S.bounds;
+  if(S.attrs.length){ const a=S.attrs[Math.floor(Math.random()*S.attrs.length)];
+    v.tx=clampv(a.cx+(Math.random()*10-5),B.x0,B.x1); v.ty=clampv(a.cy+(Math.random()*10-5),B.y0,B.y1); }
+  else { v.tx=B.x0+Math.random()*(B.x1-B.x0); v.ty=B.y0+Math.random()*(B.y1-B.y0); } }
+function buildStroll(){
+  const isl=selIsland,[vx0,vy0,vx1,vy1]=isl.viewRect,vW=vx1-vx0,vH=vy1-vy0;
+  const img=document.getElementById("strollImg");
+  img.src=isl.img; img.style.width=(isl.imgW/vW*100)+"%"; img.style.height=(isl.imgH/vH*100)+"%";
+  img.style.left=(-vx0/vW*100)+"%"; img.style.top=(-vy0/vH*100)+"%";
+  const cl=document.getElementById("strollChips"); cl.innerHTML="";
+  const V=isl.vlines,H=isl.hlines,attrs=[]; let ai=0;
+  Object.values(state.placed).forEach(p=>{
+    const a=p.attr,[r,c]=rcOf(p.cells[0]);
+    const d=document.createElement("div"); d.className="pchip";
+    d.style.left=pX(V[c])+"%"; d.style.top=pY(H[r])+"%";
+    d.style.width=(pX(V[c+a.fw])-pX(V[c]))+"%"; d.style.height=(pY(H[r+a.fh])-pY(H[r]))+"%";
+    d.innerHTML=a.img?`<img src="${a.img}">`:`<div class="ef">${a.emoji}</div>`;
+    cl.appendChild(d);
+    attrs.push({id:ai++,name:a.name,cat:a.cat,E:a.E,N:a.N,cx:(pX(V[c])+pX(V[c+a.fw]))/2,cy:(pY(H[r])+pY(H[r+a.fh]))/2});
+  });
+  // visitors stay inside the grid; the player may also step down to the port (start) below the grid
+  const bounds={x0:pX(V[0])+2, x1:pX(V[8])-2, y0:pY(H[0])+2, y1:pY(H[5])-2};
+  const pbounds={x0:bounds.x0, x1:bounds.x1, y0:bounds.y0, y1:clampv(pY(H[5])+11,0,94)};
+  const layer=document.getElementById("strollActors"); layer.innerHTML="";
+  const player=document.createElement("div"); player.className="actor player"; player.textContent="🧍"; layer.appendChild(player);
+  // start AT the port (港): bottom-centre, below row E
+  const portx=clampv((pX(V[2])+pX(V[5]))/2, pbounds.x0, pbounds.x1);
+  const px=portx, py=pbounds.y1-2;
+  const s=(state.totalE||0)+(state.totalN||0), vt=s>=120?4:s>=90?3:s>=60?2:s>=35?1:0;
+  const vcount=[3,6,10,16,22][vt], pe=["🧑","👩","👨","🧒","👧","🙋","👩‍🦰","🧓"];
+  strollState={player,px,py,attrs,vis:[],bounds,pbounds,lastNear:null};
+  for(let i=0;i<vcount;i++){ const el=document.createElement("div"); el.className="actor visitor"; el.textContent=pe[i%pe.length]; layer.appendChild(el);
+    let sx,sy; if(attrs.length){const a=attrs[i%attrs.length]; sx=a.cx+(Math.random()*8-4); sy=a.cy+(Math.random()*8-4);} else {sx=(bounds.x0+bounds.x1)/2; sy=(bounds.y0+bounds.y1)/2;}
+    const v={x:clampv(sx,bounds.x0,bounds.x1),y:clampv(sy,bounds.y0,bounds.y1),tx:0,ty:0,el}; pickTarget(v); strollState.vis.push(v); }
+  updateStrollDom(); setStrollHud(null);
+}
+function updateStrollDom(){ const S=strollState; if(!S)return;
+  S.player.style.left=S.px+"%"; S.player.style.top=S.py+"%";
+  S.vis.forEach(v=>{ v.el.style.left=v.x+"%"; v.el.style.top=v.y+"%"; }); }
+function setStrollHud(a){ const h=document.getElementById("strollHud");
+  h.innerHTML=a?('📍 <b>'+a.name+'</b>　エンタメ'+a.E+'／ネイチャー'+a.N)
+              :'🚶 矢印キー／WASD（スマホは右下のボタン）で島を歩こう！'; }
+function strollTick(){ const S=strollState; if(!S)return;
+  let dx=0,dy=0;
+  if(strollKeys.left)dx--; if(strollKeys.right)dx++; if(strollKeys.up)dy--; if(strollKeys.down)dy++;
+  const B=S.bounds,P=S.pbounds;
+  if(dx||dy){ const m=Math.hypot(dx,dy)||1,sp=0.6; S.px=clampv(S.px+dx/m*sp,P.x0,P.x1); S.py=clampv(S.py+dy/m*sp,P.y0,P.y1); }
+  S.vis.forEach(v=>{ let ax=v.tx-v.x,ay=v.ty-v.y,d=Math.hypot(ax,ay); if(d<1.4){pickTarget(v);} else {v.x+=ax/d*0.16; v.y+=ay/d*0.16;}
+    v.x=clampv(v.x,B.x0,B.x1); v.y=clampv(v.y,B.y0,B.y1); });
+  updateStrollDom();
+  let near=null,best=7.5; S.attrs.forEach(a=>{const dd=Math.hypot(a.cx-S.px,a.cy-S.py); if(dd<best){best=dd;near=a;}});
+  setStrollHud(near);
+  const nid=near?near.id:null;
+  if(nid!==S.lastNear){ if(near) arriveSfx(near.name,near.cat); S.lastNear=nid; }
+  strollRAF=requestAnimationFrame(strollTick);
+}
+function startStrollLoop(){ cancelAnimationFrame(strollRAF); strollRAF=requestAnimationFrame(strollTick); }
+function stopStrollLoop(){ if(strollRAF)cancelAnimationFrame(strollRAF); strollRAF=null; strollKeys={}; }
+const _KMAP={ArrowUp:"up",ArrowDown:"down",ArrowLeft:"left",ArrowRight:"right",w:"up",s:"down",a:"left",d:"right",W:"up",S:"down",A:"left",D:"right"};
+document.addEventListener("keydown",e=>{ const k=_KMAP[e.key]; if(k && document.getElementById("stroll").classList.contains("on")){ strollKeys[k]=true; e.preventDefault(); }});
+document.addEventListener("keyup",e=>{ const k=_KMAP[e.key]; if(k) strollKeys[k]=false; });
+[...document.querySelectorAll("#strollDpad button")].forEach(b=>{ const k=b.dataset.d;
+  const on=e=>{e.preventDefault(); strollKeys[k]=true;}, off=()=>{strollKeys[k]=false;};
+  b.addEventListener("pointerdown",on); b.addEventListener("pointerup",off); b.addEventListener("pointerleave",off); b.addEventListener("pointercancel",off); });
+</script>
+</body>
+</html>

@@ -329,6 +329,70 @@ section { padding: 90px 20px; }
   font-weight: 700;
 }
 
+/* ===== 全プラン共通特典 ===== */
+.common-benefits { margin-top: 64px; }
+.cb-badge {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 14px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  padding: 4px 16px;
+}
+.common-benefits h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(19px, 2.8vw, 26px);
+  font-weight: 900;
+  color: var(--navy);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+.cb-lead {
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-light);
+  margin: 12px auto 32px;
+  max-width: 680px;
+  line-height: 2;
+}
+.cb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+}
+.cb-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  padding: 28px 26px;
+}
+.cb-item .cb-num {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  display: block;
+  margin-bottom: 8px;
+}
+.cb-item h4 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+.cb-item p {
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--ink-light);
+}
+
 /* ===== Merit ===== */
 .merit { background: var(--paper-deep); }
 .merit-grid {
@@ -649,7 +713,7 @@ footer {
     <span class="section-eyebrow">PARTNERSHIP PLANS</span>
     <h2 class="section-title">パートナープラン</h2>
     <div class="section-divider"></div>
-    <p class="section-lead">月額1万円から、企業として持続可能な形でご支援いただけます。</p>
+    <p class="section-lead">月額1万円から、企業として持続可能な形でご支援いただけます。<br>どのプランでも、ページ下部の「全プラン共通特典」をすべてご利用いただけます。</p>
 
     <div class="plan-grid">
       <div class="plan-card">
@@ -706,6 +770,45 @@ footer {
     </div>
 
     <p style="text-align:center; margin-top:32px; font-size:12px; color:var(--ink-light);">※ プラン名称・金額・特典内容は応相談</p>
+
+    <div class="common-benefits">
+      <span class="cb-badge">ALL PLANS</span>
+      <h3>全プラン共通特典</h3>
+      <p class="cb-lead">ブロンズからプラチナまで、すべてのパートナー企業さまにご利用いただける特典です。<br>年間14,000人の親子と接する現場だからこそ、ご提供できるサービスがあります。</p>
+
+      <div class="cb-grid">
+        <div class="cb-item">
+          <span class="cb-num">01</span>
+          <h4>商品テストプレイ会・モニター調査</h4>
+          <p>試作品や商品を、イベント現場で子ども・親子に実際に使って遊んでもらい、リアルな反応をまとめた観察レポートをお届けします。アンケートでは得られない、深い定性データが手に入ります。</p>
+        </div>
+        <div class="cb-item">
+          <span class="cb-num">02</span>
+          <h4>イベントでのサンプリング・ノベルティ配布</h4>
+          <p>居場所・学童イベントの現場で、商品サンプルやノベルティを親子層へ直接お渡しします。地域のファミリー層に確実に届く配布チャネルです。</p>
+        </div>
+        <div class="cb-item">
+          <span class="cb-num">03</span>
+          <h4>社員ボランティア研修の受け入れ</h4>
+          <p>「1日居場所スタッフ体験」として、社員の皆さまのボランティア参加を受け入れます。CSR活動の実践と、社内のチームビルディングを一度に実現できます。</p>
+        </div>
+        <div class="cb-item">
+          <span class="cb-num">04</span>
+          <h4>note・SNSでの企業紹介記事</h4>
+          <p>「地域の居場所を支える企業」としての貴社のストーリーを、当団体のnote・SNSで発信します。採用広報や地域広報にもご活用いただけます。</p>
+        </div>
+        <div class="cb-item">
+          <span class="cb-num">05</span>
+          <h4>共同イベント開催権</h4>
+          <p>貴社の店舗・ショールーム・オフィスで、ボドツナの出張ボードゲームイベントを開催できます。地域のファミリー層の集客と、地域交流の場づくりに。</p>
+        </div>
+        <div class="cb-item">
+          <span class="cb-num">06</span>
+          <h4>法人研修・ゲーム制作の優待価格</h4>
+          <p>ボードゲームを使った法人研修や、貴社の理念・制度を伝えるオリジナルゲーム制作を、パートナー優待価格でご依頼いただけます。</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

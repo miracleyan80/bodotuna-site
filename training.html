@@ -23,7 +23,7 @@
       <li><a href="gakudo.html">学童イベント</a></li>
       <li><a href="game-creation.html">ゲーム化事業</a></li>
       <li><a href="training.html" class="current">法人研修</a></li>
-      <li><a href="sponsor.html" class="nav-cta">スポンサー募集</a></li>
+      <li><a href="sponsor.html" class="nav-cta">パートナー募集</a></li>
     </ul>
     <button class="menu-toggle" aria-label="メニュー">☰</button>
   </nav>
@@ -255,16 +255,21 @@
       <h3>法人研修 お問い合わせフォーム</h3>
       <p class="form-lead">1営業日以内にご返信いたします。</p>
 
-      <form>
-        <div class="form-group"><label>会社名<span class="required">必須</span></label><input type="text" required></div>
-        <div class="form-group"><label>ご担当者名<span class="required">必須</span></label><input type="text" required></div>
-        <div class="form-group"><label>メールアドレス<span class="required">必須</span></label><input type="email" required></div>
-        <div class="form-group"><label>お電話番号</label><input type="tel"></div>
-        <div class="form-group"><label>参加予定人数</label><input type="text" placeholder="例：20名程度"></div>
-        <div class="form-group"><label>希望日・期間</label><input type="text" placeholder="例：2026年8月中"></div>
+      <form action="https://formsubmit.co/miracle.yan80@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="【ボドツナHP】法人研修のお問い合わせ">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://bodotuna.com/thanks.html">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <div class="form-group"><label>会社名<span class="required">必須</span></label><input type="text" name="会社名" required></div>
+        <div class="form-group"><label>ご担当者名<span class="required">必須</span></label><input type="text" name="ご担当者名" required></div>
+        <div class="form-group"><label>メールアドレス<span class="required">必須</span></label><input type="email" name="email" required></div>
+        <div class="form-group"><label>お電話番号</label><input type="tel" name="お電話番号"></div>
+        <div class="form-group"><label>参加予定人数</label><input type="text" name="参加予定人数" placeholder="例：20名程度"></div>
+        <div class="form-group"><label>希望日・期間</label><input type="text" name="希望日・期間" placeholder="例：2026年8月中"></div>
         <div class="form-group">
           <label>関心のあるプログラム</label>
-          <select>
+          <select name="関心のあるプログラム">
             <option>未定</option>
             <option>コミュニケーション研修</option>
             <option>組織開発研修</option>
@@ -273,8 +278,8 @@
             <option>オーダーメイド</option>
           </select>
         </div>
-        <div class="form-group"><label>研修テーマ・目的<span class="required">必須</span></label><textarea required placeholder="解決したい課題、研修で得たい成果などをお書きください"></textarea></div>
-        <div class="form-group"><label>ご予算</label><input type="text" placeholder="例：10万円〜20万円"></div>
+        <div class="form-group"><label>研修テーマ・目的<span class="required">必須</span></label><textarea name="研修テーマ・目的" required placeholder="解決したい課題、研修で得たい成果などをお書きください"></textarea></div>
+        <div class="form-group"><label>ご予算</label><input type="text" name="ご予算" placeholder="例：10万円〜20万円"></div>
         <button type="submit" class="form-submit">送信する</button>
       </form>
     </div>
@@ -284,7 +289,7 @@
 <footer>
   <div class="footer-inner">
     <p class="footer-mission">私たちは、地域の居場所をつくっています。</p>
-    <p class="footer-tag">お仕事・ご寄付・ご協賛が、活動の継続を支えています。</p>
+    <p class="footer-tag">お仕事・ご寄付・パートナーシップが、活動の継続を支えています。</p>
     <div class="footer-grid">
       <div>
         <h4>団体情報</h4>
@@ -298,7 +303,7 @@
           <li><a href="gakudo.html">学童向けイベント</a></li>
           <li><a href="game-creation.html">ゲーム化事業</a></li>
           <li><a href="training.html">法人研修</a></li>
-          <li><a href="sponsor.html">スポンサー募集</a></li>
+          <li><a href="sponsor.html">パートナー募集</a></li>
         </ul>
       </div>
       <div>

@@ -732,13 +732,21 @@
 }
 .deeper-card {
   background: white;
-  padding: 28px 24px;
+  padding: 0;
   border-radius: 20px;
   border: 2px solid var(--border);
   transition: all 0.2s;
   display: block;
   color: inherit;
+  overflow: hidden;
 }
+.deeper-card .deeper-thumb img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1280 / 670;
+  object-fit: cover;
+}
+.deeper-card .deeper-body { padding: 24px; }
 .deeper-card:hover {
   border-color: var(--yellow);
   transform: translateY(-4px);
@@ -1220,14 +1228,14 @@
     <p class="section-lead">日々の活動の様子をご紹介します。</p>
     <div class="report-list">
       <div class="report-card">
-        <img class="report-img" src="images/report-omocha06201.jpg" alt="オモチャと遊びの広場の様子">
-        <div class="report-meta">2026年6月20日 ｜ オモチャと遊びの広場</div>
-        <p class="report-text">オモチャと遊びの広場、始まりました。準備が完了したら大雨に。でも、お部屋の中だから雨なんて関係なし！ 気をつけて遊びに来てくださいね。</p>
+        <img class="report-img" src="images/report-gosyomi-cafe.jpg" alt="御所見スマイルカフェの様子">
+        <div class="report-meta">2026年7月13日 ｜ 御所見スマイルカフェ</div>
+        <p class="report-text">御所見スマイルカフェ、オープンしました！ 今日は外の湿気が辛い……。お部屋で遊ぼう！</p>
       </div>
       <div class="report-card">
-        <img class="report-img" src="images/report-gakudo0919.jpg" alt="キッズクラブでのボードゲームの様子">
-        <div class="report-meta">2026年6月19日 ｜ キッズクラブ</div>
-        <p class="report-text">今日のキッズクラブのラインナップ。いつものレギュラーメンバーがいないのは、もうすでにキッズクラブで導入されているから。新しいゲームもモリモリ遊んでくれるので、おっちゃんは嬉しいです。もう1人くらい、ファシリテーターがいたらなあ。</p>
+        <img class="report-img" src="images/report-dagashiya.jpg" alt="駄菓子屋長後でのボードゲーム体験会の様子">
+        <div class="report-meta">2026年7月12日 ｜ 駄菓子屋長後 ボードゲーム体験会</div>
+        <p class="report-text">駄菓子屋さんでボードゲーム体験会。曇っていて日が当たらないから暑くない！ 雨が降ったら撤収しますので、早めに遊びに来てね。駄菓子もあるよ。</p>
       </div>
     </div>
     <p class="record-note">※最新の活動は、X・Facebookでも随時発信しています。</p>
@@ -1328,11 +1336,11 @@
       </a>
 
       <a href="https://note.com/ynagayama/m/md011e5065e22" target="_blank" rel="noopener" class="gl-card">
-        <div class="gl-thumb"><img src="images/games/strike.png" alt="ストライク！"></div>
+        <div class="gl-thumb"><img src="images/games/niji-hebi.png" alt="虹色のヘビ"></div>
         <div class="gl-body">
-          <span class="gl-tag">異年齢で遊べる</span>
-          <h3>ストライク！</h3>
-          <p class="gl-catch">小さい子だって大人に勝てる、白熱のサイコロバトル</p>
+          <span class="gl-tag">未就学から</span>
+          <h3>虹色のヘビ</h3>
+          <p class="gl-catch">色をつなげてヘビを完成！運だけで大人にも勝てる</p>
           <div class="gl-meta">
             <span>👥 2〜5人</span>
             <span>⏱ 約15分</span>
@@ -1343,15 +1351,15 @@
       </a>
 
       <a href="https://note.com/ynagayama/m/md011e5065e22" target="_blank" rel="noopener" class="gl-card">
-        <div class="gl-thumb"><img src="images/games/balloons.png" alt="バルーンズ"></div>
+        <div class="gl-thumb"><img src="images/games/hagetaka.png" alt="ハゲタカのえじき"></div>
         <div class="gl-body">
-          <span class="gl-tag">未就学から</span>
-          <h3>バルーンズ</h3>
-          <p class="gl-catch">色が分かれば3歳から！運だけで決まる風船ゲーム</p>
+          <span class="gl-tag">小学生から</span>
+          <h3>ハゲタカのえじき</h3>
+          <p class="gl-catch">「せーの」で1枚出すだけ、シンプル熱々の読み合い</p>
           <div class="gl-meta">
-            <span>👥 2〜5人</span>
-            <span>⏱ 約10〜15分</span>
-            <span>🎯 3歳〜</span>
+            <span>👥 2〜6人</span>
+            <span>⏱ 約15分</span>
+            <span>🎯 8歳〜</span>
           </div>
           <span class="gl-read">noteで読む</span>
         </div>
@@ -1396,23 +1404,23 @@
     <div class="title-wrap"><h2 class="section-title">もっと深く知る</h2></div>
     <p class="section-lead">代表 長山が、現場で感じたことを記事にしています。</p>
     <div class="deeper-grid">
+      <a href="https://note.com/ynagayama/n/n21f93888d5be" target="_blank" rel="noopener" class="deeper-card">
+        <div class="deeper-thumb"><img src="images/deeper-shine.jpg" alt="「死ね」がおはようの子どもたち 記事アイキャッチ"></div>
+        <div class="deeper-body">
+          <span class="tag">居場所と社会</span>
+          <h3>「死ね」がおはようの子どもたち ―― 居場所での子どもとの関わり方について</h3>
+          <p>子ども食堂で出会った、「死ね」を挨拶のように使う子。叱る前に、その子が他にどんな言葉を持っているのかを見てほしい。半年間一緒に遊びながら考えたこと。</p>
+          <p class="read-more">記事を読む</p>
+        </div>
+      </a>
       <a href="https://note.com/ynagayama/n/na3d7e11ab3a9" target="_blank" rel="noopener" class="deeper-card">
-        <span class="tag">学童の現場</span>
-        <h3>新1年生が押し寄せている学童で、私がいま考えていること</h3>
-        <p>2025年5月時点、全国学童登録児童1,568,588人で過去最多。横浜・川崎の現場で起きていることと、体育館でのハイブリッド開催の試み。</p>
-        <p class="read-more">記事を読む</p>
-      </a>
-      <a href="https://note.com/ynagayama/n/n45ce1f6027b0" target="_blank" rel="noopener" class="deeper-card">
-        <span class="tag">非認知能力</span>
-        <h3>非認知能力を伸ばすボードゲーム教室を始めることにしました</h3>
-        <p>学びが複雑化した時代に、公教育では追いつかない学びがある。ボードゲームは、社会学・哲学を能動的に体験できる「学びのテクノロジー」です。</p>
-        <p class="read-more">記事を読む</p>
-      </a>
-      <a href="https://note.com/ynagayama/n/nfad2dd4979d7" target="_blank" rel="noopener" class="deeper-card">
-        <span class="tag">ゲーム制作</span>
-        <h3>活動報告 ～ゲームマーケット出店～</h3>
-        <p>10年間家を出ていなかった子が、初めてお金を稼ぐ。発達障害グレーゾーンの子が、初めて商品を売る。「ねこのて」制作と、生きづらさを抱える人たちの社会との再接続の物語。</p>
-        <p class="read-more">記事を読む</p>
+        <div class="deeper-thumb"><img src="images/deeper-gakudo.jpg" alt="新1年生が押し寄せている学童 記事アイキャッチ"></div>
+        <div class="deeper-body">
+          <span class="tag">学童の現場</span>
+          <h3>新1年生が押し寄せている学童で、私がいま考えていること</h3>
+          <p>2025年5月時点、全国学童登録児童1,568,588人で過去最多。横浜・川崎の現場で起きていることと、体育館でのハイブリッド開催の試み。</p>
+          <p class="read-more">記事を読む</p>
+        </div>
       </a>
     </div>
   </div>

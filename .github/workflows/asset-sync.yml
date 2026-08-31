@@ -1,0 +1,40 @@
+name: asset-sync
+on:
+  push:
+    branches: [main]
+    paths: ['asset-manifest.json']
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and place assets
+        run: |
+          count=$(jq length asset-manifest.json)
+          echo "entries: $count"
+          for i in $(seq 0 $((count-1))); do
+            url=$(jq -r ".[$i].url" asset-manifest.json)
+            dest=$(jq -r ".[$i].dest" asset-manifest.json)
+            width=$(jq -r ".[$i].width // empty" asset-manifest.json)
+            case "$dest" in
+              images/*) ;;
+              *) echo "skip (dest not allowed): $dest"; continue ;;
+            esac
+            mkdir -p "$(dirname "$dest")"
+            curl -fsSL --max-filesize 10000000 "$url" -o /tmp/asset || { echo "download failed: $dest"; continue; }
+            if [ -n "$width" ]; then
+              convert /tmp/asset -resize "$width"x\> "$dest"
+            else
+              cp /tmp/asset "$dest"
+            fi
+            echo "placed: $dest"
+          done
+      - name: Commit and push
+        run: |
+          git config user.name "asset-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add images
+          git diff --cached --quiet || git commit -m "画像アセット自動配置（asset-manifest）"
+          git push

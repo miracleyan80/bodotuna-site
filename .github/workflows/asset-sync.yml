@@ -1,5 +1,6 @@
 name: asset-sync
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths: ['asset-manifest.json']
@@ -10,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick
       - name: Download and place assets
         run: |
           count=$(jq length asset-manifest.json)

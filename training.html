@@ -3,12 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>法人向けボードゲーム研修｜ボードゲームでツナグ手</title>
-<meta name="description" content="ボードゲームを使った体験型研修。コミュニケーション・組織開発・論理的思考・観察力を育てます。居場所運営で培ったファシリテーション力で、参加者に気づきを届けます。">
+<title>ボドツナワークショップ｜ボードゲームと演劇で体験する、チームのコミュニケーション｜ボードゲームでツナグ手</title>
+<meta name="description" content="企業・団体のチーム向け「ボドツナワークショップ」。ボードゲームと演劇で体験する、チームのコミュニケーション。伝え方のテクニックを教える研修ではありません。相手に伝わる状態を、自分で作る研修です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ===== ボドツナワークショップ ページ専用（色・フォントは引き継ぎ資料 2026-10-06 に準拠） ===== */
+.ws {
+  --brown: #12525E;        /* 文字：濃いティール */
+  --brown-light: #3A6C76;
+  --yellow: #CFE5E8;       /* 塗り：薄いティール */
+  --yellow-light: #E6F1F3;
+  --yellow-deep: #1D6E7D;  /* 名前・線：ティール */
+  --cream: #FAF6EF;        /* 背景：クリーム */
+  --orange: #A85410;       /* 強調の文字：濃いオレンジ */
+  --orange-deep: #7A3C0A;
+  --border: #CFE5E8;
+  --pink: #CFE5E8;
+  display: block;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: 'Zen Kaku Gothic New', 'M PLUS Rounded 1c', sans-serif;
+}
+.ws h1, .ws h2, .ws h3, .ws h4, .ws .price, .ws .step-number, .ws-core strong, .ws-btn {
+  font-family: 'Zen Maru Gothic', 'M PLUS Rounded 1c', sans-serif;
+}
+.ws a { color: var(--orange); font-weight: 700; text-decoration: underline; }
+.ws-sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* メインビジュアル：画像の縦横比は変えない。次のセクションが見える高さに抑える */
+.ws-hero { padding: 28px 20px 40px; text-align: center; background: var(--cream); }
+.ws-hero-inner { max-width: 960px; margin: 0 auto; }
+.ws-hero .subpage-breadcrumb { margin-bottom: 8px; }
+.ws-mv { width: auto; max-width: 100%; height: auto; max-height: 62vh; margin: 0 auto; }
+.ws a.ws-btn {
+  display: inline-block; margin-top: 20px;
+  background: var(--orange); color: #fff; text-decoration: none;
+  padding: 13px 34px; border-radius: 999px;
+  font-size: 15px; font-weight: 700;
+  box-shadow: 0 4px 0 var(--orange-deep); transition: all 0.15s;
+}
+.ws a.ws-btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--orange-deep); color: #fff; }
+@media (max-width: 600px) {
+  .ws-hero { padding: 20px 16px 32px; }
+  .ws-mv { max-height: 68vh; max-height: 68svh; }
+}
+
+/* 中心の一言 */
+.ws-core { font-size: 15px; color: var(--brown); line-height: 2; }
+.ws-core strong { display: inline-block; font-size: clamp(20px, 3vw, 26px); font-weight: 900; line-height: 1.6; }
+.ws-em { color: var(--orange); }
+.ws-nb { display: inline-block; }
+.ws .section-title { left: auto; transform: none; }
+@media (max-width: 600px) { .ws .content-block h3 { font-size: 18px; } }
+
+/* 基本情報 */
+.ws-info > div { display: flex; gap: 18px; padding: 14px 0; border-bottom: 2px dashed var(--border); }
+.ws-info > div:last-child { border-bottom: none; padding-bottom: 0; }
+.ws-info dt { flex: 0 0 5.5em; font-size: 16px; font-weight: 700; color: var(--yellow-deep); font-family: 'Zen Maru Gothic', sans-serif; }
+.ws-info dd { font-size: 15px; line-height: 1.9; }
+@media (max-width: 600px) { .ws-info > div { flex-direction: column; gap: 2px; } .ws-info dt { flex-basis: auto; } }
+
+/* 1日の流れ */
+.ws .step-list { max-width: 760px; margin: 0 auto; }
+.ws-time {
+  display: inline-block; font-size: 12px; font-weight: 700; line-height: 1.6;
+  padding: 1px 12px; border-radius: 999px; margin-bottom: 4px;
+  background: var(--yellow); color: var(--brown);
+}
+.ws-time.ws-pm { background: var(--yellow-deep); color: #fff; }
+.ws .step-content p, .ws .info-card p, .ws .faq-a { color: var(--brown); }
+.ws-note { text-align: center; font-size: 14px; color: var(--brown); margin-top: 24px; line-height: 1.9; }
+
+/* カード・料金 */
+.ws .info-card { border-width: 2px; }
+.ws .info-card h4 { padding-left: 12px; border-left: 5px solid var(--yellow-deep); line-height: 1.5; }
+.ws .info-card p { font-size: 14px; }
+.ws-price { max-width: 640px; margin: 0 auto; }
+.ws .price-card .price small { font-size: 14px; color: var(--brown-light); }
+.ws .price-card .price-sub { font-size: 14px; color: var(--brown); }
+.ws .section-title::after { background: var(--yellow-deep); opacity: .35; }
+.ws .mission-reminder { box-shadow: 0 8px 0 var(--yellow-deep); }
+.ws .form-card { border-color: var(--yellow-deep); box-shadow: 0 8px 0 var(--yellow); }
+.ws .form-group input, .ws .form-group textarea, .ws .form-group select { background: #fff; }
+.ws .form-group input:focus, .ws .form-group textarea:focus, .ws .form-group select:focus { border-color: var(--yellow-deep); }
+.ws .form-group label .required { color: var(--orange); }
+.ws .faq-a::before { color: var(--brown); }
+
+/* ===== ピクトグラム・図 ===== */
+.ws-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ws-ic {
+  position: relative; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: #fff; border: 2.5px solid var(--yellow-deep);
+}
+.ws-ic svg { width: 68%; height: 68%; display: block; }
+.ws-ic-lg { width: 84px; height: 84px; }
+.ws-ic-sm { width: 40px; height: 40px; border-width: 2px; }
+.ws-ic-sm svg { width: 72%; height: 72%; }
+.ws-ic b {
+  position: absolute; top: -6px; left: -6px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--orange); color: #fff;
+  font-family: 'Zen Maru Gothic', sans-serif; font-size: 14px; font-weight: 900; line-height: 26px; text-align: center;
+}
+
+/* 遊ぶ→演じる→振り返る */
+.ws-flow { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 8px 0 28px; }
+.ws-flow li { position: relative; text-align: center; padding: 0 6px; }
+.ws-flow li + li::before {
+  content: ''; position: absolute; left: -12px; top: 34px;
+  width: 12px; height: 12px; border-top: 4px solid var(--orange); border-right: 4px solid var(--orange);
+  transform: translateX(-50%) rotate(45deg); border-radius: 2px;
+}
+.ws-flow h4 { font-size: 17px; font-weight: 700; margin: 10px 0 2px; }
+.ws .content-block .ws-flow p { font-size: 14px; line-height: 1.7; margin: 0; }
+.ws-order {
+  display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap;
+  background: var(--cream); border-radius: 16px; padding: 18px 16px; margin-top: 20px;
+}
+.ws-order-item { display: flex; align-items: center; gap: 12px; font-family: 'Zen Maru Gothic', sans-serif; font-size: 17px; font-weight: 700; line-height: 1.4; }
+.ws-order-item small { display: block; font-size: 13px; color: var(--orange); }
+.ws-arrow { width: 34px; height: 4px; background: var(--orange); border-radius: 2px; position: relative; }
+.ws-arrow::after { content: ''; position: absolute; right: -1px; top: -5px; width: 10px; height: 10px; border-top: 4px solid var(--orange); border-right: 4px solid var(--orange); transform: rotate(45deg); border-radius: 2px; }
+.ws-info dt { display: flex; align-items: center; gap: 10px; flex: 0 0 9em; }
+
+/* 1日の流れ */
+.ws-day { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ws-half { background: #fff; border: 2px solid var(--border); border-radius: 24px; padding: 26px 24px 10px; box-shadow: 0 6px 0 var(--yellow-light); }
+.ws-half-title {
+  display: inline-block; font-size: 16px; font-weight: 700; line-height: 1.5;
+  padding: 3px 22px; border-radius: 999px; background: var(--yellow); color: var(--brown); margin-bottom: 6px;
+}
+.ws-half-pm .ws-half-title { background: var(--yellow-deep); color: #fff; }
+.ws-units { list-style: none; }
+.ws-units li { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 2px dashed var(--border); }
+.ws-units li:last-child { border-bottom: none; }
+.ws-units h4 { font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+.ws-units p { font-size: 14px; line-height: 1.8; }
+@media (max-width: 760px) { .ws-day { grid-template-columns: 1fr; } }
+
+/* 約束ごと */
+.ws-promises { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.ws-promises .info-card { flex: 1 1 260px; max-width: 320px; text-align: center; }
+.ws .ws-promises .info-card h4 { border-left: none; padding-left: 0; margin-top: 12px; }
+.ws .ws-promises .info-card p { text-align: left; }
+
+/* 実施例 */
+.ws-cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.ws-case { background: #fff; border: 2px solid var(--border); border-radius: 20px; overflow: hidden; }
+.ws-case-img { height: 170px; background: var(--yellow-light); display: flex; align-items: center; justify-content: center; }
+.ws-case-img img { width: 100%; height: 100%; object-fit: cover; }
+.ws-case-pict svg { width: 110px; height: 110px; }
+.ws-case-body { padding: 18px 20px 22px; }
+.ws-case-tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 12px; border-radius: 999px; background: var(--yellow); margin-bottom: 6px; }
+.ws-case h4 { font-size: 17px; font-weight: 700; line-height: 1.5; margin-bottom: 6px; }
+.ws-case p { font-size: 14px; line-height: 1.85; }
+
+/* 考え方の図 */
+.ws-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 4px 0 20px; }
+.ws-compare figure, .ws-abc { background: var(--cream); border-radius: 16px; padding: 16px; text-align: center; }
+.ws-compare svg { width: 100%; max-width: 200px; height: auto; margin: 0 auto; display: block; }
+.ws-compare figcaption, .ws-abc figcaption { font-size: 14px; line-height: 1.7; margin-top: 8px; }
+.ws-compare figcaption b { display: block; font-family: 'Zen Maru Gothic', sans-serif; font-size: 17px; }
+.ws-abc { margin: 4px 0 20px; }
+.ws-abc svg { width: 100%; max-width: 340px; height: auto; margin: 0 auto; display: block; }
+@media (max-width: 480px) { .ws-compare { grid-template-columns: 1fr; } }
+.ws .price-card .ws-ic { margin-bottom: 10px; }
+@media (max-width: 600px) {
+  .ws-info dt { flex: 0 0 auto; }
+  .ws-flow { grid-template-columns: 1fr; gap: 30px; }
+  .ws-flow li { display: grid; grid-template-columns: 84px 1fr; column-gap: 16px; text-align: left; align-items: center; padding: 0; }
+  .ws-flow li .ws-ic { grid-row: 1 / 3; }
+  .ws-flow h4 { margin: 0; align-self: end; }
+  .ws .content-block .ws-flow p { align-self: start; }
+  .ws-flow li + li::before { left: 42px; top: -24px; transform: translateX(-50%) rotate(135deg); }
+  .ws-order { flex-direction: column; align-items: flex-start; gap: 14px; padding-left: 24px; }
+  .ws-arrow { transform: rotate(90deg); margin-left: 15px; }
+}
+</style>
 </head>
 <body>
 
@@ -29,39 +208,273 @@
   </nav>
 </header>
 
-<section class="subpage-hero">
-  <div class="subpage-hero-inner">
+<main class="ws">
+
+<!-- ピクトグラム定義（メインビジュアルと同じ色・線で描いたオリジナル図形） -->
+<svg class="ws-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-cards" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="12" y="16" width="24" height="32" rx="4" fill="#fff" transform="rotate(-12 24 32)"/>
+      <rect x="28" y="17" width="24" height="32" rx="4" fill="#E8821E" transform="rotate(10 40 33)"/>
+      <rect x="36" y="29" width="8" height="8" rx="1.5" fill="#fff" stroke="none" transform="rotate(55 40 33)"/></g></symbol>
+    <symbol id="i-act" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M24 36 L12 22 M40 36 L52 22" stroke="#1D6E7D" stroke-width="7" fill="none"/>
+      <rect x="23" y="29" width="18" height="26" rx="7" fill="#1D6E7D"/>
+      <circle cx="32" cy="17" r="8" fill="#F2CFAE"/>
+      <path d="M8 10 v6 M5 13 h6 M56 8 v6 M53 11 h6" stroke="#E8821E" fill="none"/></g></symbol>
+    <symbol id="i-reflect" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M6 58 a14 14 0 0 1 28 0z" fill="#1D6E7D"/>
+      <circle cx="20" cy="34" r="9" fill="#F2CFAE"/>
+      <circle cx="33" cy="24" r="2" fill="#fff"/><circle cx="38" cy="19" r="3" fill="#fff"/>
+      <ellipse cx="48" cy="12" rx="12" ry="8" fill="#fff"/>
+      <path d="M43 12 h.1 M48 12 h.1 M53 12 h.1" stroke="#E8821E" stroke-width="3.5" fill="none"/></g></symbol>
+    <symbol id="i-team" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M3 54 a10 10 0 0 1 20 0z M41 54 a10 10 0 0 1 20 0z" fill="#CFE5E8"/>
+      <circle cx="13" cy="35" r="6.5" fill="#E3B48E"/><circle cx="51" cy="35" r="6.5" fill="#F2CFAE"/>
+      <path d="M18 56 a14 14 0 0 1 28 0z" fill="#1D6E7D"/>
+      <circle cx="32" cy="29" r="8.5" fill="#F2CFAE"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="32" cy="32" r="22" fill="#fff"/>
+      <path d="M32 18 V32 L42 38" fill="none"/><circle cx="32" cy="32" r="2.5" fill="#E8821E" stroke="none"/></g></symbol>
+    <symbol id="i-table" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="32" cy="32" r="13" fill="#CFE5E8"/>
+      <circle cx="55" cy="32" r="5" fill="#F2CFAE"/><circle cx="48.3" cy="48.3" r="5" fill="#E3B48E"/>
+      <circle cx="32" cy="55" r="5" fill="#F2CFAE"/><circle cx="15.7" cy="48.3" r="5" fill="#E3B48E"/>
+      <circle cx="9" cy="32" r="5" fill="#F2CFAE"/><circle cx="15.7" cy="15.7" r="5" fill="#E3B48E"/>
+      <circle cx="32" cy="9" r="5" fill="#F2CFAE"/><circle cx="48.3" cy="15.7" r="5" fill="#E3B48E"/>
+      <rect x="27" y="27" width="10" height="10" rx="2" fill="#E8821E" transform="rotate(20 32 32)"/></g></symbol>
+    <symbol id="i-building" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="16" y="12" width="32" height="42" rx="3" fill="#fff"/>
+      <path d="M23 21 h6 M35 21 h6 M23 30 h6 M35 30 h6" stroke="#1D6E7D" stroke-width="4" fill="none"/>
+      <rect x="27" y="40" width="10" height="14" fill="#E8821E"/>
+      <path d="M8 54 H56" fill="none"/></g></symbol>
+    <symbol id="i-person" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M12 56 a20 20 0 0 1 40 0z" fill="#1D6E7D"/>
+      <circle cx="32" cy="23" r="11" fill="#F2CFAE"/></g></symbol>
+    <symbol id="i-talk" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M12 12 h40 a5 5 0 0 1 5 5 v20 a5 5 0 0 1 -5 5 h-22 l-10 10 v-10 h-8 a5 5 0 0 1 -5 -5 v-20 a5 5 0 0 1 5 -5z" fill="#fff"/>
+      <path d="M17 23 H47 M17 31 H38" stroke="#1D6E7D" fill="none"/></g></symbol>
+    <symbol id="i-relax" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M25 31 L15 45 M39 31 L49 45" stroke="#1D6E7D" stroke-width="7" fill="none"/>
+      <rect x="23" y="27" width="18" height="28" rx="7" fill="#1D6E7D"/>
+      <circle cx="32" cy="15" r="8" fill="#F2CFAE"/>
+      <path d="M4 22 q3 -4 6 0 t6 0 M48 22 q3 -4 6 0 t6 0" stroke="#E8821E" fill="none"/></g></symbol>
+    <symbol id="i-voice" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M2 58 a15 15 0 0 1 30 0z" fill="#1D6E7D"/>
+      <circle cx="17" cy="32" r="10" fill="#F2CFAE"/>
+      <path d="M34 25 a9 9 0 0 1 0 14 M41 19 a17 17 0 0 1 0 26 M48 13 a26 26 0 0 1 0 38" stroke="#E8821E" stroke-width="3" fill="none"/></g></symbol>
+    <symbol id="i-eye" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M5 32 q27 -26 54 0 q-27 26 -54 0z" fill="#fff"/>
+      <circle cx="32" cy="32" r="10" fill="#1D6E7D"/><circle cx="35" cy="29" r="3" fill="#fff" stroke="none"/>
+      <path d="M32 6 v6 M14 10 l3 5 M50 10 l-3 5" stroke="#E8821E" fill="none"/></g></symbol>
+    <symbol id="i-dice" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" transform="rotate(-10 32 32)">
+      <rect x="12" y="12" width="40" height="40" rx="8" fill="#fff"/>
+      <g fill="#E8821E" stroke="none"><circle cx="22" cy="22" r="3.6"/><circle cx="42" cy="22" r="3.6"/><circle cx="32" cy="32" r="3.6"/><circle cx="22" cy="42" r="3.6"/><circle cx="42" cy="42" r="3.6"/></g></g></symbol>
+    <symbol id="i-bubbles" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M10 8 h28 a5 5 0 0 1 5 5 v14 a5 5 0 0 1 -5 5 h-16 l-8 8 v-8 h-4 a5 5 0 0 1 -5 -5 v-14 a5 5 0 0 1 5 -5z" fill="#fff"/>
+      <path d="M30 26 h24 a5 5 0 0 1 5 5 v13 a5 5 0 0 1 -5 5 h-4 v8 l-8 -8 h-12 a5 5 0 0 1 -5 -5 v-13 a5 5 0 0 1 5 -5z" fill="#E8821E"/>
+      <path d="M35 37.5 h.1 M42 37.5 h.1 M49 37.5 h.1" stroke="#fff" stroke-width="3.5" fill="none"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 54 C8 38 8 16 21 13 C27 12 32 17 32 22 C32 17 37 12 43 13 C56 16 56 38 32 54z" fill="#E8821E"/>
+      <path d="M17 24 q1 -5 6 -6" stroke="#fff" fill="none"/></g></symbol>
+    <symbol id="i-note" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="10" y="12" width="34" height="42" rx="4" fill="#fff"/>
+      <path d="M17 23 h20 M17 31 h14 M17 39 h10" stroke="#1D6E7D" fill="none"/>
+      <g transform="rotate(35 47 36)"><rect x="43" y="14" width="8" height="30" rx="1.5" fill="#E8821E"/><path d="M43 44 L47 53 L51 44z" fill="#F2CFAE"/></g></g></symbol>
+    <symbol id="i-noeval" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="15" y="13" width="34" height="42" rx="4" fill="#fff"/>
+      <rect x="25" y="8" width="14" height="10" rx="3" fill="#CFE5E8"/>
+      <path d="M22 28 l3 3 l5 -6 M35 29 h8 M22 41 l3 3 l5 -6 M35 42 h8" stroke="#1D6E7D" fill="none"/>
+      <path d="M8 56 L56 8" stroke="#fff" stroke-width="9" fill="none"/><path d="M8 56 L56 8" stroke="#E8821E" stroke-width="4.5" fill="none"/></g></symbol>
+    <symbol id="i-bag" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="23" y="8" width="18" height="24" rx="3" fill="#fff" transform="rotate(8 32 20)"/>
+      <path d="M27 18 h9 M27 24 h6" stroke="#E8821E" fill="none" transform="rotate(8 32 20)"/>
+      <path d="M12 28 h40 l3 24 a4 4 0 0 1 -4 4 h-38 a4 4 0 0 1 -4 -4z" fill="#1D6E7D"/>
+      <path d="M24 36 a8 8 0 0 0 16 0" stroke="#fff" fill="none"/></g></symbol>
+    <symbol id="i-pass" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M10 44 Q32 4 52 40" stroke="#1D6E7D" stroke-width="4" fill="none"/>
+      <path d="M41 39 L53 42 L55 30" stroke="#1D6E7D" stroke-width="4" fill="none"/>
+      <circle cx="31" cy="46" r="7" fill="#E8821E"/>
+      <path d="M8 56 H56" fill="none"/></g></symbol>
+    <symbol id="i-nomic" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="24" y="8" width="16" height="28" rx="8" fill="#CFE5E8"/>
+      <path d="M16 30 a16 16 0 0 0 32 0 M32 46 V56 M23 56 H41" fill="none"/>
+      <path d="M8 56 L56 8" stroke="#fff" stroke-width="9" fill="none"/><path d="M8 56 L56 8" stroke="#E8821E" stroke-width="4.5" fill="none"/></g></symbol>
+    <symbol id="i-question" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="32" cy="32" r="23" fill="#fff"/>
+      <path d="M24 26 a8 8 0 1 1 12 7 q-4 2 -4 6" stroke="#E8821E" stroke-width="4.5" fill="none"/>
+      <path d="M32 46 h.1" stroke="#E8821E" stroke-width="5.5" fill="none"/></g></symbol>
+    <symbol id="i-3h" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="32" cy="32" r="23" fill="#fff"/>
+      <path d="M32 32 V9 A23 23 0 0 1 55 32z" fill="#E8821E"/></g></symbol>
+    <symbol id="i-5h" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="32" cy="32" r="23" fill="#fff"/>
+      <path d="M32 32 V9 A23 23 0 0 1 43.5 51.9z" fill="#E8821E"/></g></symbol>
+    <symbol id="i-link" viewBox="0 0 64 64"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="14" cy="46" r="8" fill="#CFE5E8"/><circle cx="32" cy="16" r="8" fill="#E8821E"/><circle cx="50" cy="46" r="8" fill="#F2CFAE"/>
+      <path d="M18.5 39 L27.5 23 M36.5 23 L45.5 39 M22 46 H42" stroke="#1D6E7D" fill="none"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- メインビジュアル -->
+<section class="ws-hero">
+  <div class="ws-hero-inner">
     <span class="subpage-breadcrumb">居場所を支える事業</span>
-    <h1>ボードゲームで学ぶ、<br><span class="accent">対話と気づき</span>の研修</h1>
-    <p>
-      仲良くならなくても、一緒に働ける。<br>
-      座学では身につかない「社交性」と「対話」を、ボードゲームで体感します。<br>
-      大人も子どもも同じルールで本気で遊ぶ居場所の時間を、そのまま企業の現場に持ち込みます。
-    </p>
-    <div class="subpage-hero-image">
-      <img src="images/hero-game.jpg" alt="ボードゲームを通じた対話の様子">
+    <h1 class="ws-sr-only">ボドツナワークショップ ボードゲームと演劇で体験する、チームのコミュニケーション</h1>
+    <picture>
+      <source media="(max-width: 600px)" srcset="images/workshop-mv-sp.png" width="780" height="1380">
+      <img class="ws-mv" src="images/workshop-mv-pc.png" width="2880" height="1440" alt="ボドツナワークショップ ボードゲームと演劇で体験する、チームのコミュニケーション。伝え方のテクニックを教える研修ではありません。相手に伝わる状態を、自分で作る研修です。ボードゲームでツナグ手（ボドツナ）">
+    </picture>
+    <a href="#contact" class="ws-btn">実施のご相談はこちら</a>
+  </div>
+</section>
+
+<!-- ワークショップの中身 -->
+<section style="background: var(--yellow-light);">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">ボドツナワークショップとは</h2></div>
+    <p class="section-lead ws-core"><span class="ws-nb">伝え方のテクニックを教える</span><span class="ws-nb">研修ではありません。</span><br><strong><span class="ws-nb">相手に<span class="ws-em">伝わる状態</span>を、</span><span class="ws-nb">自分で作る研修です。</span></strong></p>
+
+    <div class="content-block">
+      <h3>遊んで、演じて、振り返ります</h3>
+      <ol class="ws-flow">
+        <li>
+          <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-cards"/></svg></span>
+          <h4>遊びます</h4>
+          <p>ボードゲームで遊びます。</p>
+        </li>
+        <li>
+          <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-act"/></svg></span>
+          <h4>演じます</h4>
+          <p>短い演劇のワークをします。</p>
+        </li>
+        <li>
+          <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-reflect"/></svg></span>
+          <h4>振り返ります</h4>
+          <p>自分が何をしたか、どう感じたかを振り返ります。</p>
+        </li>
+      </ol>
+      <p>参加者はボードゲームで遊び、短い演劇のワークをして、そのとき自分が何をしたか、どう感じたかを振り返ります。</p>
+      <p>講師は正解を教えず、参加者を評価しません。先に身体と気持ちが動き、思考と言葉は後から来る、という順番を体験する構成です。</p>
+      <div class="ws-order" role="img" aria-label="先に身体と気持ちが動き、思考と言葉は後から来ます。">
+        <div class="ws-order-item"><span class="ws-ic"><svg aria-hidden="true"><use href="#i-heart"/></svg></span><span><small>先に</small>身体と気持ち</span></div>
+        <span class="ws-arrow" aria-hidden="true"></span>
+        <div class="ws-order-item"><span class="ws-ic"><svg aria-hidden="true"><use href="#i-talk"/></svg></span><span><small>後から</small>思考と言葉</span></div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <h3>基本情報</h3>
+      <dl class="ws-info">
+        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-team"/></svg></span>対象</dt><dd>企業・団体のチーム（社員、職員）が対象です。</dd></div>
+        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>形式</dt><dd>1日版（5時間）と3時間版の2種類があります。</dd></div>
+        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-table"/></svg></span>人数</dt><dd>1班8人が基本です。16人（2班）までは講師1人で実施します。</dd></div>
+        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-building"/></svg></span>実施場所</dt><dd>貴社・貴団体の会議室など、ご用意いただいた会場に伺います。</dd></div>
+        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-person"/></svg></span>講師</dt><dd>長山陽司（ボードゲームでツナグ手 代表）が担当します。2026年8月末時点で、子どもたちとのボードゲームイベントを180回行っています。</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
-<!-- なぜボードゲーム研修？ -->
+<!-- 1日の流れ -->
 <section>
   <div class="container">
-    <div class="title-wrap"><h2 class="section-title">なぜ、ボードゲーム研修なのか</h2></div>
-    <p class="section-lead">居場所運営で培ったファシリテーションを、企業の現場へ。</p>
+    <div class="title-wrap"><h2 class="section-title">1日の流れ（1日版・5時間）</h2></div>
+    <p class="section-lead">午前に4つ、午後に4つのユニットを行います。</p>
 
-    <div class="content-block">
-      <h3>座学では身につかない『対話と気づき』を、ゲームで体感する</h3>
-      <p>ボドツナの居場所運営現場では、年齢も背景も異なる参加者が一緒にボードゲームを楽しむ光景が日常です。大人も子どもも同じルールで本気で遊ぶと、上下関係や属性の壁が自然に消え、対等な対話が生まれます。</p>
-      <p style="font-weight: 800; color: var(--brown);">私たちが居場所で毎週やっていることを、そのまま企業の現場に持ち込みます。</p>
-      <p>それによって、以下のような効果を参加者一人ひとりに届けられます。</p>
-      <ul class="info-list" style="margin-top: 16px;">
-        <li>部門・世代を超えたコミュニケーション</li>
-        <li>受け身ではなく、能動的に学ぶ姿勢</li>
-        <li>ゲーム体験を通じた、感情に根付いた気づき</li>
-        <li>相手の意図を読み、伝え方を工夫する習慣</li>
-      </ul>
+    <div class="ws-day">
+      <div class="ws-half">
+        <h3 class="ws-half-title">午前</h3>
+        <ol class="ws-units">
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-talk"/></svg><b>1</b></span><div><h4>はじめに</h4><p>研修の考え方と約束ごとを聞きます。</p></div></li>
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-relax"/></svg><b>2</b></span><div><h4>リラックス運動</h4><p>身体の余計な力に気づきます。</p></div></li>
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-voice"/></svg><b>3</b></span><div><h4>声と身体のゲーム</h4><p>同じ一言を、声だけ・身体も使って伝え分けます。</p></div></li>
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-eye"/></svg><b>4</b></span><div><h4>言葉を使わないゲーム</h4><p>言葉なしで、相手の動きを見て合わせます。</p></div></li>
+        </ol>
+      </div>
+      <div class="ws-half ws-half-pm">
+        <h3 class="ws-half-title">午後</h3>
+        <ol class="ws-units" start="5">
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-dice"/></svg><b>5</b></span><div><h4>負けと運のゲーム</h4><p>ゲーム中に実際に起きた場面で、相手の立場に立ちます。</p></div></li>
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-bubbles"/></svg><b>6</b></span><div><h4>言葉を当てるゲーム</h4><p>組で相談して、誰の案でもない第三の答えを作ります。</p></div></li>
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-heart"/></svg><b>7</b></span><div><h4>「ありがとう」のワーク</h4><p>誰に言いたいかを思い浮かべると、同じ一言がどう変わるかを体験します。</p></div></li>
+          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-note"/></svg><b>8</b></span><div><h4>締めくくり</h4><p>仕事の中で自分は何がしたいのかを、一人で考えて持ち帰ります。</p></div></li>
+        </ol>
+      </div>
     </div>
+    <p class="ws-note">3時間版は、午後の「負けと運のゲーム」を外し、ほかのユニットを短くした構成です。</p>
+  </div>
+</section>
+
+<!-- 約束ごと -->
+<section style="background: var(--yellow-light);">
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">研修の約束ごと</h2></div>
+    <p class="section-lead">安心して参加していただくために、次のことをお約束したうえで実施します。</p>
+
+    <div class="ws-promises">
+      <div class="info-card">
+        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-noeval"/></svg></span>
+        <h4>人事評価には使いません</h4>
+        <p>研修中の発言や様子は、人事評価に使わない前提で実施します。</p>
+      </div>
+      <div class="info-card">
+        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-bag"/></svg></span>
+        <h4>カードは本人が持ち帰ります</h4>
+        <p>最後に書くカードは本人が持ち帰ります。会社には提出しません。</p>
+      </div>
+      <div class="info-card">
+        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-pass"/></svg></span>
+        <h4>いつでもパスできます</h4>
+        <p>演技やワークは、いつでもパスできます。</p>
+      </div>
+      <div class="info-card">
+        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-nomic"/></svg></span>
+        <h4>全体の前で発表させません</h4>
+        <p>自分の気持ちや答えを、全体の前で発表させることはありません。例外は「ありがとう」のワークで、全員の前で一言ずつ言います。</p>
+      </div>
+      <div class="info-card">
+        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-question"/></svg></span>
+        <h4>講師は正解を教えません</h4>
+        <p>講師は正解を教えず、参加者を評価しません。そのため、物足りなく感じる方がいるかもしれません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- これまでの実施例 -->
+<section>
+  <div class="container">
+    <div class="title-wrap"><h2 class="section-title">これまでの実施例</h2></div>
+    <p class="section-lead">ボドツナがこれまでに企業・団体・自治体で行ってきた、ボードゲームを使った研修・ワークショップの例です。</p>
+
+    <div class="ws-cases">
+      <div class="ws-case">
+        <div class="ws-case-img"><img src="images/case-tokyo-srs.jpg" alt="福利厚生をテーマにしたゲームのカード" loading="lazy"></div>
+        <div class="ws-case-body">
+          <span class="ws-case-tag">団体</span>
+          <h4>東京社労士会様</h4>
+          <p>「会社の福利厚生」をテーマにしたオリジナルゲームを制作し、制度を体験していただきました。</p>
+        </div>
+      </div>
+      <div class="ws-case">
+        <div class="ws-case-img ws-case-pict"><svg aria-hidden="true"><use href="#i-link"/></svg></div>
+        <div class="ws-case-body">
+          <span class="ws-case-tag">企業</span>
+          <h4>電気通信事業会社 購買部門様</h4>
+          <p>購買部門の業務と社会課題とのつながりを、オリジナルゲームで表現しました。</p>
+        </div>
+      </div>
+      <div class="ws-case">
+        <div class="ws-case-img"><img src="images/fujisawa-workshop.jpg" alt="藤沢市 子どもの居場所ワークショップで使ったゲーム" loading="lazy"></div>
+        <div class="ws-case-body">
+          <span class="ws-case-tag">自治体</span>
+          <h4>藤沢市 青少年課様</h4>
+          <p>子どもたちが理想の居場所を表現できる「居場所づくりゲーム」を制作し、ワークショップを行いました。</p>
+        </div>
+      </div>
+    </div>
+    <p class="ws-note">※ いずれも、ご依頼に合わせて制作したオリジナルゲームを使った実施例です。ボドツナワークショップとは内容が異なります。<br>詳しくは<a href="game-creation.html">ゲーム化事業ページ</a>をご覧ください。</p>
   </div>
 </section>
 
@@ -81,6 +494,16 @@
       <h3>「協調性」ではなく、「社交性」を</h3>
       <p>職場では、部門や世代の壁を「仲良くなる」ことで越えようとしがちです。同じ気持ちを持つことを前提にした力を、協調性と呼びます。けれど、同じ気持ちを求められる場では、違う考えを持つ人は黙るか、無理に合わせるか、離れていくしかありません。</p>
       <p>私たちは、これから必要なのは協調性ではなく社交性だと考えています。社交性とは、バラバラな人間がバラバラなままで、どうにかうまくやっていく力です。表面上仲良くすることではなく、考え方の違う相手の言葉も、ちゃんと聞けるかどうかです。</p>
+      <div class="ws-compare">
+        <figure>
+          <svg viewBox="0 0 160 90" aria-hidden="true"><g stroke="#12525E" stroke-width="2.5" fill="#CFE5E8"><circle cx="58" cy="40" r="20"/><circle cx="102" cy="40" r="20"/><circle cx="80" cy="30" r="20"/><circle cx="68" cy="56" r="20"/><circle cx="92" cy="56" r="20"/></g></svg>
+          <figcaption><b>協調性</b>同じ気持ちを持つことを前提にした力です。</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 160 90" aria-hidden="true"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round"><circle cx="24" cy="50" r="16" fill="#CFE5E8"/><rect x="48" y="22" width="28" height="28" rx="5" fill="#E8821E"/><path d="M98 34 L116 66 L80 66z" fill="#1D6E7D"/><rect x="122" y="26" width="24" height="24" rx="4" fill="#F2CFAE" transform="rotate(45 134 38)"/></g></svg>
+          <figcaption><b>社交性</b>バラバラな人間がバラバラなままで、どうにかうまくやっていく力です。</figcaption>
+        </figure>
+      </div>
       <p>「勝っても負けても、また遊ぼう」は、仲良くなろうという言葉ではありません。負かした相手とも、負かされた相手とも、もう一度同じテーブルに座れるかどうかを言っています。ボードゲームの卓では、相手の手番を待ち、相手の言い分を聞かないと、ゲームは進みません。仲良くなくても成り立つ場だからこそ、社交性が育ちます。代表の長山の言葉で言えば、「嫌いなやつがいてもいい。でも嫌いなやつの言葉もちゃんと聞こう」です。</p>
       <p>「相手をリスペクトしよう」とよく言われます。それはその通りですが、それだけでは足りない感覚があります。どんな相手にも、一生懸命やってきたことがあります。それを尊重して初めて、相手の意見を聞く構えになれます。仲良くなくても相手を認めて一緒に働けることが、ビジネスのマナーなのかもしれません。</p>
     </div>
@@ -88,113 +511,18 @@
     <div class="content-block">
       <h3>「会話」ではなく、「対話」の基礎体力を</h3>
       <p>私たちは、文脈を共有する人同士のやりとりを「会話」、文脈を共有しない相手と、それでも一緒にいるために言葉を交わすことを「対話」と分けて考えています。日本の職場は「察してもらえる」会話に慣れているぶん、部門・世代・立場の違う相手との対話が苦手です。とくに、AさんとBさんの意見から、どちらのものでもない第三の結論Cを一緒につくることを、根気強く続けるのが不得意だと言われます。</p>
+      <figure class="ws-abc">
+        <svg viewBox="0 0 320 90" aria-hidden="true"><g stroke="#12525E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="46" cy="45" r="30" fill="#CFE5E8"/><rect x="118" y="15" width="60" height="60" rx="10" fill="#F2CFAE"/><path d="M90 45 h14 M97 38 v14 M196 45 h30 M218 37 l8 8 l-8 8" fill="none"/><path d="M276 11 L308 30 V60 L276 79 L244 60 V30z" fill="#E8821E"/></g><g font-family="'Zen Maru Gothic',sans-serif" font-weight="900" font-size="30" text-anchor="middle" fill="#12525E"><text x="46" y="56">A</text><text x="148" y="56">B</text><text x="276" y="56">C</text></g></svg>
+        <figcaption>AさんとBさんの意見から、どちらのものでもない第三の結論Cを一緒につくります。</figcaption>
+      </figure>
       <p>ボードゲームには、この「Cをつくる」場面が何度も出てきます。ヒントが重なると消されてしまう協力ゲームでは、他の人と違う視点を出さないと勝てません。同じお題でも、人によって思い浮かべるものがまるで違うことが、ゲームの結果として卓の上に残ります。ずれが罰されず、発見として扱われる場で、対話の基礎体力が育ちます。</p>
       <p>私たちが居場所で毎週やっていることを、そのまま企業の現場に持ち込みます。大人も子どもも同じルールで本気で遊ぶと、上下関係や属性の壁が消えて、対等になります。研修では、その対等さを、部門と世代のあいだにつくります。</p>
     </div>
-  </div>
-</section>
-
-<!-- こんな課題 -->
-<section style="background: var(--cream);">
-  <div class="container">
-    <div class="title-wrap"><h2 class="section-title">こんな研修課題、ありませんか？</h2></div>
-
     <div class="content-block">
-      <ul class="info-list">
-        <li>座学中心の研修で、参加者の集中が続かない</li>
-        <li>ワークショップを取り入れたいが、ファシリテーターが見つからない</li>
-        <li>部門間・世代間のコミュニケーションを促進したい</li>
-        <li>若手に「協調性」と「主体性」を同時に求めてしまい、どちらも育たない</li>
-        <li>若手の論理的思考力・観察力を伸ばしたい</li>
-        <li>懇親会・社内イベントに研修要素を組み込みたい</li>
-      </ul>
-      <p style="margin-top: 24px; font-size: 16px; font-weight: 800; color: var(--orange);">→ ボードゲーム研修なら、参加者が能動的に学び、自然と対話が生まれます。</p>
+      <h3>背景にある考え方</h3>
+      <p>このワークショップは、エドワード・L・デシの自己決定理論（『人を伸ばす力』）、平田オリザの対話論（『わかりあえないことから』）、スタニスラフスキーの俳優訓練（『俳優の仕事』）をもとに組み立てています。</p>
+      <p>いずれも考え方の出典として紹介しています。効果を保証するものではありません。</p>
     </div>
-  </div>
-</section>
-
-<!-- 4つのプログラム -->
-<section>
-  <div class="container">
-    <div class="title-wrap"><h2 class="section-title">ご提供する研修プログラム</h2></div>
-    <p class="section-lead">目的に合わせて、4つのプログラムからお選びいただけます。</p>
-
-    <div class="cards-grid">
-      <div class="info-card">
-        <div class="icon">💬</div>
-        <h4>コミュニケーション研修</h4>
-        <p>文脈の違う相手と言葉を交わす「対話」の場面を、ゲームの中で何度も体験します。部門・世代を超えた関係構築に。チームビルディングや新人歓迎にも向いています。</p>
-      </div>
-      <div class="info-card">
-        <div class="icon">🏢</div>
-        <h4>組織開発研修</h4>
-        <p>戦略・経済・歴史をテーマにしたゲームで、組織の意思決定や役割分担を疑似体験。中堅・管理職向け。</p>
-      </div>
-      <div class="info-card">
-        <div class="icon">🧠</div>
-        <h4>論理的思考研修</h4>
-        <p>ルール理解・戦略構築・最適解を考えるプロセスで、論理的思考力を鍛えます。若手・新人向け。</p>
-      </div>
-      <div class="info-card">
-        <div class="icon">👁️</div>
-        <h4>観察力・会話術研修</h4>
-        <p>相手の反応を読み、伝え方を工夫するゲームで、観察力と会話術を磨きます。営業・接客向け。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- プログラム例 -->
-<section style="background: var(--cream);">
-  <div class="container">
-    <div class="title-wrap"><h2 class="section-title">プログラム例（半日コース）</h2></div>
-    <p class="section-lead">3時間の標準プログラム例</p>
-
-    <ol class="step-list">
-      <li class="step-item">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h4>オープニング・趣旨説明（0:00〜0:15）</h4>
-          <p>研修のねらいを共有し、参加者の緊張を解きます。</p>
-        </div>
-      </li>
-      <li class="step-item">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h4>ゲーム1：チームビルディング系（0:15〜1:15）</h4>
-          <p>短時間で盛り上がるゲームで、参加者同士の関係を作ります。</p>
-        </div>
-      </li>
-      <li class="step-item">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h4>振り返り（1:15〜1:30）</h4>
-          <p>ゲーム中の気づきを言語化し、シェアします。</p>
-        </div>
-      </li>
-      <li class="step-item">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h4>ゲーム2：テーマに沿ったゲーム（1:30〜2:30）</h4>
-          <p>研修テーマ（コミュニケーション/組織/論理思考/観察）に合わせたゲームを実施。</p>
-        </div>
-      </li>
-      <li class="step-item">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <h4>全体振り返り・気づきの共有（2:30〜2:50）</h4>
-          <p>当日の体験を業務にどう活かすかをディスカッション。</p>
-        </div>
-      </li>
-      <li class="step-item">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <h4>クロージング（2:50〜3:00）</h4>
-          <p>今後のアクションを各自整理して終了。</p>
-        </div>
-      </li>
-    </ol>
-    <p style="text-align:center; font-size: 13px; color: var(--brown-light); margin-top: 24px;">※ 1日コース（6時間）も対応可能です。ご相談ください。</p>
   </div>
 </section>
 
@@ -202,42 +530,30 @@
 <section>
   <div class="container">
     <div class="title-wrap"><h2 class="section-title">料金</h2></div>
-    <p class="section-lead">ご予算とご要望に合わせて、最適なプランをご提案します。</p>
 
-    <div class="price-grid">
+    <div class="price-grid ws-price">
       <div class="price-card">
-        <h4>半日コース</h4>
-        <div class="price">3万円〜<small style="font-size:14px; color:var(--brown-light);">（税抜）</small></div>
-        <p class="price-sub">3時間程度／市販ゲーム使用</p>
+        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-3h"/></svg></span>
+        <h4>3時間版</h4>
+        <div class="price">4万円<small>（税抜）</small></div>
+        <p class="price-sub">3時間</p>
         <ul>
-          <li>1テーマで集中実施</li>
-          <li>20名まで対応</li>
-          <li>振り返りシート付き</li>
-        </ul>
-      </div>
-      <div class="price-card featured">
-        <span class="price-tag">人気プラン</span>
-        <h4>1日コース</h4>
-        <div class="price">5万円〜<small style="font-size:14px; color:var(--brown-light);">（税抜）</small></div>
-        <p class="price-sub">6時間程度／市販ゲーム使用</p>
-        <ul>
-          <li>2〜3テーマを組み合わせ</li>
-          <li>40名まで対応</li>
-          <li>個別フィードバック付き</li>
+          <li>1班8人が基本です</li>
+          <li>16人（2班）までは講師1人で実施します</li>
         </ul>
       </div>
       <div class="price-card">
-        <h4>オリジナル製作プラン</h4>
-        <div class="price">応相談</div>
-        <p class="price-sub">研修専用ゲームを制作</p>
+        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-5h"/></svg></span>
+        <h4>1日版</h4>
+        <div class="price">8万円<small>（税抜）</small></div>
+        <p class="price-sub">5時間</p>
         <ul>
-          <li>研修目的に合わせた専用ゲーム制作</li>
-          <li>制作物の納品＋運営</li>
-          <li>ゲーム化事業との組み合わせ</li>
+          <li>1班8人が基本です</li>
+          <li>16人（2班）までは講師1人で実施します</li>
         </ul>
       </div>
     </div>
-    <p style="text-align:center; font-size: 13px; color: var(--brown-light); margin-top: 24px;">※ 金額は税抜表記。参加人数・テーマで変動します。<br>※ 市販のボードゲームを使った研修と、オリジナル製作プランで価格帯がすみ分けされます。詳しくは <a href="game-creation.html" style="color:var(--orange); font-weight:800;">ゲーム化事業ページ</a> をご参照ください。</p>
+    <p class="ws-note">※ 交通費については、お問い合わせの際にご案内します。<br>※ 研修専用のオリジナルゲーム制作をご希望の場合は、<a href="game-creation.html">ゲーム化事業ページ</a>をご覧ください。</p>
 
     <div class="mission-reminder">
       ご依頼で得た収益は、<strong>地域の居場所活動</strong>の運営に充てられます。<br>
@@ -247,30 +563,30 @@
 </section>
 
 <!-- FAQ -->
-<section style="background: var(--cream);">
+<section style="background: var(--yellow-light);">
   <div class="container">
     <div class="title-wrap"><h2 class="section-title">よくあるご質問</h2></div>
 
     <div class="faq-list">
       <div class="faq-item">
-        <p class="faq-q">オンラインでも研修できますか？</p>
-        <p class="faq-a">対応していません。ボードゲームを使った対話・気づきが研修の中心のため、対面での実施が必須となります。</p>
+        <p class="faq-q">演技が苦手でも参加できますか？</p>
+        <p class="faq-a">参加できます。演技やワークは、いつでもパスできます。</p>
       </div>
       <div class="faq-item">
-        <p class="faq-q">何名から開催できますか？</p>
-        <p class="faq-a">4名から開催可能です。上限は40名程度を推奨。</p>
+        <p class="faq-q">何名で実施できますか？</p>
+        <p class="faq-a">1班8人が基本です。16人（2班）までは講師1人で実施します。それ以外の人数は、お問い合わせの際にご相談ください。</p>
       </div>
       <div class="faq-item">
-        <p class="faq-q">業種に制限はありますか？</p>
-        <p class="faq-a">ありません。これまで社労士会・大企業購買部門・自治体など、様々な組織で実施しています。</p>
+        <p class="faq-q">会場はどうすればよいですか？</p>
+        <p class="faq-a">貴社・貴団体の会議室など、ご用意いただいた会場に伺います。会場手配のご相談も可能です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">オンラインでも実施できますか？</p>
+        <p class="faq-a">対応していません。同じ場所でボードゲームと演劇のワークを行うため、対面での実施が必須となります。</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">秘密保持には対応できますか？</p>
         <p class="faq-a">NDA締結可能です。お気軽にお申し付けください。</p>
-      </div>
-      <div class="faq-item">
-        <p class="faq-q">会場手配は依頼できますか？</p>
-        <p class="faq-a">貴社会議室での実施を基本としますが、会場手配のご相談も可能です。</p>
       </div>
     </div>
   </div>
@@ -279,43 +595,41 @@
 <!-- フォーム -->
 <section class="form-section" id="contact">
   <div class="container">
-    <div class="title-wrap"><h2 class="section-title">研修導入のご相談</h2></div>
+    <div class="title-wrap"><h2 class="section-title">実施のご相談</h2></div>
     <p class="section-lead">研修担当者様、お気軽にお問い合わせください。</p>
 
     <div class="form-card">
-      <h3>法人研修 お問い合わせフォーム</h3>
+      <h3>ボドツナワークショップ お問い合わせフォーム</h3>
       <p class="form-lead">1営業日以内にご返信いたします。</p>
 
       <form action="https://formsubmit.co/miracle.yan80@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="【ボドツナHP】法人研修のお問い合わせ">
+        <input type="hidden" name="_subject" value="【ボドツナHP】ボドツナワークショップのお問い合わせ">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="true">
         <input type="hidden" name="_next" value="https://bodotuna.com/thanks.html">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <div class="form-group"><label>会社名<span class="required">必須</span></label><input type="text" name="会社名" required></div>
+        <div class="form-group"><label>会社名・団体名<span class="required">必須</span></label><input type="text" name="会社名・団体名" required></div>
         <div class="form-group"><label>ご担当者名<span class="required">必須</span></label><input type="text" name="ご担当者名" required></div>
         <div class="form-group"><label>メールアドレス<span class="required">必須</span></label><input type="email" name="email" required></div>
         <div class="form-group"><label>お電話番号</label><input type="tel" name="お電話番号"></div>
-        <div class="form-group"><label>参加予定人数</label><input type="text" name="参加予定人数" placeholder="例：20名程度"></div>
-        <div class="form-group"><label>希望日・期間</label><input type="text" name="希望日・期間" placeholder="例：2026年8月中"></div>
         <div class="form-group">
-          <label>関心のあるプログラム</label>
-          <select name="関心のあるプログラム">
+          <label>ご希望の形式</label>
+          <select name="ご希望の形式">
             <option>未定</option>
-            <option>コミュニケーション研修</option>
-            <option>組織開発研修</option>
-            <option>論理的思考研修</option>
-            <option>観察力・会話術研修</option>
-            <option>オーダーメイド</option>
+            <option>3時間版</option>
+            <option>1日版（5時間）</option>
           </select>
         </div>
-        <div class="form-group"><label>研修テーマ・目的<span class="required">必須</span></label><textarea name="研修テーマ・目的" required placeholder="解決したい課題、研修で得たい成果などをお書きください"></textarea></div>
-        <div class="form-group"><label>ご予算</label><input type="text" name="ご予算" placeholder="例：10万円〜20万円"></div>
+        <div class="form-group"><label>参加予定人数</label><input type="text" name="参加予定人数" placeholder="例：8名"></div>
+        <div class="form-group"><label>希望日・期間</label><input type="text" name="希望日・期間" placeholder="例：2026年12月中"></div>
+        <div class="form-group"><label>ご相談内容<span class="required">必須</span></label><textarea name="ご相談内容" required placeholder="ご相談の背景や、チームの状況などをお書きください"></textarea></div>
         <button type="submit" class="form-submit">送信する</button>
       </form>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="footer-inner">

@@ -854,6 +854,94 @@
   .rep-card { grid-template-columns: 1fr; text-align: center; }
   .rep-photo { margin: 0 auto; }
 }
+
+/* ===== イラスト・図解（2026-10-11 追加） ===== */
+.illust-banner { max-width: 760px; margin: 0 auto 28px; border-radius: 20px; overflow: hidden; border: 2px solid var(--yellow); box-shadow: 0 6px 0 var(--yellow); background: var(--cream); }
+.illust-banner img { display: block; width: 100%; height: 200px; object-fit: cover; }
+.illust-banner.story img { object-position: center 28%; }
+.illust-banner.wide { max-width: 800px; border-color: #284B73; box-shadow: 0 6px 0 #284B73; margin-bottom: 40px; }
+.illust-banner.wide img { object-position: center 40%; }
+
+/* 2階建て図解 */
+.nikai { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; align-items: center; margin: 4px 0 22px; }
+.nikai-img { border-radius: 16px; overflow: hidden; }
+.nikai-img img { display: block; width: 100%; max-height: 300px; object-fit: contain; }
+.nikai-floors { display: flex; flex-direction: column; gap: 10px; }
+.floor { position: relative; border-radius: 14px; padding: 14px 16px 14px 64px; line-height: 1.6; }
+.floor-tag { position: absolute; left: 12px; top: 14px; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; color: white; }
+.floor b { display: block; font-size: 17px; font-weight: 900; color: var(--brown); }
+.floor .floor-what { display: block; font-size: 13px; color: var(--brown-light); margin: 2px 0 6px; }
+.floor .floor-role { display: block; font-size: 13.5px; color: var(--brown); }
+.floor .floor-game { display: block; margin-top: 8px; font-size: 12.5px; font-weight: 700; background: white; border-radius: 10px; padding: 5px 10px; color: var(--orange-deep); line-height: 1.5; }
+.floor-2 { background: #EAF2FB; border: 2px solid #9CBEE3; }
+.floor-2 .floor-tag { background: #3B6CA0; }
+.floor-1 { background: var(--yellow-light); border: 3px solid var(--yellow); }
+.floor-1 .floor-tag { background: var(--orange); }
+.floor-base { text-align: center; font-size: 13.5px; font-weight: 800; color: white; background: var(--brown); border-radius: 10px; padding: 8px 10px; }
+
+/* 「勝っても負けても」の流れ図 */
+.flow-wrap { max-width: 900px; margin: 0 auto 36px; }
+.flow-title { text-align: center; font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--brown); line-height: 1.5; margin-bottom: 20px; }
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: stretch; gap: 8px; }
+.flow-step { background: var(--cream); border: 2px solid var(--border); border-radius: 18px; padding: 14px 12px 16px; text-align: center; }
+.flow-step img { display: block; width: 100%; max-width: 150px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto 10px; border-radius: 16px; background: white; }
+.flow-num { display: inline-block; background: var(--orange); color: white; font-size: 12px; font-weight: 900; border-radius: 999px; padding: 2px 10px; margin-bottom: 6px; }
+.flow-step h4 { font-size: 16px; font-weight: 700; color: var(--brown); line-height: 1.5; margin: 0; }
+.flow-arrow { align-self: center; color: var(--orange); font-size: 26px; font-weight: 900; }
+.flow-goal { margin: 18px auto 0; max-width: 560px; text-align: center; background: var(--orange); color: white; font-weight: 900; font-size: clamp(16px, 2.2vw, 19px); border-radius: 999px; padding: 12px 20px; box-shadow: 0 5px 0 var(--orange-deep); }
+
+/* ゲームの達人 */
+.tatsujin { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 24px; align-items: center; text-align: left; }
+.tatsujin-img img { display: block; width: 100%; max-height: 200px; object-fit: cover; border-radius: 16px; }
+
+/* 3つのこと */
+.rules3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+.rule-card { background: var(--cream); border-radius: 16px; padding: 16px 14px 18px; text-align: center; border: 2px solid var(--border); }
+.rule-card img { display: block; width: 100%; max-width: 160px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto 10px; border-radius: 16px; background: white; }
+.rule-card h4 { font-size: 17px; font-weight: 700; color: var(--orange-deep); margin: 0 0 8px; }
+.rule-card p { font-size: 14px; line-height: 1.8; color: var(--brown); margin: 0; text-align: left; }
+
+@media (max-width: 768px) {
+  .nikai { grid-template-columns: 1fr; }
+  .nikai-img img { max-height: 220px; }
+  .flow { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .flow-arrow { display: none; }
+  .flow-step img { max-width: 110px; }
+  .flow-step h4 { font-size: 14px; }
+  .tatsujin { grid-template-columns: 1fr; text-align: center; }
+  .tatsujin-img img { max-height: 180px; }
+  .rules3 { grid-template-columns: 1fr; }
+  .rule-card { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: center; text-align: left; }
+  .rule-card img { max-width: 96px; margin: 0; }
+  .rule-card h4 { margin-bottom: 4px; }
+  .illust-banner img { height: 160px; }
+}
+
+/* 社交性の図 */
+.shakou { max-width: 800px; margin: 36px auto 0; background: var(--cream); border: 3px solid var(--border); border-radius: 24px; padding: 28px clamp(16px, 4vw, 32px); }
+.shakou h3 { text-align: center; font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--brown); line-height: 1.5; margin: 0 0 8px; }
+.shakou .shakou-lead { text-align: center; font-size: 15px; color: var(--brown); line-height: 1.8; margin: 0 0 20px; }
+.shakou-frame { position: relative; border: 2px dashed #0F6E56; border-radius: 18px; padding: 34px 16px 18px; background: white; }
+.shakou-frame-label { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #0F6E56; color: white; font-size: 13.5px; font-weight: 800; border-radius: 999px; padding: 4px 16px; white-space: nowrap; }
+.shakou-pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 10px; align-items: center; }
+.shakou-card { border-radius: 16px; padding: 14px 12px 16px; text-align: center; }
+.shakou-card img { display: block; width: 100%; max-width: 170px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto 8px; border-radius: 12px; background: white; }
+.shakou-card h4 { font-size: 17px; font-weight: 700; margin: 0 0 4px; }
+.shakou-card p { font-size: 13.5px; line-height: 1.7; margin: 0; }
+.shakou-card.kyocho { background: #F1EFE8; border: 2px solid #B4B2A9; }
+.shakou-card.kyocho h4, .shakou-card.kyocho p { color: #444441; }
+.shakou-card.shako { background: #E1F5EE; border: 3px solid #0F6E56; }
+.shakou-card.shako h4 { color: #085041; }
+.shakou-card.shako p { color: #0F5A47; }
+.shakou-arrow { text-align: center; color: #0F6E56; font-weight: 900; font-size: 13px; line-height: 1.3; }
+.shakou-arrow span { display: block; font-size: 28px; }
+.shakou-body { font-size: 15px; line-height: 1.9; color: var(--brown); margin: 18px 0 0; }
+@media (max-width: 640px) {
+  .shakou-pair { grid-template-columns: 1fr; }
+  .shakou-arrow span { transform: rotate(90deg); }
+  .shakou-card { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: center; text-align: left; }
+  .shakou-card img { max-width: 96px; margin: 0; }
+}
 </style>
 </head>
 <body>
@@ -902,6 +990,7 @@
   <div class="container">
     <div class="title-wrap"><h2 class="section-title">なぜ、この活動が必要なのか</h2></div>
     <p class="section-lead">頼れる人が、近くにいない時代に。<br>ボドツナは「気軽に集まれる場所。集まっても気楽な場所」をつくっています。</p>
+    <div class="illust-banner story"><img src="images/bodotuna-illust-story.jpg" alt="アパートの廊下で、赤ちゃんを抱いたお母さんに隣人が声をかけるイラスト" loading="lazy"></div>
     <div class="story-block">
       <p class="lead">ある日、隣の部屋から、毎晩聞こえる赤ちゃんの泣き声。</p>
       <p>翌朝、目にクマを作ってあやしているお母さんに「大丈夫ですか」と声をかけました。夜、玄関先で煙草を吸っていた旦那さんに同じことを尋ねると、拍子抜けするほど軽く「だいじょうぶっしょ〜」と笑いました。</p>
@@ -915,6 +1004,26 @@
     <!-- 体験の前に、つながりを（2026-10-09 追加） -->
     <div id="tsunagari" style="max-width: 760px; margin: 36px auto 0; background: white; border-radius: 20px; padding: 28px 32px; box-shadow: 0 6px 0 rgba(0,0,0,0.06);">
       <h3 style="font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--orange); line-height: 1.5; margin: 0 0 16px; text-align: center;">体験の前に、つながりを</h3>
+      <div class="nikai">
+        <div class="nikai-img"><img src="images/bodotuna-illust-2kai.jpg" alt="2階建ての家の断面図。1階では家族と近所の大人がボードゲームで遊び、2階では子どもが地球儀や電車や城に興味を持っている" loading="lazy"></div>
+        <div class="nikai-floors">
+          <div class="floor floor-2">
+            <span class="floor-tag">2階</span>
+            <b>体験</b>
+            <span class="floor-what">旅行・習い事・文化や自然の体験など</span>
+            <span class="floor-role">学んでみようという意欲のきっかけになります。</span>
+            <span class="floor-game">🎲 ゲームの舞台が、興味の入り口になります</span>
+          </div>
+          <div class="floor floor-1">
+            <span class="floor-tag">1階</span>
+            <b>つながり</b>
+            <span class="floor-what">家族の団らん・親以外の大人に気軽に会えること</span>
+            <span class="floor-role">生きる活力や、苦しいときに抜け出す気力の土台になります。</span>
+            <span class="floor-game">🎲 一緒に遊ぶことが、つながりをつくります</span>
+          </div>
+          <div class="floor-base">1階の土台があってこそ、2階の体験が生きてきます</div>
+        </div>
+      </div>
       <p style="font-size: 15px; line-height: 1.9; color: var(--brown); margin: 0 0 12px;">子どもたちの「体験格差」が話題になっています。旅行や習い事などの体験は、何かを学んでみようという意欲のきっかけになります。</p>
       <p style="font-size: 15px; line-height: 1.9; color: var(--brown); margin: 0 0 12px;">ただ、体験が生きるためには、その前に土台が必要だと私たちは考えています。家族で団らんする時間や、親以外の大人に気軽に会えることです。こうしたつながりが、生きる活力や、苦しいときに抜け出す気力の土台になります。</p>
       <p style="font-size: 15px; line-height: 1.9; color: var(--brown); margin: 0;">生活が苦しく、家族の団らんの時間がとれない家庭があります。ボドツナは、家族で一緒に遊べるゲームを紹介し、地域に親以外の大人と遊べる場所をつくることで、このつながりの土台をつくります。</p>
@@ -931,6 +1040,8 @@
       少しずつ崩れています。
     </div>
 
+    <div class="illust-banner wide"><img src="images/bodotuna-illust-isolation.jpg" alt="夕暮れの集合住宅。窓ごとに、赤ちゃんを抱く母親や一人の子ども、高齢者がそれぞれ孤立して過ごしている" loading="lazy"></div>
+
     <div class="why-grid" style="grid-template-columns: minmax(0, 760px); justify-content: center;">
       <div class="why-card">
         <h3>地域社会が壊れ、子育てが孤立している</h3>
@@ -946,6 +1057,20 @@
       </div>
     </div>
 
+    <div class="flow-wrap">
+      <div class="flow-title">遊びの場から、思いやりが育つまで</div>
+      <div class="flow">
+        <div class="flow-step"><img src="images/bodotuna-illust-flow1.jpg" alt="大人と子どもが同じ目線でボードゲームに向き合うイラスト" loading="lazy"><span class="flow-num">1</span><h4>同じルールで、大人と子どもが本気で遊びます</h4></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-step"><img src="images/bodotuna-illust-flow2.jpg" alt="自信のある表情でカードを持つ子どものイラスト" loading="lazy"><span class="flow-num">2</span><h4>「ここにいていい」「自分にもできる」が届きます</h4></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-step"><img src="images/bodotuna-illust-flow3.jpg" alt="世代の違う人たちがテーブルを囲んで笑うイラスト" loading="lazy"><span class="flow-num">3</span><h4>人とのつながりが生まれます</h4></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-step"><img src="images/bodotuna-illust-flow4.jpg" alt="負けた子に声をかけ、初めての子に順番を譲る子どもたちのイラスト" loading="lazy"><span class="flow-num">4</span><h4>「誰かのために」が自然に育ちます</h4></div>
+      </div>
+      <div class="flow-goal">だから合言葉は「勝っても負けても、また遊ぼう」です</div>
+    </div>
+
     <div class="why-conclusion" style="text-align: left; max-width: 760px; margin-left: auto; margin-right: auto;">
       ボードゲームは、ただの遊びです。何かを身につけさせるための道具ではありません。<br>
       ただ、同じルールで大人と子どもが本気で遊ぶと、<span class="em">「自分はここにいていい」「自分にもできる」</span>という感覚が、説明なしで届きます。<br><br>
@@ -955,6 +1080,21 @@
       その土台をつくることが、居場所づくりでいちばん大事なことだと、私たちは考えています。<br><br>
       だから、私たちの合言葉は<span class="em">「勝っても負けても、また遊ぼう」</span>です。<br>
       負かした相手とも、負かされた相手とも、もう一度同じテーブルに座れます。そこから、居場所が始まります。
+    </div>
+
+    <!-- 社交性の図（2026-10-11 追加） -->
+    <div class="shakou">
+      <h3>仲良くならなくても、同じテーブルに座れます</h3>
+      <p class="shakou-lead">「勝っても負けても、また遊ぼう」は、仲良くなろうという言葉ではありません。</p>
+      <div class="shakou-frame">
+        <span class="shakou-frame-label">社会性：社会の中で、他者と生きる力</span>
+        <div class="shakou-pair">
+          <div class="shakou-card kyocho"><img src="images/bodotuna-illust-kyocho.jpg" alt="同じ服の子どもたちが、同じ表情で手をつないで並ぶイラスト" loading="lazy"><div><h4>協調性</h4><p>同じ心に合わせる力です。<br>「みんな仲良く」を前提にしています。</p></div></div>
+          <div class="shakou-arrow" aria-hidden="true"><span>→</span>重心を<br>移す</div>
+          <div class="shakou-card shako"><img src="images/bodotuna-illust-shakou.jpg" alt="服装も年齢も違う人たちが、一つのテーブルでボードゲームをするイラスト" loading="lazy"><div><h4>社交性</h4><p>違ったまま、一緒にやっていく力です。<br>嫌いな相手の声も聞きます。</p></div></div>
+        </div>
+      </div>
+      <p class="shakou-body">ボードゲームの卓では、相手の手番を待ち、相手の言い分を聞かないと、ゲームは進みません。仲良くなくても成り立つ場だからこそ、社交性が育ちます。代表の長山の言葉で言えば、「嫌いなやつがいてもいい。でも嫌いなやつの言葉もちゃんと聞こう」です。</p>
     </div>
   </div>
 </section>
@@ -985,17 +1125,24 @@
     </div>
 
     <div style="max-width: 760px; margin: 36px auto 0; background: white; border-radius: 20px; padding: 28px 32px; box-shadow: 0 6px 0 rgba(0,0,0,0.06); text-align: center;">
-      <h3 style="font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--orange); line-height: 1.5; margin: 0 0 12px;">ボドツナの考える「ゲームの達人」</h3>
+      <h3 style="font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--orange); line-height: 1.5; margin: 0 0 16px;">ボドツナの考える「ゲームの達人」</h3>
+      <div class="tatsujin">
+      <div class="tatsujin-img"><img src="images/bodotuna-illust-tatsujin.jpg" alt="ボードゲームで勝って喜ぶ女の子と、本気で悔しがる大人のイラスト" loading="lazy"></div>
+      <div>
       <p style="font-size: clamp(16px, 2vw, 18px); font-weight: 700; color: var(--brown); line-height: 1.7; margin-bottom: 12px;">子どもと対等に戦って、同じくらい勝ち負けになる大人です。</p>
-      <p style="font-size: 14px; line-height: 1.9; color: var(--brown-light); margin: 0;">大人は手加減をしません。子どもはすぐに見抜いてしまい、対等さが崩れるからです。本気でやって負けたときは、「負けた、次やろう」で済ませます。うますぎないことが、対等さと、ちょうどいい手応えを同時につくります。</p>
+      <p style="font-size: 14px; line-height: 1.9; color: var(--brown-light); margin: 0;">大人は手加減をしません。子どもはすぐに見抜いてしまい、対等さが崩れるからです。どうしても大人が勝ってしまうときは、ハンデを子どもと一緒に決めて戦います。本気でやって負けたときは、「負けた、次やろう」で済ませます。うますぎないことが、対等さと、ちょうどいい手応えを同時につくります。</p>
+      </div>
+      </div>
     </div>
 
     <!-- ボドツナの大人が大切にしている3つのこと（2026-10-09 追加） -->
-    <div style="max-width: 760px; margin: 24px auto 0; background: white; border-radius: 20px; padding: 28px 32px; box-shadow: 0 6px 0 rgba(0,0,0,0.06);">
+    <div style="max-width: 900px; margin: 24px auto 0; background: white; border-radius: 20px; padding: 28px clamp(18px, 4vw, 32px); box-shadow: 0 6px 0 rgba(0,0,0,0.06);">
       <h3 style="font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--orange); line-height: 1.5; margin: 0 0 16px; text-align: center; word-break: keep-all;">ボドツナの大人が<wbr>大切にしている<wbr>3つのこと</h3>
-      <p style="font-size: 15px; line-height: 1.9; color: var(--brown); margin: 0 0 12px;"><strong>統制しない</strong>：ボードゲームにはルールがあります。だからこそ、大人がルールで子どもを動かさないように気をつけています。</p>
-      <p style="font-size: 15px; line-height: 1.9; color: var(--brown); margin: 0 0 12px;"><strong>教えない</strong>：ゲームを使って何かを教え込むことはしません。正しい遊び方を押しつけると、その場は子どもにとって居場所でなくなってしまうからです。</p>
-      <p style="font-size: 15px; line-height: 1.9; color: var(--brown); margin: 0 0 12px;"><strong>一緒に考える</strong>：子どもが感じた疑問を広げます。大人が知らないことは「一緒に考えてみよう」と返します。</p>
+      <div class="rules3">
+        <div class="rule-card"><img src="images/bodotuna-illust-rule1.jpg" alt="大人がくつろいで、子どもたちが自由に遊ぶ様子を見守るイラスト" loading="lazy"><div><h4>統制しない</h4><p>ボードゲームにはルールがあります。だからこそ、大人がルールで子どもを動かさないように気をつけています。</p></div></div>
+        <div class="rule-card"><img src="images/bodotuna-illust-rule2.jpg" alt="子どもが自分の考えを話し、大人がうなずいて聞くイラスト" loading="lazy"><div><h4>教えない</h4><p>ゲームを使って何かを教え込むことはしません。正しい遊び方を押しつけると、その場は子どもにとって居場所でなくなってしまうからです。</p></div></div>
+        <div class="rule-card"><img src="images/bodotuna-illust-rule3.jpg" alt="大人と子どもが並んで、お城や電車や街を思い浮かべるイラスト" loading="lazy"><div><h4>一緒に考える</h4><p>子どもが感じた疑問を広げます。大人が知らないことは「一緒に考えてみよう」と返します。</p></div></div>
+      </div>
       <p style="font-size: 15px; line-height: 1.9; color: var(--brown); margin: 0;">ゲームの舞台になっている中世ヨーロッパや鉄道、街づくりに子どもが興味を持ったとき、その興味を一緒に広げるのが私たちの役割です。</p>
     </div>
   </div>

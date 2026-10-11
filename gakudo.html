@@ -9,6 +9,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ===== イラスト（2026-10-11 追加） ===== */
+.pg-banner { max-width: 760px; margin: 0 auto 28px; border-radius: 20px; overflow: hidden; border: 3px solid var(--yellow); box-shadow: 0 6px 0 var(--yellow-light); }
+.pg-banner img { display: block; width: 100%; height: 210px; object-fit: cover; }
+.pg-contain { margin: 18px 0; text-align: center; }
+.pg-contain img { display: inline-block; width: 100%; max-width: 420px; max-height: 260px; object-fit: contain; border-radius: 16px; }
+.pg-times { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.pg-time { background: var(--cream); border: 2px solid var(--border); border-radius: 16px; padding: 12px 10px 14px; text-align: center; }
+.pg-time img { display: block; width: 100%; max-width: 130px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto 8px; background: white; border-radius: 12px; }
+.pg-time p { font-size: 14px; line-height: 1.6; color: var(--brown); margin: 0; font-weight: 700; }
+.info-card .icon.pg-icon { width: 120px; height: 120px; background: white; border-radius: 16px; padding: 0; overflow: hidden; }
+.info-card .icon.pg-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+@media (max-width: 768px) {
+  .pg-times { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pg-banner img { height: 170px; }
+  .pg-time img { max-width: 110px; }
+}
+</style>
 </head>
 <body>
 
@@ -54,16 +72,17 @@
       <h3>地域の居場所活動から、学童イベントが生まれました</h3>
       <p>私たちは藤沢市内で、地域の親子・不登校の子どもたち・高齢者まで、誰もが立ち寄れる居場所を運営してきました。活動を続けるなかで、『子どもたちが学校以外で安心して過ごせる時間』の大切さを実感しています。</p>
       <p>学童保育は、子どもたちが多くの時間を過ごす『放課後の居場所』です。そこにボードゲームという遊びを持ち込むことで、以下のような時間を子どもたちに届けることができます。</p>
-      <ul class="info-list" style="margin-top: 16px;">
-        <li>異年齢の子どもたちが、同じテーブルで一緒に遊べる時間</li>
-        <li>30〜50タイトルの中から、自分で選んで遊べる時間</li>
-        <li>大人と同じルールで、本気で勝ち負けをする時間</li>
-        <li>初めての子にルールを教えたり、順番を譲ったりが自然に生まれる時間</li>
-      </ul>
+      <div class="pg-times">
+        <div class="pg-time"><img src="images/bodotuna-illust-igakunen.jpg" alt="学年の違う子どもたちが同じテーブルでボードゲームをするイラスト" loading="lazy"><p>異年齢の子どもたちが、同じテーブルで一緒に遊べる時間</p></div>
+        <div class="pg-time"><img src="images/bodotuna-illust-erabu.jpg" alt="たくさんのボードゲームの箱から、子どもが自分で選ぶイラスト" loading="lazy"><p>30〜50タイトルの中から、自分で選んで遊べる時間</p></div>
+        <div class="pg-time"><img src="images/bodotuna-illust-flow1.jpg" alt="大人と子どもが同じ目線でボードゲームに向き合うイラスト" loading="lazy"><p>大人と同じルールで、本気で勝ち負けをする時間</p></div>
+        <div class="pg-time"><img src="images/bodotuna-illust-flow4.jpg" alt="負けた子に声をかけ、初めての子に順番を譲る子どもたちのイラスト" loading="lazy"><p>初めての子にルールを教えたり、順番を譲ったりが自然に生まれる時間</p></div>
+      </div>
     </div>
 
     <div class="content-block">
       <h3>新1年生急増の現場では、体育館ハイブリッド型も</h3>
+      <div class="case-image"><img src="images/bodotuna-illust-taiikukan.jpg" alt="体育館で、ボードゲームのテーブルと大きなボールで遊ぶ子どもたちのイラスト" loading="lazy" style="object-position: center 50%;"></div>
       <p>2025年5月時点で全国の学童登録児童数は<strong style="color: var(--orange);">1,568,588人</strong>と過去最多になりました。1年生の<strong style="color: var(--orange);">98%</strong>が登録する施設もあり、「部屋に入りきれない」という現場の声が増えています。</p>
       <p>そんな現場では、教室での開催が難しい場合があります。私たちは体育館を活用した「ボードゲーム＋身体遊び（ジャイアントサッカーボール等）」のハイブリッド型イベントもご提案できます。</p>
     </div>

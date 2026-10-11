@@ -598,6 +598,32 @@ footer {
   .plan-card:last-child { border-bottom: none; }
 }
 </style>
+<style>
+/* ===== イラスト（2026-10-11 追加） ===== */
+.sp-banner { max-width: 820px; margin: 0 auto 32px; overflow: hidden; border-bottom: 4px solid var(--gold); box-shadow: 0 4px 24px rgba(20, 37, 61, 0.08); }
+.sp-banner img { display: block; width: 100%; height: 220px; object-fit: cover; }
+.sp-illust { margin: 4px 0 22px; overflow: hidden; background: var(--paper); }
+.sp-illust img { display: block; width: 100%; height: 230px; object-fit: cover; }
+.sp-illust.contain img { object-fit: contain; height: auto; max-height: 300px; }
+.sp-pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 4px 0 22px; }
+.sp-pair figure { margin: 0; background: var(--paper); padding: 12px; text-align: center; }
+.sp-pair img { display: block; width: 100%; max-width: 160px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto 8px; background: white; }
+.sp-pair figcaption { font-size: 13.5px; line-height: 1.6; color: var(--ink-light); }
+.sp-pair figcaption b { display: block; font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--navy); }
+.sp-pair .sp-arrow { color: var(--gold); font-weight: 900; font-size: 26px; text-align: center; }
+.sp-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 4px 0 22px; }
+.sp-three figure { margin: 0; background: var(--paper); padding: 12px 10px; text-align: center; }
+.sp-three img { display: block; width: 100%; max-width: 130px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto 8px; background: white; }
+.sp-three figcaption { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.5; }
+.cb-item .sp-cb-img { display: block; width: 100%; height: 160px; object-fit: cover; margin: 0 0 14px; }
+@media (max-width: 640px) {
+  .sp-banner img, .sp-illust img { height: 170px; }
+  .sp-pair { grid-template-columns: 1fr 1fr; }
+  .sp-pair .sp-arrow { display: none; }
+  .sp-three img { max-width: 90px; }
+  .sp-three figcaption { font-size: 12.5px; }
+}
+</style>
 </head>
 <body>
 
@@ -637,6 +663,7 @@ footer {
     <span class="section-eyebrow">SOCIAL ISSUE</span>
     <h2 class="section-title">いま、地域社会で<br>起きていること</h2>
     <div class="section-divider"></div>
+    <div class="sp-banner"><img src="images/bodotuna-illust-isolation.jpg" alt="夕暮れの集合住宅。窓ごとに、赤ちゃんを抱く母親や一人の子ども、高齢者がそれぞれ孤立して過ごしている" loading="lazy" style="object-position: center 40%;"></div>
 
     <div class="crisis-block">
 
@@ -675,6 +702,11 @@ footer {
 
       <div class="crisis-card">
         <h3>「みんな仲良く」ではなく、「バラバラのまま、うまくやる」</h3>
+        <div class="sp-pair">
+          <figure><img src="images/bodotuna-illust-kyocho.jpg" alt="同じ服の子どもたちが、同じ表情で手をつないで並ぶイラスト" loading="lazy"><figcaption><b>協調性</b>同じ心に合わせる力です。</figcaption></figure>
+          <div class="sp-arrow" aria-hidden="true">→</div>
+          <figure><img src="images/bodotuna-illust-shakou.jpg" alt="服装も年齢も違う人たちが、一つのテーブルでボードゲームをするイラスト" loading="lazy"><figcaption><b>社交性</b>違ったまま、一緒にやっていく力です。</figcaption></figure>
+        </div>
         <p>学校や学童では、「みんな仲良く」と教わります。同じ気持ちを持つことを前提にした力を、協調性と呼びます。けれど、同じ気持ちを求められる場では、違う子は黙るか、無理に合わせるか、出ていくしかありません。</p>
         <p>私たちは、これからの子どもに必要なのは協調性ではなく社交性だと考えています。社交性とは、バラバラな人間がバラバラなままで、どうにかうまくやっていく力です。表面上仲良くすることではなく、考え方の違う相手の言葉も、ちゃんと聞けるかどうかです。</p>
         <p>「勝っても負けても、また遊ぼう」は、仲良くなろうという言葉ではありません。負かした相手とも、負かされた相手とも、もう一度同じテーブルに座れるかどうかを言っています。ボードゲームの卓では、好きではない子と同席することが普通に起きます。それでも相手の手番を待ち、相手の言い分を聞かないと、ゲームは進みません。仲良くなくても成り立つ場だからこそ、社交性が育ちます。</p>
@@ -684,12 +716,18 @@ footer {
       <div class="crisis-card">
         <h3>ボードゲームは、能力向上の手段ではありません</h3>
         <p>私たちは、ボードゲームで何かの能力を伸ばすことを目的にしていません。ゲームを成果のための道具にした瞬間、子どもは「できたかどうか」で見られる相手になり、そこは居場所ではなくなるからです。</p>
+        <div class="sp-three">
+          <figure><img src="images/bodotuna-illust-erabu.jpg" alt="たくさんのボードゲームの箱から、子どもが自分で選ぶイラスト" loading="lazy"><figcaption>自分で選んでいる感覚</figcaption></figure>
+          <figure><img src="images/bodotuna-illust-flow2.jpg" alt="自信のある表情でカードを持つ子どものイラスト" loading="lazy"><figcaption>うまくできた感覚</figcaption></figure>
+          <figure><img src="images/bodotuna-illust-flow3.jpg" alt="世代の違う人たちがテーブルを囲んで笑うイラスト" loading="lazy"><figcaption>つながっている感覚</figcaption></figure>
+        </div>
         <p>アメリカの心理学者デシとライアンの自己決定理論では、人には「自分で選んでいる感覚」「うまくできた感覚」「つながっている感覚」という3つの基本的な欲求があり、この3つが満たされる場所で、人は自分から動き出すとされています。ボードゲームの卓は、30〜50タイトルから自分で選び、大人と同じルールで本気で勝ち負けをし、勝っても負けても関係が変わらない場所です。3つの感覚が、説明なしで届きます。</p>
         <p>だから大人は手加減をしません。ボドツナの考える「ゲームの達人」は、子どもと対等に戦って、同じくらい勝ち負けになる大人です。</p>
       </div>
 
       <div class="crisis-card">
         <h3>なぜ居場所は無料なのか。なぜ企業にお願いするのか</h3>
+        <div class="sp-illust contain"><img src="images/bodotuna-illust-sasaeru.jpg" alt="ボードゲームで遊ぶ親子の舞台を、企業の人たちが下から支えるイラスト" loading="lazy" style="object-position: center 50%;"></div>
         <p>居場所の費用は、子どもと保護者以外から調達する。これが私たちの原則です。</p>
         <p>お金を払って得る大人との関係は、最初から「交換」の枠に入ります。払った側は見返りを求め、運営側は払った側を満足させるために成果を見せたくなります。その圧力は、必ず子どもに流れます。家庭の中で条件なしの関係が薄い子ほど、家庭の外に条件なしの大人を必要としていて、その子ほど有料の場には届きません。</p>
         <p>だから居場所は無料にし、費用は企業向けのゲーム制作・研修と、企業パートナーの皆さまのご支援でまかないます。子どもと保護者には、お金の流れを一切見せません。ご支援の見返りとしてのメリットを前面に出さないのも、同じ理由からです。「この場所を続けてほしい」という気持ちで支えられている場所だけが、子どもの側に圧力を流さずにいられます。</p>
@@ -809,6 +847,7 @@ footer {
       <div class="cb-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 820px; margin-left: auto; margin-right: auto;">
         <div class="cb-item">
           <span class="cb-num">01</span>
+          <img class="sp-cb-img" src="images/bodotuna-illust-volunteer.jpg" alt="社員の方が、子どもたちと同じテーブルで本気でボードゲームをするイラスト" loading="lazy">
           <h4>社員ボランティア研修の受け入れ</h4>
           <p>「1日居場所スタッフ体験」として、社員の皆さまのボランティア参加を受け入れます。社員の皆さまが、一人のプレイヤーとして子どもたちと同じテーブルに座り、本気で勝ち負けをする時間です。</p>
         </div>

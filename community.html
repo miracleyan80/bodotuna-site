@@ -9,6 +9,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ===== イラスト（2026-10-11 追加） ===== */
+.pg-banner { max-width: 760px; margin: 0 auto 28px; border-radius: 20px; overflow: hidden; border: 3px solid var(--yellow); box-shadow: 0 6px 0 var(--yellow-light); }
+.pg-banner img { display: block; width: 100%; height: 210px; object-fit: cover; }
+.pg-contain { margin: 18px 0; text-align: center; }
+.pg-contain img { display: inline-block; width: 100%; max-width: 420px; max-height: 260px; object-fit: contain; border-radius: 16px; }
+.pg-times { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.pg-time { background: var(--cream); border: 2px solid var(--border); border-radius: 16px; padding: 12px 10px 14px; text-align: center; }
+.pg-time img { display: block; width: 100%; max-width: 130px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto 8px; background: white; border-radius: 12px; }
+.pg-time p { font-size: 14px; line-height: 1.6; color: var(--brown); margin: 0; font-weight: 700; }
+.info-card .icon.pg-icon { width: 120px; height: 120px; background: white; border-radius: 16px; padding: 0; overflow: hidden; }
+.info-card .icon.pg-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+@media (max-width: 768px) {
+  .pg-times { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pg-banner img { height: 170px; }
+  .pg-time img { max-width: 110px; }
+}
+</style>
 </head>
 <body>
 
@@ -50,6 +68,7 @@
   <div class="container">
     <div class="title-wrap"><h2 class="section-title">設立の趣旨</h2></div>
     <p class="section-lead">頼れる人が、近くにいない時代に。</p>
+    <div class="pg-banner"><img src="images/bodotuna-illust-story.jpg" alt="アパートの廊下で、赤ちゃんを抱いたお母さんに隣人が声をかけるイラスト" loading="lazy" style="object-position: center 28%;"></div>
 
     <div class="content-block">
       <h3>ある日、隣の部屋から、毎晩聞こえる赤ちゃんの泣き声。</h3>
@@ -100,6 +119,7 @@
     </div>
 
     <div class="content-block">
+      <div class="case-image"><img src="images/bodotuna-illust-anzen.jpg" alt="扉の開いた部屋で、親子や若者、高齢者がそれぞれ思い思いに過ごし、ボードゲームで遊ぶイラスト" loading="lazy" style="object-position: center 45%;"></div>
       <p>ボドツナの目的は、ボードゲームを使ったイベントを通じて、以下のような困りごとを抱える方々が頼れる<strong>『安全基地』を創造すること</strong>です。</p>
       <ul class="info-list" style="margin-top: 20px;">
         <li>子育て・育児・引きこもり等の家庭問題</li>
@@ -115,6 +135,7 @@
       <h3>居場所のイベントは、参加無料です</h3>
       <p>居場所に来て、何かを返してもらうことは求めていません。今すぐにでも、何年か先でも、一生のうちに一度も返さなくていいのです。</p>
       <p>もしいつか、ここで受け取ったものを返したいと思う日が来たら、私たちにではなく、その時あなたの目の前にいる誰かに返してください。私たちはそうやって、次の人に送られていくつながりが、地域に増えていけばいいと思っています。</p>
+      <div class="case-image"><img src="images/bodotuna-illust-onkuri.jpg" alt="道に沿って、人から人へ小さなハートのコマが次々に手渡されていくイラスト" loading="lazy" style="object-position: center 55%;"></div>
       <p>家族やみんなで一緒に遊べるゲームが見つかったら、それが一番うれしいことです。</p>
       <p>みんなで遊んだことを覚えていてくれたら、それが一番うれしいことです。</p>
     </div>

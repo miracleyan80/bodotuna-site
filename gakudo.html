@@ -27,6 +27,29 @@
   .pg-time img { max-width: 110px; }
 }
 </style>
+<style>
+/* ===== 流れのイラストカード（2026-10-11 追加） ===== */
+.pg-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; padding-top: 10px; }
+.pg-steps .step-item { position: relative; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 12px 16px; background: white; border: 3px solid var(--yellow); border-radius: 22px; box-shadow: 0 6px 0 var(--yellow-light); text-align: center; }
+.pg-steps .step-item:last-child { border-bottom: 3px solid var(--yellow); }
+.pg-steps .step-item:nth-child(even) { transform: rotate(1.2deg); }
+.pg-steps .step-item:nth-child(odd) { transform: rotate(-1.2deg); }
+.pg-steps .step-item:not(:last-child)::after { content: ''; position: absolute; right: -16px; top: 42%; width: 0; height: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 12px solid var(--orange); z-index: 2; }
+.pg-steps .step-number { position: absolute; top: -14px; left: -10px; width: 42px; height: 42px; font-size: 19px; box-shadow: 0 3px 0 var(--orange-deep); z-index: 3; }
+.pg-steps .pg-step-img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: contain; border-radius: 16px; background: white; margin: 0 0 8px; }
+.pg-steps .step-content h4 { font-size: 15px; line-height: 1.5; margin-bottom: 6px; }
+.pg-steps .step-content p { font-size: 13px; line-height: 1.75; text-align: left; }
+.pg-steps.pg-apply .step-item { border-color: #9CD3C5; box-shadow: 0 6px 0 #DDF1EC; }
+.pg-steps.pg-apply .step-number { background: #2E9C86; box-shadow: 0 3px 0 #1F6E5E; }
+.pg-steps.pg-apply .step-item:not(:last-child)::after { border-left-color: #2E9C86; }
+@media (max-width: 900px) {
+  .pg-steps { grid-template-columns: 1fr; gap: 16px; max-width: 520px; margin: 0 auto; }
+  .pg-steps .step-item { flex-direction: row; align-items: center; gap: 14px; text-align: left; transform: none !important; }
+  .pg-steps .pg-step-img { width: 120px; flex-shrink: 0; margin: 0; }
+  .pg-steps .step-item:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -15px; border-left: 9px solid transparent; border-right: 9px solid transparent; border-top: 12px solid var(--orange); border-bottom: 0; transform: translateX(-50%); }
+  .pg-steps.pg-apply .step-item:not(:last-child)::after { border-left-color: transparent; border-top-color: #2E9C86; }
+}
+</style>
 </head>
 <body>
 
@@ -245,9 +268,10 @@
   <div class="container">
     <div class="title-wrap"><h2 class="section-title">当日の流れ</h2></div>
 
-    <ol class="step-list">
+    <ol class="step-list pg-steps">
       <li class="step-item">
         <div class="step-number">1</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-day1.jpg" alt="ボードゲームの箱を机に並べる長山と、ドアからのぞいてワクワクする子どもたちのイラスト" loading="lazy">
         <div class="step-content">
           <h4>開始15分前：到着・セッティング</h4>
           <p>持参したボードゲームを並べ、子どもたちが選びやすい状態を作ります。</p>
@@ -255,6 +279,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">2</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-day2.jpg" alt="ゲームの箱を掲げて紹介する長山と、身を乗り出す子どもたちのイラスト" loading="lazy">
         <div class="step-content">
           <h4>開始：自己紹介・ルール説明</h4>
           <p>長山が自己紹介し、当日遊ぶゲームの説明と進行方法を伝えます。</p>
@@ -262,6 +287,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">3</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-day3.jpg" alt="いくつものテーブルで子どもたちが盛り上がり、長山がテーブルを回るイラスト" loading="lazy">
         <div class="step-content">
           <h4>ゲームタイム</h4>
           <p>年齢・興味に合わせてゲームをローテーション。長山が複数のテーブルを巡回し、ルール補助・進行サポートを行います。</p>
@@ -269,6 +295,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">4</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-day4.jpg" alt="輪になって、気に入ったゲームや面白かった瞬間を話す子どもたちのイラスト" loading="lazy">
         <div class="step-content">
           <h4>終了10分前：振り返り</h4>
           <p>「気に入ったゲーム」「面白かった瞬間」を子どもたちと共有します。</p>
@@ -276,6 +303,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">5</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-day5.jpg" alt="ゲームをバッグにしまって手を振る長山と、手を振り返す子どもたちのイラスト" loading="lazy">
         <div class="step-content">
           <h4>終了後：片付け・撤収</h4>
           <p>全てのボードゲームを当方で片付け・持ち帰ります。施設の負担は最小限です。</p>
@@ -290,9 +318,10 @@
   <div class="container">
     <div class="title-wrap"><h2 class="section-title">お申込みの流れ</h2></div>
 
-    <ol class="step-list">
+    <ol class="step-list pg-steps pg-apply">
       <li class="step-item">
         <div class="step-number">1</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-apply1.jpg" alt="学童の職員さんがパソコンからお問い合わせを送るイラスト" loading="lazy">
         <div class="step-content">
           <h4>お問い合わせ（無料）</h4>
           <p>フォームより、ご希望日・人数・予算感をお知らせください。</p>
@@ -300,6 +329,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">2</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-apply2.jpg" alt="職員さんと長山が電話で日程を相談するイラスト" loading="lazy">
         <div class="step-content">
           <h4>日程・内容のご相談</h4>
           <p>メールまたはお電話で、当日の進行・必要なものを擦り合わせます。</p>
@@ -307,6 +337,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">3</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-apply3.jpg" alt="職員さんと長山が握手して開催が決まるイラスト" loading="lazy">
         <div class="step-content">
           <h4>開催決定・契約</h4>
           <p>シンプルな書面で、日時・料金・内容を確定します。</p>
@@ -314,6 +345,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">4</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-apply4.jpg" alt="ゲームを抱えて到着した長山を、子どもたちが大喜びで迎えるイラスト" loading="lazy">
         <div class="step-content">
           <h4>当日開催</h4>
           <p>全ての荷物を当方で持参・撤収します。</p>
@@ -321,6 +353,7 @@
       </li>
       <li class="step-item">
         <div class="step-number">5</div>
+        <img class="pg-step-img" src="images/bodotuna-illust-gakudo-apply5.jpg" alt="子どもたちの絵が飾られた机で、職員さんが封筒を受け取るイラスト" loading="lazy">
         <div class="step-content">
           <h4>後日請求</h4>
           <p>開催月末締め・翌月末払いで請求書をお送りします（応相談）。</p>

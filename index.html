@@ -1600,7 +1600,10 @@
       .pal-kanpa-badge { display: inline-block; background: #2E8B74; color: #fff; font-size: 13px; font-weight: 800; padding: 4px 14px; border-radius: 999px; margin-bottom: 10px; }
       .pal-kanpa h3 { font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--brown); line-height: 1.5; margin: 0 0 12px; word-break: keep-all; }
       .pal-kanpa-body { display: flex; gap: 22px; align-items: flex-start; }
-      .pal-kanpa-card { flex: 0 0 180px; width: 180px; height: 207px; border-radius: 14px; overflow: hidden; border: 3px solid #E3F2EC; background: url("images/palsystem-kanpa27-ura.jpg") 98.3% 4.9% / 427.9% auto no-repeat #E3F2EC; display: block; }
+      .pal-kanpa-imgs { flex: 0 0 auto; display: flex; gap: 10px; align-items: center; }
+      .pal-kanpa-omote { display: block; width: 140px; height: 198px; border-radius: 14px; overflow: hidden; border: 3px solid #E3F2EC; }
+      .pal-kanpa-omote img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+      .pal-kanpa-card { flex: 0 0 140px; width: 140px; height: 161px; border-radius: 14px; overflow: hidden; border: 3px solid #E3F2EC; background: url("images/palsystem-kanpa27-ura.jpg") 98.3% 4.9% / 427.9% auto no-repeat #E3F2EC; display: block; }
       .pal-kanpa-text p { font-size: 14px; line-height: 1.9; color: var(--brown); margin: 0 0 12px; }
       .pal-kanpa-nums { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 14px; }
       .pal-kanpa-num { background: #E3F2EC; border-radius: 12px; padding: 8px 14px; font-size: 13px; font-weight: 700; color: var(--brown); }
@@ -1619,7 +1622,10 @@
       <span class="pal-kanpa-badge">期間限定　10月5日〜11月13日</span>
       <h3>パルシステムの組合員の方は、<wbr>賛助金カンパでも<wbr>応援できます</h3>
       <div class="pal-kanpa-body">
-        <a class="pal-kanpa-card" href="images/palsystem-kanpa27-ura.jpg" target="_blank" rel="noopener" aria-label="賛助金カンパのチラシ（対象団体一覧）を開く"></a>
+        <div class="pal-kanpa-imgs">
+          <a class="pal-kanpa-omote" href="images/palsystem-kanpa27-chirashi.pdf" target="_blank" rel="noopener"><img src="images/palsystem-kanpa27-omote.jpg" alt="第27回市民活動応援プログラム 賛助金カンパのチラシ（表面）" loading="lazy" onerror="this.parentNode.style.display='none';var b=document.getElementById('pal-kanpa-pdf');if(b)b.style.display='none';"></a>
+          <a class="pal-kanpa-card" href="images/palsystem-kanpa27-ura.jpg" target="_blank" rel="noopener" aria-label="賛助金カンパのチラシ（対象団体一覧）を開く"></a>
+        </div>
         <div class="pal-kanpa-text">
           <p>ボドツナは、パルシステム神奈川「第27回 市民活動応援プログラム」の賛助金カンパの対象団体になりました。いただいたカンパは、子ども食堂と学童に、一人ひとりに向き合えるスタッフを置くために使います。</p>
           <div class="pal-kanpa-nums">
@@ -1632,12 +1638,13 @@
       <ul>
         <li>1口200円（200ポイント）から、何口でも申し込めます。</li>
         <li>パルシステムの注文で、上の6桁の注文番号を入れると、商品と同じように申し込めます。現金とポイントで番号が違うので、ご注意ください。</li>
-        <li>オリジナルカタログ「いいね！かながわ」のサイト「いいね！かながわマーケット」からも申し込めます。</li>
+        <li>オリジナルカタログ「いいね！かながわ」のサイト「いいね！かながわマーケット」からも申し込めます。こちらは注文番号を使わず、Googleフォームから申し込みます。</li>
         <li>申し込みの締め切りは、11月13日（金）です。</li>
       </ul>
       <div class="pal-kanpa-btns">
         <a class="main" href="https://www.palsystem-kanagawa.coop/event/detail/shiminouenkanpa27/" target="_blank" rel="noopener">申し込み方法を詳しく見る →</a>
-        <a class="sub" href="images/palsystem-kanpa27-ura.jpg" target="_blank" rel="noopener">チラシを見る</a>
+        <a class="sub" id="pal-kanpa-pdf" href="images/palsystem-kanpa27-chirashi.pdf" target="_blank" rel="noopener">チラシ（PDF）を見る</a>
+        <a class="sub" href="images/palsystem-kanpa27-ura.jpg" target="_blank" rel="noopener">応援先20団体の一覧を見る</a>
       </div>
       <p class="pal-kanpa-note">賛助金カンパの申し込みと支払いは、パルシステムの組合員の方が対象です。組合員でない方は、下の寄付からも応援いただけます。</p>
     </div>

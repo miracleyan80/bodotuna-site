@@ -26,6 +26,21 @@
   .pg-banner img { height: 170px; }
   .pg-time img { max-width: 110px; }
 }
+/* 斜めの関係（2026-10-12 追加） */
+.cm-naname-grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 22px; align-items: start; margin-top: 12px; }
+.cm-naname-img a { display: block; }
+.cm-naname-img img { display: block; width: 100%; max-width: 340px; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto; border-radius: 16px; border: 2px solid var(--border); }
+.cm-naname-img span { display: block; text-align: center; font-size: 12.5px; color: var(--brown-light); margin-top: 6px; }
+.cm-naname-rel { list-style: none; padding: 0; margin: 0 0 14px; }
+.cm-naname-rel li { font-size: 14px; line-height: 1.8; color: var(--brown); padding: 8px 12px; border-radius: 12px; background: var(--cream); margin-bottom: 8px; }
+.cm-naname-rel li b { display: block; font-size: 16px; font-weight: 700; }
+.cm-naname-rel li.is-naname { background: #FFF3E6; border: 2px solid var(--orange); }
+.cm-naname-rel li.is-naname b { color: var(--orange-deep); }
+.cm-naname-key { font-size: clamp(16px, 2vw, 18px); font-weight: 700; color: var(--brown); line-height: 1.7; border-left: 5px solid var(--orange); padding: 4px 0 4px 14px; margin: 0 0 14px; }
+@media (max-width: 768px) {
+  .cm-naname-grid { grid-template-columns: 1fr; }
+  .cm-naname-img img { max-width: 300px; }
+}
 </style>
 </head>
 <body>
@@ -138,6 +153,23 @@
       <div class="case-image"><img src="images/bodotuna-illust-onkuri.jpg" alt="道に沿って、人から人へ小さなハートのコマが次々に手渡されていくイラスト" loading="lazy" style="object-position: center 55%;"></div>
       <p>家族やみんなで一緒に遊べるゲームが見つかったら、それが一番うれしいことです。</p>
       <p>みんなで遊んだことを覚えていてくれたら、それが一番うれしいことです。</p>
+    </div>
+
+    <!-- 斜めの関係（2026-10-12 追加） -->
+    <div class="content-block" id="naname" style="margin-top: 20px;">
+      <h3>ボドツナが目指す、子どもたちとの「斜めの関係」</h3>
+      <div class="cm-naname-grid">
+        <div class="cm-naname-img"><a href="images/bodotuna-illust-naname.jpg" target="_blank" rel="noopener"><img src="images/bodotuna-illust-naname.jpg" alt="斜めの関係の図。中央に子ども。上に親・先生（縦の関係：守る・教える・評価する）、左に友だち・きょうだい（横の関係：同じ立場で遊ぶ・競う）、右上にボードゲームで子どもと一緒に笑う第三の大人（斜めの関係：人としては対等で、勝ったり負けたりし、評価しない。大人としては場の安全を守り、困ったときに動く。そして、ずっと居続ける）" loading="lazy"></a><span>図をタップすると大きく表示されます</span></div>
+        <div>
+          <ul class="cm-naname-rel">
+            <li><b>縦の関係：親・先生</b>子どもを守り、教え、評価します。</li>
+            <li><b>横の関係：友だち・きょうだい</b>同じ立場で遊び、競います。</li>
+            <li class="is-naname"><b>斜めの関係：第三の大人</b>居場所にいるボドツナの大人は、この関係で子どもと関わります。</li>
+          </ul>
+          <p class="cm-naname-key">人としては対等で、勝ったり負けたりする相手です。でも、場の安全を守り、困ったときには大人として動きます。</p>
+          <p>ボドツナの大人は、子どもたちにとって親でも先生でもなく、友だちとも違う「第三の大人」です。ボードゲームでは手加減せずに遊び、子どもを評価しません。そして、同じ場所に通い続けます。</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

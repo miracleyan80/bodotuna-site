@@ -87,6 +87,11 @@
 .ws-price { max-width: 640px; margin: 0 auto; }
 .ws .price-card .price small { font-size: 14px; color: var(--brown-light); }
 .ws .price-card .price-sub { font-size: 14px; color: var(--brown); }
+.ws-tiers { margin: 4px 0 18px; }
+.ws-tier { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 4px; border-bottom: 1px dashed var(--border); }
+.ws-tier:last-child { border-bottom: none; }
+.ws-tier-label { font-size: 15px; font-weight: 700; color: var(--brown); }
+.ws .price-card .ws-tier .price { font-size: 28px; margin-bottom: 0; }
 .ws .section-title::after { background: var(--yellow-deep); opacity: .35; }
 .ws .mission-reminder { box-shadow: 0 8px 0 var(--yellow-deep); }
 .ws .form-card { border-color: var(--yellow-deep); box-shadow: 0 8px 0 var(--yellow); }
@@ -544,8 +549,11 @@
       <div class="price-card">
         <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-3h"/></svg></span>
         <h4>3時間版</h4>
-        <div class="price">5万円<small>（税抜）</small></div>
-        <p class="price-sub">3時間</p>
+        <p class="price-sub">3時間・1回あたり（税抜）</p>
+        <div class="ws-tiers">
+          <div class="ws-tier"><span class="ws-tier-label">8人まで</span><span class="price">5万円</span></div>
+          <div class="ws-tier"><span class="ws-tier-label">9〜16人</span><span class="price">10万円</span></div>
+        </div>
         <ul>
           <li>1班8人が基本です</li>
           <li>16人（2班）までは講師1人で実施します</li>
@@ -554,15 +562,18 @@
       <div class="price-card">
         <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-5h"/></svg></span>
         <h4>1日版</h4>
-        <div class="price">8万円<small>（税抜）</small></div>
-        <p class="price-sub">5時間</p>
+        <p class="price-sub">5時間・1回あたり（税抜）</p>
+        <div class="ws-tiers">
+          <div class="ws-tier"><span class="ws-tier-label">8人まで</span><span class="price">8万円</span></div>
+          <div class="ws-tier"><span class="ws-tier-label">9〜16人</span><span class="price">15万円</span></div>
+        </div>
         <ul>
           <li>1班8人が基本です</li>
           <li>16人（2班）までは講師1人で実施します</li>
         </ul>
       </div>
     </div>
-    <p class="ws-note">※ 交通費については、お問い合わせの際にご案内します。<br>※ 研修専用のオリジナルゲーム制作をご希望の場合は、<a href="game-creation.html">ゲーム化事業ページ</a>をご覧ください。</p>
+    <p class="ws-note">※ 交通費は実費を別途いただきます。17人以上の場合は、お問い合わせの際にご相談ください。<br>※ 研修専用のオリジナルゲーム制作をご希望の場合は、<a href="game-creation.html">ゲーム化事業ページ</a>をご覧ください。</p>
 
     <div class="mission-reminder">
       ご依頼で得た収益は、<strong>地域の居場所活動</strong>の運営に充てられます。<br>

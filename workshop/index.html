@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ボドツナワークショップ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ボードゲームと演劇で体験する、チームのコミュニケーション。企業・団体向け1日研修（5時間）のご提案資料。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: one long page of isometric "tiles". Each section = one tile illustration beside a short column of text; the program is a two-column timeline. */
+:root{
+  --bg:#FAF6EF; --surface:#FFFFFF; --ink:#12525E; --teal:#1D6E7D; --teal-soft:#CFE5E8; --teal-mist:#EEF5F6;
+  --orange:#E8821E; --orange-deep:#A85410; --orange-mist:#FBEBDC; --muted:#587478; --line:#DCE6E7; --fig:#FAF6EF;
+  --display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Rounded Mplus 1c",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  --radius:18px; --gutter-l:max(16px,env(safe-area-inset-left,0px)); --gutter-r:max(16px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E2A30; --surface:#153B43; --ink:#EAF3F3; --teal:#8FC9D1; --teal-soft:#1F4D56; --teal-mist:#17434B;
+    --orange:#F0A458; --orange-deep:#F8C48E; --orange-mist:#3E3024; --muted:#A8C1C5; --line:#2B5760; --fig:#FAF6EF; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E2A30; --surface:#153B43; --ink:#EAF3F3; --teal:#8FC9D1; --teal-soft:#1F4D56; --teal-mist:#17434B;
+  --orange:#F0A458; --orange-deep:#F8C48E; --orange-mist:#3E3024; --muted:#A8C1C5; --line:#2B5760; --fig:#FAF6EF; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.35;margin:0;text-wrap:balance;letter-spacing:.01em}
+p{margin:0}
+.wrap{max-width:1080px;margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.narrow{max-width:720px}
+
+/* header */
+.top{padding-block:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-size:15px;letter-spacing:.04em;color:var(--teal);text-decoration:none}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.06em}
+.top-links{display:flex;gap:6px 18px;flex-wrap:wrap;font-size:14px}
+.top-links a{text-decoration:none;color:var(--muted)}
+.top-links a:hover{color:var(--teal)}
+.btn{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;padding:10px 20px;border-radius:999px;font-size:15px;line-height:1.4}
+.btn:hover{background:var(--orange-deep)}
+:root[data-theme="dark"] .btn,:root:not([data-theme="light"]) .btn{color:#1a1208}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .btn{color:#fff}}
+:root[data-theme="light"] .btn{color:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px 48px;align-items:center;padding-block:28px 56px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--teal);border:1.5px solid var(--teal);border-radius:999px;padding:3px 14px}
+.hero h1{font-size:clamp(26px,3.6vw,38px);margin-top:18px}
+.hero h1 small{display:block;font-size:.55em;color:var(--teal);letter-spacing:.08em;margin-bottom:6px}
+.lead{margin-top:22px;font-size:17px}
+.lead strong{display:block;font-family:var(--display);font-size:clamp(19px,2.4vw,24px);line-height:1.5;margin-top:4px}
+.lead strong em{font-style:normal;color:var(--orange-deep)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:24px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:14px;font-weight:500}
+.hero .fig{margin:0}
+.fig{background:var(--fig);border-radius:var(--radius);overflow:hidden;margin:0}
+.fig img{width:100%}
+.fig figcaption{font-size:12.5px;color:var(--muted);padding:8px 14px 10px;background:var(--surface);border-top:1px solid var(--line)}
+
+/* sections */
+section{padding-block:56px;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--orange-deep)}
+.sec-head h2{font-size:clamp(23px,3vw,31px)}
+.sec-head p{color:var(--muted);max-width:720px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px;align-items:center}
+.split.rev .fig{order:2}
+.split .fig{max-width:560px;width:100%;margin-inline:auto}
+.split .text{min-width:0}
+.split h3{font-size:21px;margin-bottom:12px}
+.split p+p{margin-top:12px}
+.pill{display:inline-block;background:var(--teal);color:#fff;font-weight:700;font-size:13px;border-radius:999px;padding:3px 12px;letter-spacing:.06em}
+.pill.o{background:var(--orange)}
+:root[data-theme="dark"] .pill,:root:not([data-theme="light"]) .pill{color:#0E2A30}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .pill{color:#fff}}
+:root[data-theme="light"] .pill{color:#fff}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card .fig{border-radius:0}
+.card .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:18px}
+.card p{font-size:15px;color:var(--muted)}
+.callout{margin-top:24px;background:var(--teal-mist);border-left:5px solid var(--teal);border-radius:0 14px 14px 0;padding:16px 20px;font-weight:700;font-family:var(--display);font-size:17px}
+
+/* concept cycle */
+.cycle{display:grid;grid-template-columns:1.1fr 1.25fr .85fr;gap:28px 36px;align-items:center}
+.cycle-svg{width:100%;max-width:440px;margin-inline:auto;display:block}
+.cycle > .fig{max-width:420px;width:100%;margin-inline:auto}
+.points{display:grid;gap:16px}
+.point{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.point h3{font-size:17px;margin-bottom:6px}
+.point p{font-size:15px;color:var(--muted)}
+
+/* program timeline */
+.timeline{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px}
+.col h3{display:flex;align-items:center;gap:10px;font-size:18px;margin-bottom:14px}
+.units{display:grid;gap:10px}
+.unit{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.unit .t{font-family:var(--display);color:var(--orange-deep);font-size:15px;font-variant-numeric:tabular-nums;padding-top:2px}
+.unit .n{font-weight:700;font-size:16px}
+.unit .g{font-size:12.5px;color:var(--teal);font-weight:700;letter-spacing:.04em;margin-left:8px}
+.unit .d{font-size:14.5px;color:var(--muted);margin-top:2px}
+.notes{margin-top:22px;display:grid;gap:8px;font-size:14.5px;color:var(--muted)}
+.notes li{list-style:none;padding-left:18px;position:relative}
+.notes li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.notes ul{margin:0;padding:0}
+
+/* morning three */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+.three .card .body{gap:12px}
+.lab{font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--teal)}
+.notice{background:var(--teal-mist);border-radius:12px;padding:12px 14px;font-size:14.5px}
+.notice .lab{display:block;margin-bottom:4px}
+.meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* steps */
+.steps{display:grid;gap:12px;counter-reset:step}
+.step{display:grid;grid-template-columns:40px 1fr;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;align-items:start}
+.step::before{counter-increment:step;content:counter(step);width:36px;height:36px;border-radius:50%;background:var(--orange);color:#fff;font-family:var(--display);font-size:17px;display:grid;place-items:center;margin-top:2px}
+:root[data-theme="dark"] .step::before,:root:not([data-theme="light"]) .step::before{color:#1a1208}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .step::before{color:#fff}}
+:root[data-theme="light"] .step::before{color:#fff}
+.step b{display:block;font-size:16px}
+.step span{font-size:14.5px;color:var(--muted)}
+.ab{margin-top:16px;background:var(--orange-mist);border-radius:14px;padding:14px 18px;font-size:14.5px;display:grid;gap:4px}
+.ab b{color:var(--orange-deep)}
+
+/* just one */
+.abc{display:grid;grid-template-columns:1fr auto 1fr auto 1.15fr;gap:12px;align-items:stretch;margin-bottom:20px}
+.abc .box{border:2px solid var(--teal);border-radius:16px;padding:18px 12px;text-align:center;background:var(--surface);min-width:0}
+.abc .box.c{background:var(--orange-mist);border-color:var(--orange)}
+.abc .box b{display:block;font-family:var(--display);font-size:34px;line-height:1;color:var(--teal)}
+.abc .box.c b{color:var(--orange-deep)}
+.abc .box span{font-size:13.5px;color:var(--muted);display:block;margin-top:8px}
+.abc .op{font-family:var(--display);font-size:30px;color:var(--teal);display:grid;place-items:center}
+.quote{background:var(--teal);color:#fff;border-radius:var(--radius);padding:24px 26px;display:grid;gap:12px}
+.quote .lab{color:var(--teal-soft)}
+.quote b{font-family:var(--display);font-size:22px;line-height:1.5;display:block}
+.quote p{font-size:14.5px;opacity:.92}
+:root[data-theme="dark"] .quote,:root:not([data-theme="light"]) .quote{background:var(--teal-soft);color:var(--ink)}
+:root[data-theme="dark"] .quote .lab,:root:not([data-theme="light"]) .quote .lab{color:var(--teal)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .quote{background:var(--teal);color:#fff}:root:not([data-theme="dark"]) .quote .lab{color:var(--teal-soft)}}
+:root[data-theme="light"] .quote{background:var(--teal);color:#fff}
+:root[data-theme="light"] .quote .lab{color:var(--teal-soft)}
+.rules{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+.rules li{padding-left:22px;position:relative}
+.rules li::before{content:"";position:absolute;left:0;top:.65em;width:10px;height:10px;border-radius:3px;background:var(--teal)}
+.rules li strong{color:var(--orange-deep)}
+
+/* thanks flow */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch;margin:14px 0 16px}
+.flow .f{background:var(--teal-mist);border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;min-width:0}
+.flow .f b{display:block;font-size:14.5px;margin-bottom:4px}
+.flow .f span{color:var(--muted);font-size:13px}
+.flow .ar{display:grid;place-items:center;color:var(--teal);font-size:22px}
+
+/* promises */
+.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.promise{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 20px;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.promise svg{width:44px;height:44px;background:var(--teal-mist);border-radius:50%;padding:10px;color:var(--teal)}
+.promise b{display:block;font-size:16px;font-family:var(--display)}
+.promise p{font-size:14.5px;color:var(--muted);margin-top:4px}
+.promise-fig{display:grid;grid-template-columns:1fr 2fr;gap:28px 40px;align-items:center;margin-top:28px}
+
+/* theory */
+.theory{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.theory .card .body{gap:12px}
+.theory .who{font-size:13px;color:var(--muted)}
+.theory .who b{display:block;font-size:17px;color:var(--ink);font-family:var(--display)}
+.theory .tag{align-self:flex-start;background:var(--teal-soft);color:var(--ink);font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px}
+.theory .where{background:var(--orange-mist);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:auto}
+.theory .where b{color:var(--orange-deep);display:block;font-size:12.5px;letter-spacing:.08em}
+
+/* how */
+.how{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;align-items:start}
+.spec{display:grid;gap:10px}
+.spec div{display:grid;grid-template-columns:72px 1fr;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px}
+.spec dt{font-weight:700;color:var(--teal);margin:0}
+.spec dd{margin:0;color:var(--muted)}
+.price{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.price h3{font-size:18px;margin-bottom:12px}
+.price .tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--teal);color:#fff;font-weight:700;font-size:14px}
+:root[data-theme="dark"] th,:root:not([data-theme="light"]) th{color:#0E2A30}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) th{color:#fff}}
+:root[data-theme="light"] th{color:#fff}
+td.y{text-align:right;font-family:var(--display);font-size:19px;color:var(--ink)}
+td.y small{font-size:13px;font-family:var(--body);color:var(--muted);margin-left:2px}
+.price ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:4px;font-size:14px;color:var(--muted)}
+.price li{padding-left:16px;position:relative}
+.price li::before{content:"";position:absolute;left:0;top:.75em;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.pre{margin-top:24px;background:var(--teal-mist);border-radius:14px;padding:16px 20px;font-size:14.5px;display:grid;gap:6px}
+.pre b{font-family:var(--display);font-size:15px}
+.pre ul{margin:0;padding-left:1.2em;color:var(--muted)}
+
+/* profile & contact */
+.profile{display:grid;grid-template-columns:1.1fr .9fr;gap:28px 48px;align-items:start}
+.who-row{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center}
+.who-row img{border-radius:16px;aspect-ratio:1;object-fit:cover}
+.who-row h3{font-size:26px}
+.who-row p{font-size:14.5px;color:var(--muted)}
+.stat{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.stat b{font-family:var(--display);font-size:44px;line-height:1;color:var(--orange-deep);font-variant-numeric:tabular-nums}
+.stat b small{font-size:18px;margin-left:4px}
+.stat p{font-size:14px;color:var(--muted)}
+.bio{margin-top:18px;font-size:15px}
+.contact{background:var(--teal);color:#fff;border-radius:var(--radius);padding:26px 28px;display:grid;gap:14px}
+.contact h3{font-size:22px}
+.contact p{font-size:14.5px;opacity:.95}
+.contact .row{display:grid;gap:8px;font-size:16px}
+.contact .row span{display:block;font-size:12.5px;letter-spacing:.08em;opacity:.8}
+.contact .row b{font-weight:500;word-break:break-all;user-select:all}
+.contact .btn{justify-self:start;background:var(--orange)}
+.contact a:not(.btn){color:#fff}
+:root[data-theme="dark"] .contact,:root:not([data-theme="light"]) .contact{background:var(--teal-soft);color:var(--ink)}
+:root[data-theme="dark"] .contact a:not(.btn),:root:not([data-theme="light"]) .contact a:not(.btn){color:var(--ink)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .contact{background:var(--teal);color:#fff}:root:not([data-theme="dark"]) .contact a:not(.btn){color:#fff}}
+:root[data-theme="light"] .contact{background:var(--teal);color:#fff}
+:root[data-theme="light"] .contact a:not(.btn){color:#fff}
+.lecture{margin-top:22px}
+footer{padding-block:28px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* responsive */
+@media (max-width:900px){
+  .cards,.three,.promises,.theory{grid-template-columns:1fr 1fr}
+  .cycle{grid-template-columns:1fr 1fr}
+  .cycle > .fig{grid-column:1/-1}
+  .hero{grid-template-columns:1fr;gap:24px}
+  .hero .fig{order:-1;max-width:560px}
+}
+@media (max-width:680px){
+  body{font-size:15.5px}
+  section{padding-block:44px}
+  .cards,.three,.promises,.theory,.split,.cycle,.timeline,.how,.profile,.promise-fig{grid-template-columns:1fr}
+  .split.rev .fig{order:0}
+  .abc{grid-template-columns:1fr;gap:8px}
+  .abc .op{padding:0}
+  .flow{grid-template-columns:1fr}
+  .flow .ar{transform:rotate(90deg)}
+  .who-row{grid-template-columns:96px 1fr}
+  .stat b{font-size:36px}
+  .spec div{grid-template-columns:64px 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="brand" href="https://bodotuna.com">ボードゲームでツナグ手<small>ボドツナ</small></a>
+  <nav class="top-links" aria-label="ページ内">
+    <a href="#issues">こんな場面</a>
+    <a href="#concept">考え方</a>
+    <a href="#program">1日の流れ</a>
+    <a href="#promises">約束ごと</a>
+    <a href="#how">料金・実施</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div>
+    <span class="eyebrow">企業・団体向け研修のご提案</span>
+    <h1><small>ボドツナワークショップ</small>ボードゲームと演劇で体験する、<br>チームのコミュニケーション</h1>
+    <p class="lead">伝え方のテクニックを教える研修ではありません。<strong>相手に<em>伝わる状態</em>を、自分で作る研修です。</strong></p>
+    <div class="facts">
+      <span>1日版（5時間）／3時間版</span>
+      <span>1班8人・最大16人</span>
+      <span>御社に伺って実施</span>
+      <span>講師：長山 陽司</span>
+    </div>
+  </div>
+  <figure class="fig"><img src="images/hero.webp" alt="机を囲んだ8人が、真ん中のカードに手を伸ばしているイラスト" width="1168" height="880" fetchpriority="high"></figure>
+</div>
+
+<section id="issues">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">現場でよくあること</span>
+      <h2>こんな場面はありませんか</h2>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <figure class="fig"><img src="images/issue1.webp" alt="付箋だらけの本を読む人。吹き出しは空のまま" loading="lazy" width="1024" height="688"></figure>
+        <div class="body"><h3>学んだ言い回しが、現場で使えない</h3><p>伝え方の研修や本で言い回しを覚えたのに、職場で口に出すとしっくりこない。</p></div>
+      </article>
+      <article class="card">
+        <figure class="fig"><img src="images/issue2.webp" alt="一人が案を出し、ほかの3人はうなずくだけの会議" loading="lazy" width="1024" height="688"></figure>
+        <div class="body"><h3>一人の案に、うなずくだけで決まる</h3><p>会議で誰かが案を出すと、ほかの人はうなずくだけで、そのまま決まっていく。</p></div>
+      </article>
+      <article class="card">
+        <figure class="fig"><img src="images/issue3.webp" alt="大勢の前で身体が固まり、言葉が散っていく人" loading="lazy" width="1024" height="688"></figure>
+        <div class="body"><h3>人前で身体が固くなり、言葉が上滑りする</h3><p>大勢の前に立つと身体に力が入り、用意してきた言葉だけが空回りする。</p></div>
+      </article>
+    </div>
+    <p class="callout">言葉を整える前に、身体と気持ちの状態に目を向ける。この研修は、そこから始めます。</p>
+  </div>
+</section>
+
+<section id="concept">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">この研修の考え方</span>
+      <h2>先に身体と気持ちが動き、言葉は後から来る</h2>
+      <p>状況を知る、動く、感じる、考える。この順番を1日かけて何度もくり返します。</p>
+    </div>
+    <div class="cycle">
+      <svg class="cycle-svg" viewBox="0 0 440 440" role="img" aria-label="状況を知る、動く、感じる、考える、をくり返す循環図">
+        <circle cx="220" cy="220" r="140" fill="none" stroke="var(--teal)" stroke-width="2" stroke-dasharray="8 8"/>
+        <text x="220" y="226" text-anchor="middle" font-family="Zen Maru Gothic, sans-serif" font-weight="700" font-size="18" fill="var(--ink)">くり返す</text>
+        <g font-family="Zen Maru Gothic, sans-serif" font-weight="700" text-anchor="middle">
+          <circle cx="220" cy="80" r="58" fill="var(--surface)" stroke="var(--teal)" stroke-width="3"/>
+          <text x="220" y="78" font-size="17" fill="var(--ink)">状況を知る</text><text x="220" y="100" font-size="13" fill="var(--muted)" font-family="Zen Kaku Gothic New, sans-serif" font-weight="500">頭</text>
+          <circle cx="360" cy="220" r="58" fill="var(--surface)" stroke="var(--teal)" stroke-width="3"/>
+          <text x="360" y="218" font-size="17" fill="var(--ink)">動く</text><text x="360" y="240" font-size="13" fill="var(--muted)" font-family="Zen Kaku Gothic New, sans-serif" font-weight="500">身体</text>
+          <circle cx="220" cy="360" r="58" fill="var(--surface)" stroke="var(--teal)" stroke-width="3"/>
+          <text x="220" y="358" font-size="17" fill="var(--ink)">感じる</text><text x="220" y="380" font-size="13" fill="var(--muted)" font-family="Zen Kaku Gothic New, sans-serif" font-weight="500">気持ち</text>
+          <circle cx="80" cy="220" r="58" fill="var(--surface)" stroke="var(--teal)" stroke-width="3"/>
+          <text x="80" y="218" font-size="17" fill="var(--ink)">考える</text><text x="80" y="240" font-size="13" fill="var(--muted)" font-family="Zen Kaku Gothic New, sans-serif" font-weight="500">思考</text>
+          <g fill="var(--orange)"><circle cx="172" cy="38" r="16"/><circle cx="402" cy="172" r="16"/><circle cx="268" cy="402" r="16"/><circle cx="38" cy="268" r="16"/></g>
+          <g fill="#fff" font-size="15"><text x="172" y="43">1</text><text x="402" y="177">2</text><text x="268" y="407">3</text><text x="38" y="273">4</text></g>
+        </g>
+      </svg>
+      <div class="points">
+        <div class="point"><h3>講師は答えを出しません</h3><p>正解を教えず、うまい答えを褒めることもしません。参加者の内側から出てくる言葉を待ちます。答えを渡すと、次から正解を演じるようになるからです。</p></div>
+        <div class="point"><h3>ゲーム中に本当に起きた場面を使います</h3><p>講師が作った「ありそうな職場の場面」は使いません。ゲームで実際に起きたことを〈もしも〉の状況にするので、演技をしなくても気持ちが動きます。職場に結びつけるのは参加者自身です。</p></div>
+      </div>
+      <figure class="fig"><img src="images/concept.webp" alt="一歩踏み出す人。胸にハート、言葉の吹き出しは後ろから追いかける" loading="lazy" width="1024" height="1024"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="program">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">プログラム</span>
+      <h2>1日の流れ（5時間）</h2>
+      <p>午前で身体と気持ちをほどき、午後で「考える」まで含めた一連の流れを回します。使うゲームはいずれも市販のボードゲームで、人数やルールの一部を変えて使います。</p>
+    </div>
+    <div class="timeline">
+      <div class="col">
+        <h3><span class="pill">午前</span>身体と気持ちをほどく</h3>
+        <div class="units">
+          <div class="unit"><div class="t">10分</div><div><div class="n">はじめに</div><div class="d">研修の考え方と、参加の約束</div></div></div>
+          <div class="unit"><div class="t">15分</div><div><div class="n">ボドツナ流リラックス運動</div><div class="d">身体の余計な力に気づく</div></div></div>
+          <div class="unit"><div class="t">40分</div><div><div class="n">声と身体のゲーム<span class="g">使うゲーム：はあっていうゲーム</span></div><div class="d">同じ一言を、声だけ／身体も使って伝える</div></div></div>
+          <div class="unit"><div class="t">30分</div><div><div class="n">言葉を使わないゲーム<span class="g">使うゲーム：ザ・マインド</span></div><div class="d">言葉なしで、相手の動きを見て合わせる</div></div></div>
+        </div>
+      </div>
+      <div class="col">
+        <h3><span class="pill o">午後</span>相手の立場に入り、言葉を作る</h3>
+        <div class="units">
+          <div class="unit"><div class="t">60分</div><div><div class="n">負けと運のゲーム<span class="g">使うゲーム：ニムト</span></div><div class="d">実際に起きた場面で、相手の立場に立つ</div></div></div>
+          <div class="unit"><div class="t">60分</div><div><div class="n">言葉を当てるゲーム<span class="g">使うゲーム：ジャストワン</span></div><div class="d">組で相談し、誰の案でもない答えを作る</div></div></div>
+          <div class="unit"><div class="t">45分</div><div><div class="n">ありがとうのワーク</div><div class="d">誰に言いたいかで、同じ一言が変わる</div></div></div>
+          <div class="unit"><div class="t">20分</div><div><div class="n">締めくくり</div><div class="d">仕事の中で自分は何がしたいかを考える</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><ul>
+      <li>午前と午後のあいだに昼休み。午後に20分の小休憩を取ります（実施時間の合計は280分）。</li>
+      <li>3時間版は、午後の「負けと運のゲーム」を外し、ほかのユニットを短くした構成です。</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="morning">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">午前　身体と気持ちをほどく</span>
+      <h2>まず身体から。言葉はそのあと</h2>
+    </div>
+    <div class="three">
+      <article class="card">
+        <figure class="fig"><img src="images/relax.webp" alt="椅子に座り、ペットボトルを腕を伸ばして持つ4人" loading="lazy" width="1024" height="688"></figure>
+        <div class="body">
+          <div class="meta"><h3>ボドツナ流リラックス運動</h3><span class="pill o">15分</span></div>
+          <div><span class="lab">すること</span><p>肩・あご・手に力を入れて、ふっと抜く。重いものを持ったまま引き算をする。</p></div>
+          <div class="notice"><span class="lab">気づくこと</span>今日は力が入っていた。緊張すると、考えることが止まる。</div>
+        </div>
+      </article>
+      <article class="card">
+        <figure class="fig"><img src="images/haa.webp" alt="同じ一言を、声だけで言う人と、身体も使って言う人" loading="lazy" width="1024" height="688"></figure>
+        <div class="body">
+          <div class="meta"><h3>はあっていうゲーム</h3><span class="pill o">40分</span></div>
+          <div><span class="lab">すること</span><p>同じ一言を、1本目は声だけで、2本目は身体も使って演じ、周りがどの場面かを当てる。</p></div>
+          <div class="notice"><span class="lab">気づくこと</span>声だけのときと、身体を使ったときの伝わり方の違い。</div>
+        </div>
+      </article>
+      <article class="card">
+        <figure class="fig"><img src="images/mind.webp" alt="8人が黙ってカードを手に持ち、場に小さい順に出していく" loading="lazy" width="1024" height="688"></figure>
+        <div class="body">
+          <div class="meta"><h3>ザ・マインド</h3><span class="pill o">30分</span></div>
+          <div><span class="lab">すること</span><p>言葉も合図も使わず、8人で数字のカードを小さい順に出していく。2回遊ぶ。</p></div>
+          <div class="notice"><span class="lab">気づくこと</span>言葉が使えないとき、自分は相手の何を見て合わせたか。</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="afternoon1">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">午後①　ニムト（60分）</span>
+      <h2>相手と同じ状況に、自分のまま入ってみる〈もしも〉</h2>
+      <p>数字のカードを一斉に出し、列の6枚目を置いた人が引き取る、運と読みが絡むゲームです。ゲーム中に実際に起きた場面を、そのまま〈もしも〉の材料にします。</p>
+    </div>
+    <div class="split">
+      <figure class="fig"><img src="images/nimmt.webp" alt="机に並んだカードの列と、引き取ったカードの山" loading="lazy" width="1024" height="688"></figure>
+      <div class="text">
+        <div class="steps">
+          <div class="step"><div><b>遊ぶ</b><span>2ラウンド遊ぶあいだに、講師がAさんとBさんを見つけます。</span></div></div>
+          <div class="step"><div><b>〈もしも〉を話す</b><span>もしもさんが「Aさんと同じ状況だったら、どうするか。どんな気持ちになるか」を、自分を主語にして話します。</span></div></div>
+          <div class="step"><div><b>実際を聞く</b><span>Aさん本人が、実際はどうだったかを話します。想像と実際のずれが見えます。</span></div></div>
+          <div class="step"><div><b>入れ替える</b><span>AさんがBさんの、BさんがAさんの〈もしも〉を話します。</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="split rev" style="margin-top:28px">
+      <figure class="fig"><img src="images/moshimo.webp" alt="Aの輪とBの輪。中央の人を3人が囲んで話す" loading="lazy" width="1024" height="1024"></figure>
+      <div class="text">
+        <h3>Aの輪と、Bの輪</h3>
+        <p>8人をAの輪（Aさん＋もしもさん3人）とBの輪（Bさん＋もしもさん3人）に分けます。講師が二人を選んだ理由は、プレイの上手下手ではなく「何が起きたか」として短く伝えます。</p>
+        <div class="ab">
+          <div><b>Aさん：</b>なぜかうまくいかず、牛を引き取り続けた人</div>
+          <div><b>Bさん：</b>誰かのおかげで、引き取りを避け続けた人</div>
+        </div>
+        <p style="margin-top:14px">もしもさんの想像と、当事者の実際にはずれが出ます。このずれを確かめながら近づくことが、相手の立場に立つということです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="afternoon2">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">午後②　ジャストワン（60分）</span>
+      <h2>AでもBでもない、Cをいっしょに作る</h2>
+      <p>回答者以外が一言ずつヒントを書き、お題を当ててもらうゲームです。同じヒントは消されます。普通に遊んでずれに気づいたあと、ルールを一つ変えます。</p>
+    </div>
+    <div class="split">
+      <figure class="fig"><img src="images/justone.webp" alt="3人がカードを持ち寄り、机の真ん中に新しい1枚。背を向けた回答者" loading="lazy" width="1024" height="688"></figure>
+      <div class="text">
+        <div class="abc">
+          <div class="box"><b>A</b><span>Aさんの<br>ヒント</span></div>
+          <div class="op">+</div>
+          <div class="box"><b>B</b><span>Bさんの<br>ヒント</span></div>
+          <div class="op">→</div>
+          <div class="box c"><b>C</b><span>組で作った<br>新しいヒント</span></div>
+        </div>
+        <h3>組のターンのルール</h3>
+        <ul class="rules">
+          <li>回答者以外が2〜3人の組になり、まず各自でヒントを書いて見せ合います。</li>
+          <li><strong>組で一つのヒントを作ります。組の誰かが書いたヒントは使えません。</strong></li>
+          <li>考える時間は3分まで。通じたかどうかは、すぐ結果に出ます。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:28px">
+      <span class="lab">最後の問い</span>
+      <b>「一人で決めちゃったこと、ないですか？」</b>
+      <p>一人が案を出して、ほかの人がうなずくだけになっても、講師は止めません。最後の問いで、本人たちが「あれは対話ではなかった」と気づきます。説明されるより、ずっと残ります。</p>
+    </div>
+  </div>
+</section>
+
+<section id="afternoon3">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">午後③④　ありがとうのワーク／締めくくり</span>
+      <h2>同じ一言が、内側に誰がいるかで変わる</h2>
+    </div>
+    <div class="split">
+      <figure class="fig"><img src="images/thanks.webp" alt="全員の前に立って「ありがとう」を言う人。背後に思い浮かべている相手のシルエット" loading="lazy" width="1024" height="688"></figure>
+      <div class="text">
+        <div class="meta"><h3>ありがとうのワーク</h3><span class="pill o">45分</span></div>
+        <div class="flow">
+          <div class="f"><b>全員の前で「ありがとう」</b><span>状況は何も渡さずに</span></div>
+          <div class="ar">→</div>
+          <div class="f"><b>誰に言うかを考え、セリフを足す</b><span>セリフ付きで言う</span></div>
+          <div class="ar">→</div>
+          <div class="f"><b>セリフなしでもう一度言う</b><span>1回目との違いを本人が感じる</span></div>
+        </div>
+        <p>言い方を工夫しなくても、誰に向けて言うかで、同じ「ありがとう」が変わることを体験します。誰に言ったかは聞きません。見るだけの参加もできます。</p>
+      </div>
+    </div>
+    <div class="split rev" style="margin-top:28px">
+      <figure class="fig"><img src="images/closing.webp" alt="窓の光の中で、一人机に向かいカードに一行書く人" loading="lazy" width="1024" height="688"></figure>
+      <div class="text">
+        <div class="meta"><h3>締めくくり</h3><span class="pill o">20分</span></div>
+        <p style="margin-top:12px">カードに「仕事の中で、自分は何がしたいか」を一行書きます。講師が読む3つの問いで、黙って点検します。</p>
+        <div class="notice" style="margin-top:14px"><span class="lab">静かな20分</span>話し合いも発表もしません。カードは誰にも見せず、本人が持ち帰ります。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="promises">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">安心して参加していただくために</span>
+      <h2>研修の約束ごと</h2>
+    </div>
+    <div class="promises">
+      <div class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 7l7-2 7 2M3 14l2-7 2 7a3 3 0 0 1-4 0zM17 14l2-7 2 7a3 3 0 0 1-4 0z"/></svg><div><b>講師は評価しません</b><p>正解を教えず、うまい答えを褒めることもしません。</p></div></div>
+      <div class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><div><b>人事評価に使いません</b><p>研修中の発言や様子は、人事評価に使わない前提で実施します。</p></div></div>
+      <div class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 10h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2v3l-4-3h-3"/></svg><div><b>全体での発表はありません</b><p>答えは組の中か、心の中で。例外は「ありがとう」のワークだけです。</p></div></div>
+      <div class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5a1.5 1.5 0 0 1 3 0v6M11 10V4a1.5 1.5 0 0 1 3 0v7M14 11V6a1.5 1.5 0 0 1 3 0v8"/><path d="M8 13l-2.3-2.3a1.5 1.5 0 0 0-2.1 2.1L8 17c1.5 2.5 3 4 6 4 3.5 0 5-2.5 5-6v-5"/></svg><div><b>いつでもパスできます</b><p>演技もワークも降りられます。講師は理由を聞きません。</p></div></div>
+      <div class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M14 20v-6h6"/></svg><div><b>カードは提出しません</b><p>最後に書くカードは、本人が持ち帰ります。会社には渡しません。</p></div></div>
+      <div class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18"/></svg><div><b>職場の場面は渡しません</b><p>扱うのはゲームの場面だけ。職場に結びつけるのは参加者自身です。</p></div></div>
+    </div>
+    <div class="promise-fig">
+      <figure class="fig"><img src="images/promises.webp" alt="輪になった椅子に、講師も参加者も同じ高さで座っている" loading="lazy" width="1024" height="1024"></figure>
+      <p>講師は参加者と同じ高さに座り、答えを出さず、評価しません。物足りなく感じる方がいるかもしれません。それでも、出てきた言葉に良い悪いをつけないことが、参加者が自分の内側から動くための条件だと考えています。</p>
+    </div>
+  </div>
+</section>
+
+<section id="theory">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">背景にある考え方</span>
+      <h2>3つの考え方をもとに組み立てています</h2>
+      <p>効果を保証する理論としてではなく、考え方の出典として紹介します。</p>
+    </div>
+    <div class="theory">
+      <article class="card"><div class="body">
+        <div class="who"><b>エドワード・L・デシ</b>『人を伸ばす力』</div>
+        <span class="tag">自己決定理論</span>
+        <p>評価や圧力の中では、人は自分の内側から動きにくくなる。</p>
+        <div class="where"><b>研修のどこで</b>講師が評価しないこと／締めくくりの「〜したい」</div>
+      </div></article>
+      <article class="card"><div class="body">
+        <div class="who"><b>平田オリザ</b>『わかりあえないことから』</div>
+        <span class="tag">対話論</span>
+        <p>わかりあえないことを前提に、ずれを確かめながら近づくのが対話。</p>
+        <div class="where"><b>研修のどこで</b>ニムトの〈もしも〉／ジャストワンのC／ありがとうのワーク</div>
+      </div></article>
+      <article class="card"><div class="body">
+        <div class="who"><b>スタニスラフスキー</b>『俳優の仕事』</div>
+        <span class="tag">俳優の訓練</span>
+        <p>別人になりきらず、自分のまま〈もしも〉の状況に入る。余計な力を抜く。</p>
+        <div class="where"><b>研修のどこで</b>リラックス運動／ニムト／ありがとうのワーク</div>
+      </div></article>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">実施のしかた</span>
+      <h2>御社に伺って実施します</h2>
+    </div>
+    <figure class="fig" style="margin:0 auto 28px;max-width:760px"><img src="images/onsite.webp" alt="会議室で机を囲む8人と、道具のバッグからゲームを出す講師" loading="lazy" width="1344" height="752"></figure>
+    <div class="how">
+      <dl class="spec">
+        <div><dt>人数</dt><dd>1班8人が基本。16人（2班）まで講師1人で進行します。17人以上はご相談ください。</dd></div>
+        <div><dt>場所</dt><dd>御社の会議室や研修室に伺います。机を動かして、8人ほどで1つの机を囲める広さが必要です。</dd></div>
+        <div><dt>道具</dt><dd>ボードゲームなどの道具は、講師が持参します。</dd></div>
+        <div><dt>交通費</dt><dd>実費を別途いただきます。</dd></div>
+        <div><dt>形式</dt><dd>対面のみ。オンラインでの実施はしていません。</dd></div>
+      </dl>
+      <div class="price">
+        <h3>料金（1回あたり・税抜）</h3>
+        <div class="tw"><table>
+          <thead><tr><th>内容</th><th>人数</th><th style="text-align:right">料金</th></tr></thead>
+          <tbody>
+            <tr><td>1日版（5時間）</td><td>8人まで</td><td class="y">80,000<small>円</small></td></tr>
+            <tr><td>1日版（5時間）</td><td>9〜16人</td><td class="y">150,000<small>円</small></td></tr>
+            <tr><td>3時間版</td><td>8人まで</td><td class="y">50,000<small>円</small></td></tr>
+            <tr><td>3時間版</td><td>9〜16人</td><td class="y">100,000<small>円</small></td></tr>
+          </tbody>
+        </table></div>
+        <ul>
+          <li>交通費は実費を別途いただきます。</li>
+          <li>日程・場所・人数は、お問い合わせのあとにご相談して決めます。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pre">
+      <b>事前の打ち合わせで確認すること</b>
+      <ul>
+        <li>人事考課の時期（近ければ日程をご相談します）</li>
+        <li>研修中の発言や様子を人事評価に使わないこと</li>
+        <li>締めくくりのカードを回収しないこと</li>
+        <li>持ち帰りの「力の点検」を会社の決まりにしないこと</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">講師紹介・お問い合わせ</span>
+      <h2>ボードゲームでツナグ手　長山 陽司</h2>
+    </div>
+    <div class="profile">
+      <div>
+        <div class="who-row">
+          <img src="images/profile.webp" alt="長山陽司の写真" loading="lazy" width="600" height="600">
+          <div><h3>長山 陽司</h3><p>ボードゲームでツナグ手（ボドツナ）代表</p></div>
+        </div>
+        <div class="stat"><b>180<small>回</small></b><p>子どもたちとのボードゲームイベントの開催回数（2026年8月末時点）</p></div>
+        <p class="bio">神奈川県の湘南・藤沢を拠点に、ボードゲームを使った子どもの居場所づくりと、ワークショップ・研修の講師をしています。毎日のように子どもたちとゲームの場をつくる中で磨いてきた場の進め方を、大人のチームに向けて組み立て直したのが、このワークショップです。</p>
+        <figure class="fig lecture"><img src="images/lecture.webp" alt="講演の様子" loading="lazy" width="1200" height="900"><figcaption>講演の様子</figcaption></figure>
+      </div>
+      <div class="contact">
+        <h3>お問い合わせ</h3>
+        <p>日程・場所・人数は、お問い合わせのあとにご相談して決めます。まずはお気軽にご連絡ください。</p>
+        <div class="row">
+          <div><span>メール</span><b>miracle.yan80@gmail.com</b></div>
+          <div><span>ウェブサイト</span><b><a href="https://bodotuna.com">https://bodotuna.com</a></b></div>
+        </div>
+        <a class="btn" href="https://bodotuna.com/training.html#contact">お問い合わせフォームへ</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <span>ボドツナワークショップ｜ボードゲームでツナグ手</span>
+  <span>イラストはオリジナルです。実在のゲームの絵柄は使用していません。</span>
+</footer>
+
+</body>
+</html>

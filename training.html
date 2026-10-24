@@ -49,6 +49,17 @@
   box-shadow: 0 4px 0 var(--orange-deep); transition: all 0.15s;
 }
 .ws a.ws-btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--orange-deep); color: #fff; }
+.ws a.ws-btn.ws-btn-sub {
+  background: #fff; color: var(--orange); border: 2px solid var(--orange);
+  box-shadow: 0 4px 0 var(--orange-deep); margin-left: 8px; margin-right: 8px;
+}
+.ws a.ws-btn.ws-btn-sub:hover { color: var(--orange); }
+/* 詳細ページへの案内 */
+.ws-more { margin: 32px auto 0; max-width: 720px; padding: 24px 20px; border-radius: 18px;
+  background: var(--cream); border: 2px dashed var(--orange); text-align: center; }
+.ws-more h3 { font-size: 17px; font-weight: 700; color: var(--brown); margin: 0 0 8px; }
+.ws-more p { font-size: 14px; line-height: 1.9; margin: 0; }
+.ws-more a.ws-btn { margin-top: 16px; }
 @media (max-width: 600px) {
   .ws-hero { padding: 20px 16px 32px; }
   .ws-mv { max-height: 68vh; max-height: 68svh; }
@@ -339,6 +350,7 @@
       <img class="ws-mv" src="images/workshop-mv-pc.png" width="2880" height="1440" alt="ボドツナワークショップ ボードゲームと演劇で体験する、チームのコミュニケーション。伝え方のテクニックを教える研修ではありません。相手に伝わる状態を、自分で作る研修です。ボードゲームでツナグ手（ボドツナ）">
     </picture>
     <a href="#contact" class="ws-btn">実施のご相談はこちら</a>
+    <a href="workshop/" class="ws-btn ws-btn-sub">研修の詳細を見る</a>
   </div>
 </section>
 
@@ -416,6 +428,11 @@
       </div>
     </div>
     <p class="ws-note">3時間版は、午後の「負けと運のゲーム」を外し、ほかのユニットを短くした構成です。<br>使うゲームは、いずれも市販のボードゲームです。研修では、人数やルールの一部を変えて使います。</p>
+    <div class="ws-more">
+      <h3>研修の詳しい内容</h3>
+      <p>ユニットごとのねらいと進め方、背景にある考え方、料金と実施の流れを1つのページにまとめています。社内でのご検討にお使いください。</p>
+      <a href="workshop/" class="ws-btn">研修の詳細を見る</a>
+    </div>
   </div>
 </section>
 

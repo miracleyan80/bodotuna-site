@@ -204,6 +204,39 @@
   .ws-order { flex-direction: column; align-items: flex-start; gap: 14px; padding-left: 24px; }
   .ws-arrow { transform: rotate(90deg); margin-left: 15px; }
 }
+/* ===== アイソメトリックのイラスト（2026-10-24） ===== */
+.ws-hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: center; text-align: left; max-width: 1080px; }
+.ws-hero-kicker { font-family: 'Zen Maru Gothic', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--orange); margin: 14px 0 6px; }
+.ws .ws-hero-title { font-size: clamp(20px, 2.9vw, 32px); font-weight: 900; line-height: 1.45; color: var(--brown); margin: 0 0 16px; }
+.ws-hero-lead { font-size: 15px; line-height: 1.9; color: var(--brown); }
+.ws-hero-lead strong { display: inline-block; margin-top: 4px; font-family: 'Zen Maru Gothic', sans-serif; font-size: clamp(18px, 2.4vw, 22px); font-weight: 900; line-height: 1.6; }
+.ws-hero-fig { margin: 0; }
+.ws-hero-fig img { width: 100%; height: auto; display: block; }
+.ws-hero .ws-btn:first-of-type { margin-right: 4px; }
+.ws a.ws-btn.ws-btn-sub { margin-left: 0; }
+.ws-iso { display: block; width: 100%; height: auto; border-radius: 16px; background: #FAF6EF; }
+.ws-flow .ws-iso { max-width: 240px; margin: 0 auto; }
+.ws-flow li + li::before { top: 70px; }
+.ws-concept { display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; background: var(--cream); border-radius: 16px; padding: 16px 20px; margin-top: 20px; }
+.ws-concept p { font-family: 'Zen Maru Gothic', sans-serif; font-size: 17px; font-weight: 700; line-height: 1.7; color: var(--brown); margin: 0; }
+.ws-onsite { max-width: 520px; margin: 4px auto 20px; }
+.ws-info dt { flex: 0 0 5.5em; }
+.ws-day2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ws-day2 .ws-half { padding: 20px 20px 22px; }
+.ws-day2 .ws-iso { margin-bottom: 14px; }
+.ws-day2 p { font-size: 14px; line-height: 1.9; color: var(--brown); margin: 0; }
+@media (max-width: 760px) {
+  .ws-hero-grid { grid-template-columns: 1fr; gap: 12px; text-align: center; }
+  .ws-hero-fig { order: -1; max-width: 420px; margin: 0 auto; }
+  .ws-day2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .ws-flow li { display: block; text-align: center; }
+  .ws-flow li + li::before { left: 50%; top: -22px; }
+  .ws-flow h4 { margin: 10px 0 2px; }
+  .ws-concept { grid-template-columns: 1fr; text-align: center; }
+  .ws-concept .ws-iso { max-width: 240px; margin: 0 auto; }
+}
 </style>
 <style>
 /* ===== イラスト（2026-10-11 追加） ===== */
@@ -342,15 +375,16 @@
 
 <!-- メインビジュアル -->
 <section class="ws-hero">
-  <div class="ws-hero-inner">
-    <span class="subpage-breadcrumb">居場所を支える事業</span>
-    <h1 class="ws-sr-only">ボドツナワークショップ ボードゲームと演劇で体験する、チームのコミュニケーション</h1>
-    <picture>
-      <source media="(max-width: 600px)" srcset="images/workshop-mv-sp.png" width="780" height="1380">
-      <img class="ws-mv" src="images/workshop-mv-pc.png" width="2880" height="1440" alt="ボドツナワークショップ ボードゲームと演劇で体験する、チームのコミュニケーション。伝え方のテクニックを教える研修ではありません。相手に伝わる状態を、自分で作る研修です。ボードゲームでツナグ手（ボドツナ）">
-    </picture>
-    <a href="#contact" class="ws-btn">実施のご相談はこちら</a>
-    <a href="workshop/" class="ws-btn ws-btn-sub">研修の詳細を見る</a>
+  <div class="ws-hero-inner ws-hero-grid">
+    <div class="ws-hero-text">
+      <span class="subpage-breadcrumb">居場所を支える事業</span>
+      <p class="ws-hero-kicker">ボドツナワークショップ</p>
+      <h1 class="ws-hero-title"><span class="ws-nb">ボードゲームと演劇で体験する、</span><span class="ws-nb">チームのコミュニケーション</span></h1>
+      <p class="ws-hero-lead">伝え方のテクニックを教える研修ではありません。<br><strong><span class="ws-nb">相手に<span class="ws-em">伝わる状態</span>を、</span><span class="ws-nb">自分で作る研修です。</span></strong></p>
+      <a href="#contact" class="ws-btn">実施のご相談はこちら</a>
+      <a href="workshop/" class="ws-btn ws-btn-sub">研修の詳細を見る</a>
+    </div>
+    <figure class="ws-hero-fig"><img src="workshop/images/hero.webp" alt="机を囲んだ8人が、真ん中のカードに手を伸ばしているイラスト" width="1168" height="880" fetchpriority="high"></figure>
   </div>
 </section>
 
@@ -358,44 +392,43 @@
 <section style="background: var(--yellow-light);">
   <div class="container">
     <div class="title-wrap"><h2 class="section-title">ボドツナワークショップとは</h2></div>
-    <p class="section-lead ws-core"><span class="ws-nb">伝え方のテクニックを教える</span><span class="ws-nb">研修ではありません。</span><br><strong><span class="ws-nb">相手に<span class="ws-em">伝わる状態</span>を、</span><span class="ws-nb">自分で作る研修です。</span></strong></p>
 
     <div class="content-block">
       <h3>遊んで、演じて、振り返ります</h3>
       <ol class="ws-flow">
         <li>
-          <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-cards"/></svg></span>
+          <img class="ws-iso" src="workshop/images/mind.webp" alt="8人が黙ってカードを手に持ち、場に小さい順に出していくイラスト" width="1024" height="688" loading="lazy">
           <h4>遊びます</h4>
           <p>ボードゲームで遊びます。</p>
         </li>
         <li>
-          <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-act"/></svg></span>
+          <img class="ws-iso" src="workshop/images/haa.webp" alt="同じ一言を、声だけで言う人と、身体も使って言う人のイラスト" width="1024" height="688" loading="lazy">
           <h4>演じます</h4>
           <p>短い演劇のワークをします。</p>
         </li>
         <li>
-          <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-reflect"/></svg></span>
+          <img class="ws-iso" src="workshop/images/closing.webp" alt="窓の光の中で、一人机に向かいカードに一行書く人のイラスト" width="1024" height="688" loading="lazy">
           <h4>振り返ります</h4>
           <p>自分が何をしたか、どう感じたかを振り返ります。</p>
         </li>
       </ol>
       <p>参加者はボードゲームで遊び、短い演劇のワークをして、そのとき自分が何をしたか、どう感じたかを振り返ります。</p>
       <p>講師は正解を教えず、参加者を評価しません。先に身体と気持ちが動き、思考と言葉は後から来る、という順番を体験する構成です。</p>
-      <div class="ws-order" role="img" aria-label="先に身体と気持ちが動き、思考と言葉は後から来ます。">
-        <div class="ws-order-item"><span class="ws-ic"><svg aria-hidden="true"><use href="#i-heart"/></svg></span><span><small>先に</small>身体と気持ち</span></div>
-        <span class="ws-arrow" aria-hidden="true"></span>
-        <div class="ws-order-item"><span class="ws-ic"><svg aria-hidden="true"><use href="#i-talk"/></svg></span><span><small>後から</small>思考と言葉</span></div>
+      <div class="ws-concept">
+        <img class="ws-iso" src="workshop/images/concept.webp" alt="一歩踏み出す人。胸にハートがあり、言葉の吹き出しは後ろから追いかけているイラスト" width="1024" height="1024" loading="lazy">
+        <p>先に身体と気持ちが動き、思考と言葉は後から来ます。</p>
       </div>
     </div>
 
     <div class="content-block">
       <h3>基本情報</h3>
+      <div class="ws-onsite"><img class="ws-iso" src="workshop/images/onsite.webp" alt="会議室で机を囲む8人と、道具のバッグからゲームを出す講師のイラスト" width="1344" height="752" loading="lazy"></div>
       <dl class="ws-info">
-        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-team"/></svg></span>対象</dt><dd>企業・団体のチーム（社員、職員）が対象です。</dd></div>
-        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>形式</dt><dd>1日版（5時間）と3時間版の2種類があります。</dd></div>
-        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-table"/></svg></span>人数</dt><dd>1班8人が基本です。16人（2班）までは講師1人で実施します。</dd></div>
-        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-building"/></svg></span>実施場所</dt><dd>貴社・貴団体の会議室など、ご用意いただいた会場に伺います。</dd></div>
-        <div><dt><span class="ws-ic ws-ic-sm"><svg aria-hidden="true"><use href="#i-person"/></svg></span>講師</dt><dd>長山陽司（ボードゲームでツナグ手 代表）が担当します。2026年8月末時点で、子どもたちとのボードゲームイベントを180回行っています。</dd></div>
+        <div><dt>対象</dt><dd>企業・団体のチーム（社員、職員）が対象です。</dd></div>
+        <div><dt>形式</dt><dd>1日版（5時間）と3時間版の2種類があります。</dd></div>
+        <div><dt>人数</dt><dd>1班8人が基本です。16人（2班）までは講師1人で実施します。</dd></div>
+        <div><dt>実施場所</dt><dd>貴社・貴団体の会議室など、ご用意いただいた会場に伺います。</dd></div>
+        <div><dt>講師</dt><dd>長山陽司（ボードゲームでツナグ手 代表）が担当します。2026年8月末時点で、子どもたちとのボードゲームイベントを180回行っています。</dd></div>
       </dl>
     </div>
   </div>
@@ -407,24 +440,16 @@
     <div class="title-wrap"><h2 class="section-title">1日の流れ（1日版・5時間）</h2></div>
     <p class="section-lead">午前に4つ、午後に4つのユニットを行います。</p>
 
-    <div class="ws-day">
+    <div class="ws-day2">
       <div class="ws-half">
+        <img class="ws-iso" src="workshop/images/relax.webp" alt="椅子に座り、ペットボトルを腕を伸ばして持つ4人のイラスト" width="1024" height="688" loading="lazy">
         <h3 class="ws-half-title">午前</h3>
-        <ol class="ws-units">
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-talk"/></svg><b>1</b></span><div><h4>はじめに</h4><p>研修の考え方と約束ごとを聞きます。</p></div></li>
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-relax"/></svg><b>2</b></span><div><h4>リラックス運動</h4><p>身体の余計な力に気づきます。</p></div></li>
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-voice"/></svg><b>3</b></span><div><h4>声と身体のゲーム</h4><span class="ws-game">使うゲーム：はあっていうゲーム</span><p>同じ一言を、声だけ・身体も使って伝え分けます。</p></div></li>
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-eye"/></svg><b>4</b></span><div><h4>言葉を使わないゲーム</h4><span class="ws-game">使うゲーム：ザ・マインド</span><p>言葉なしで、相手の動きを見て合わせます。</p></div></li>
-        </ol>
+        <p>はじめに／リラックス運動／声と身体のゲーム／言葉を使わないゲーム</p>
       </div>
       <div class="ws-half ws-half-pm">
+        <img class="ws-iso" src="workshop/images/justone.webp" alt="3人がカードを持ち寄り、机の真ん中に新しい1枚を置くイラスト。回答者は背を向けている" width="1024" height="688" loading="lazy">
         <h3 class="ws-half-title">午後</h3>
-        <ol class="ws-units" start="5">
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-dice"/></svg><b>5</b></span><div><h4>負けと運のゲーム</h4><span class="ws-game">使うゲーム：ニムト</span><p>ゲーム中に実際に起きた場面で、相手の立場に立ちます。</p></div></li>
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-bubbles"/></svg><b>6</b></span><div><h4>言葉を当てるゲーム</h4><span class="ws-game">使うゲーム：ジャストワン</span><p>組で相談して、誰の案でもない第三の答えを作ります。</p></div></li>
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-heart"/></svg><b>7</b></span><div><h4>「ありがとう」のワーク</h4><p>誰に言いたいかを思い浮かべると、同じ一言がどう変わるかを体験します。</p></div></li>
-          <li><span class="ws-ic"><svg aria-hidden="true"><use href="#i-note"/></svg><b>8</b></span><div><h4>締めくくり</h4><p>仕事の中で自分は何がしたいのかを、一人で考えて持ち帰ります。</p></div></li>
-        </ol>
+        <p>負けと運のゲーム／言葉を当てるゲーム／「ありがとう」のワーク／締めくくり</p>
       </div>
     </div>
     <p class="ws-note">3時間版は、午後の「負けと運のゲーム」を外し、ほかのユニットを短くした構成です。<br>使うゲームは、いずれも市販のボードゲームです。研修では、人数やルールの一部を変えて使います。</p>
@@ -432,42 +457,6 @@
       <h3>研修の詳しい内容</h3>
       <p>ユニットごとのねらいと進め方、背景にある考え方、料金と実施の流れを1つのページにまとめています。社内でのご検討にお使いください。</p>
       <a href="workshop/" class="ws-btn">研修の詳細を見る</a>
-    </div>
-  </div>
-</section>
-
-<!-- 約束ごと -->
-<section style="background: var(--yellow-light);">
-  <div class="container">
-    <div class="title-wrap"><h2 class="section-title">研修の約束ごと</h2></div>
-    <p class="section-lead">安心して参加していただくために、次のことをお約束したうえで実施します。</p>
-
-    <div class="ws-promises">
-      <div class="info-card">
-        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-noeval"/></svg></span>
-        <h4>人事評価には使いません</h4>
-        <p>研修中の発言や様子は、人事評価に使わない前提で実施します。</p>
-      </div>
-      <div class="info-card">
-        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-bag"/></svg></span>
-        <h4>カードは本人が持ち帰ります</h4>
-        <p>最後に書くカードは本人が持ち帰ります。会社には提出しません。</p>
-      </div>
-      <div class="info-card">
-        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-pass"/></svg></span>
-        <h4>いつでもパスできます</h4>
-        <p>演技やワークは、いつでもパスできます。</p>
-      </div>
-      <div class="info-card">
-        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-nomic"/></svg></span>
-        <h4>全体の前で発表させません</h4>
-        <p>自分の気持ちや答えを、全体の前で発表させることはありません。例外は「ありがとう」のワークで、全員の前で一言ずつ言います。</p>
-      </div>
-      <div class="info-card">
-        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-question"/></svg></span>
-        <h4>講師は正解を教えません</h4>
-        <p>講師は正解を教えず、参加者を評価しません。そのため、物足りなく感じる方がいるかもしれません。</p>
-      </div>
     </div>
   </div>
 </section>
@@ -547,13 +536,8 @@
         <figcaption>AさんとBさんの意見から、どちらのものでもない第三の結論Cを一緒につくります。</figcaption>
       </figure>
       <p>ボードゲームには、この「Cをつくる」場面が何度も出てきます。ヒントが重なると消されてしまう協力ゲームでは、他の人と違う視点を出さないと勝てません。同じお題でも、人によって思い浮かべるものがまるで違うことが、ゲームの結果として卓の上に残ります。ずれが罰されず、発見として扱われる場で、対話の基礎体力が育ちます。</p>
-      <div class="pg-illust"><img src="images/bodotuna-illust-taito.jpg" alt="上司も新人も現場の人も、同じテーブルで対等にボードゲームを楽しむイラスト" loading="lazy" style="object-position: center 22%;"></div>
+      <div class="pg-illust contain"><img src="workshop/images/promises.webp" alt="輪になった椅子に、講師も参加者も同じ高さで座っているイラスト" width="1024" height="1024" loading="lazy"></div>
       <p>私たちが居場所で毎週やっていることを、そのまま企業の現場に持ち込みます。大人も子どもも同じルールで本気で遊ぶと、上下関係や属性の壁が消えて、対等になります。研修では、その対等さを、部門と世代のあいだにつくります。</p>
-    </div>
-    <div class="content-block">
-      <h3>背景にある考え方</h3>
-      <p>このワークショップは、エドワード・L・デシの自己決定理論（『人を伸ばす力』）、平田オリザの対話論（『わかりあえないことから』）、スタニスラフスキーの俳優訓練（『俳優の仕事』）をもとに組み立てています。</p>
-      <p>いずれも考え方の出典として紹介しています。効果を保証するものではありません。</p>
     </div>
   </div>
 </section>
@@ -565,7 +549,6 @@
 
     <div class="price-grid ws-price">
       <div class="price-card">
-        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-3h"/></svg></span>
         <h4>3時間版</h4>
         <p class="price-sub">3時間・1回あたり（税抜）</p>
         <div class="ws-tiers">
@@ -578,7 +561,6 @@
         </ul>
       </div>
       <div class="price-card">
-        <span class="ws-ic ws-ic-lg"><svg aria-hidden="true"><use href="#i-5h"/></svg></span>
         <h4>1日版</h4>
         <p class="price-sub">5時間・1回あたり（税抜）</p>
         <div class="ws-tiers">
